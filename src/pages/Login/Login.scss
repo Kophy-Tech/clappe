@@ -1,0 +1,112 @@
+@use '../assets' as a;
+
+.login{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    nav{
+        height: a.$navbarHeight;
+        background-color: a.$blueColor;
+        display: flex;
+        align-items: center;
+
+        span{
+            font-size: a.$fontMedium;
+            color: a.$whiteColor;
+            margin-left: 10px;
+           font-family: a.$fontFamily;
+        }
+    }
+    .login__container{
+ max-width: a.$max-width;
+ min-height: a.$min-height;
+ width: auto;
+ border: 1px solid a.$bordedrColorContainer;
+ margin: auto 0.5rem;
+ align-self: center;
+
+ .login__head{
+     background-color: a.$login__headbackColor;
+     height: a.$login__headHeight;
+     display: flex;
+     align-items:center ;
+ border-bottom: 2px solid a.$loginBorderBottomColor;
+ padding-left: 0.5rem;
+ color: #2f06b8;
+ font-weight: 700;
+           font-family: a.$fontFamily;
+           font-size: a.$fontSmall;
+
+ }
+ 
+.login_form__container{
+    display: flex;
+    height: 100%;
+    .login_form__image__container{
+       width: 10rem;
+       align-self: center;
+      
+      
+      
+    }
+   .form{
+        align-self: center;
+    
+   }
+}
+    }
+     .login_container_form{
+            padding: 1.5rem 0.5rem;
+            label{
+                margin-right: 0.5rem;
+                font-size: 1rem;
+                font-weight: 500;
+            }
+            input{
+                outline: none;
+                height: 25px!important;
+                margin-right: 1.3rem;
+
+            }
+        }
+         .login_container_form2{
+            // padding: 1.5rem 0.5rem;
+            label{
+                margin-right: 0.5rem;
+                margin-left: 2.4rem;
+                font-size: 1rem;
+                font-weight: 500;
+            }
+            input{
+                outline: none;
+                height: 25px!important;
+                margin-right: 1.3rem;
+
+            }
+        }
+        .forgot_password{
+            font-size: 0.8rem;
+            text-align: center;
+            text-decoration: underline;
+            color: a.$blueColor;
+            font-family: a.$fontFamily;
+            margin-top: 1rem;
+        }
+     .submit{
+         width: 100%;
+          display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+            button{
+           
+            width: 80px;
+            height: 30px;
+            background-color: a.$blueColor;
+            border: none;
+            border-radius: 3px;
+            color: a.$whiteColor;
+            font-family: a.$fontFamily;
+            font-size: 1rem;
+        }
+     }
+}
