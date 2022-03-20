@@ -59,12 +59,12 @@
             padding: 1.5rem 0.5rem;
             label{
                 margin-right: 0.5rem;
-                font-size: 1rem;
+                font-size: a.$fontExtraSmall;
                 font-weight: 500;
             }
             input{
                 outline: none;
-                height: 25px!important;
+                height: a.$LInputHeight;
                 margin-right: 1.3rem;
 
             }
@@ -79,13 +79,13 @@
             }
             input{
                 outline: none;
-                height: 25px!important;
+                height: a.$LInputHeight;
                 margin-right: 1.3rem;
 
             }
         }
         .forgot_password{
-            font-size: 0.8rem;
+            font-size: a.$fontExtraSS;
             text-align: center;
             text-decoration: underline;
             color: a.$blueColor;
@@ -99,14 +99,14 @@
             margin-top: 1rem;
             button{
            
-            width: 80px;
-            height: 30px;
+            width: a.$Swidth;
+            height: a.$Sheight;
             background-color: a.$blueColor;
             border: none;
             border-radius: 3px;
             color: a.$whiteColor;
             font-family: a.$fontFamily;
-            font-size: 1rem;
+            font-size: a.$fontExtraSmall;
         }
      }
 }

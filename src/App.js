@@ -12,6 +12,8 @@ import { useNProgress } from '@tanem/react-nprogress'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 const LoginPage = React.lazy(() => import('./pages/Login/Login'));
 const RegisterPage = React.lazy(() => import('./pages/Register/Register'));
+const ForgotPassword = React.lazy(() => import('./pages/ForgotPassword/ForgotPassword'));
+
 
 
 
@@ -64,6 +66,8 @@ return(
 
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
+            <Route path="forgotpassword" element={<ForgotPassword />} />
+
 
           </Routes>
         </Suspense>
