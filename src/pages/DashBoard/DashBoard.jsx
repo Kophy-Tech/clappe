@@ -1,8 +1,11 @@
 import React from 'react'
+import Navbar from '../Navbar/Navbar'
 import './DashBoardCss.css'
 
 export default function DashBoard() {
   return (
+      <>
+      <Navbar />
    <div>
   <div>
     <div className="container">
@@ -158,6 +161,7 @@ export default function DashBoard() {
     </div>
   </div>
 </div>
+</>
 
   )
 }

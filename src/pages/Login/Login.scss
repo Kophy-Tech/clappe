@@ -1,5 +1,7 @@
 @use '../assets' as a;
-
+body{
+    font-family: 'Roboto', sans-serif;
+}
 .login{
     height: 100vh;
     display: flex;

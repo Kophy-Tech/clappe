@@ -4,43 +4,33 @@ import './Login.scss'
 
 function Login() {
     return (
-        <> 
-        <Navbar/>
-        <div className='login'>
-            <div className='login__container'>
-                <div className='login__head text-primary'>
-                    Login
-                </div>
-                <div className='login_form__container'>
-                    <div className='login_form__image__container'><img src="./images/key.png" alt="key" className='login_form__image' height="100%" width='100%' /></div>
-                    <div>
-                        <form className='form'>
-                            <div classname="container">
-                                <div className='login_container_form'>
-                                    <label htmlFor="uname" className='name'>Email Address:</label>
-                                    <input type="text" placeholder="Enter Username" name="uname" required  className='input'/>
-                                </div>
-                                <div className='login_container_form2'>
-                                    <label htmlFor="psw">Password:</label>
-                                    <input type="password" placeholder="Enter Password" name="psw" required />
-                                </div>
-
-                                <div  className='forgot_password'>
-
-                                    <span classname="psw">Forgot <a >password?</a></span>
-                                </div>
-                               <div className='submit'>
-                                    <a href='/dashboard' type="submit" className='btn btn-primary'>Login</a>
-                               </div>
-
+        <>
+            <Navbar />
+            <div className='login'>
+                <div className='login__container'>
+                    <div className='login__head text-primary'>
+                        Login
+                    </div>
+                    <div className='login_form__container pe-4'>
+                        <div className='login_form__image__container'>
+                            <img src="./images/key.png" alt="key" className='login_form__image' height="100%" width='100%' />
+                        </div>
+                        <form className='mt-4'>
+                            <div className="form-group">
+                              <b> <label htmlFor="exampleInputEmail1">Email address</label> </b>
+                                <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
                             </div>
-
+                            <div className="form-group">
+                               <b> <label htmlFor="exampleInputPassword1">Password</label> </b>
+                                <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+                            </div>
+                           
+                            <a type="submit" href='/dashboard' className="mt-2 btn btn-primary">Login</a>
                         </form>
 
                     </div>
                 </div>
             </div>
-        </div>
         </>
     )
 }

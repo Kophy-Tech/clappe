@@ -2,7 +2,9 @@
 .color{
     color: #0099ff;
 }
-
+body{
+    font-family: 'Roboto', sans-serif;
+}
 .bg-color{
     background-color: #0099ff;
 }

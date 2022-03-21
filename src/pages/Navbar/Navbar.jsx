@@ -4,7 +4,7 @@ export default function Navbar() {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <a className="navbar-brand fw-bold ms-5" href="#">Clappe</a>
+          <a className="navbar-brand fw-bold ms-5" href="/">Clappe</a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon" />
           </button>
@@ -44,7 +44,7 @@ export default function Navbar() {
             </ul>
             <form className="d-flex">
               <a href='/login' className="btn btn-outline-primary me-3" type="submit">Sign in</a>
-              <a href='/dashboard' className="btn btn-primary me-3" type="submit">Try for free</a>
+              <a href='/register' className="btn btn-primary me-3" type="submit">Try for free</a>
             </form>
           </div>
         </div>

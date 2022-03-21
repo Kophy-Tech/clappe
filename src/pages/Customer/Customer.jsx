@@ -1,9 +1,11 @@
 import React from 'react'
 import '../Customer/CustomerCss.css'
+import Navbar from '../Navbar/Navbar'
 
 export default function Customer() {
     return (
-
+        <> 
+<Navbar />
         <div>
             <div className="container">
                 <div className="mb-4">
@@ -374,6 +376,6 @@ export default function Customer() {
                 </nav>
             </div>
         </div>
-
+        </>
     )
 }

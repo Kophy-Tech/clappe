@@ -1,9 +1,12 @@
 import React from 'react'
+import Navbar from '../Navbar/Navbar'
 import '../NewCustomer/NewCustomerCss.css'
 
 
 export default function NewCustomer() {
     return (
+        <> 
+        <Navbar />
         <div>
             <div className="container bg-light">
                 {/* Add New Customer */}
@@ -137,6 +140,6 @@ export default function NewCustomer() {
                 <button className="mybtn">Cancel</button>
             </div>
         </div>
-
+        </>
     )
 }

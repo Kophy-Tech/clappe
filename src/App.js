@@ -73,7 +73,7 @@ return(
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
             <Route path="forgotpassword" element={<ForgotPassword />} />
-            <Route path="LandingPage" element={<LandingPage />} />
+            <Route path="/" element={<LandingPage />} />
             <Route path="Navbar" element={<Navbar />} />
             <Route path="Footer" element={<Footer />} />
             <Route path="DashBoard" element={<DashBoard />} />

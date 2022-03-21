@@ -81,7 +81,7 @@ export default function Footer() {
             </footer>
             <div className="bottom_footer bg-dark ">
                 <p className='text-center text-white p-2 text-muted'>
-                    Made by &copy; Cephas Digital - All rights reserved.
+                    Made by &copy; Kophy Technologies - All rights reserved.
                 </p>
             </div>
         </div>
