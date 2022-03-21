@@ -1,36 +1,38 @@
 import React from 'react'
 import Navbar from '../Navbar/Navbar'
-import './Login.scss'
-
+import './Login.css'
+// import { Link } from 'react-router-dom'
 function Login() {
     return (
         <>
             <Navbar />
-            <div className='login'>
-                <div className='login__container'>
-                    <div className='login__head text-primary'>
-                        Login
-                    </div>
-                    <div className='login_form__container pe-4'>
-                        <div className='login_form__image__container'>
-                            <img src="./images/key.png" alt="key" className='login_form__image' height="100%" width='100%' />
-                        </div>
-                        <form className='mt-4'>
-                            <div className="form-group">
-                              <b> <label htmlFor="exampleInputEmail1">Email address</label> </b>
-                                <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-                            </div>
-                            <div className="form-group">
-                               <b> <label htmlFor="exampleInputPassword1">Password</label> </b>
-                                <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
-                            </div>
-                           
-                            <a type="submit" href='/dashboard' className="mt-2 btn btn-primary">Login</a>
-                        </form>
+        <div className="row">
+  <div className="colm-logo">
+    {/* <img src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg" alt="Logo" /> */}
+    <h1 className='text-primary '> Turn Quotes into Invoices with minimal effort</h1>
+    <h1 className=''>Clappe helps you Create and share with Customers.</h1>
+  </div>
+  <div className="colm-form">
+    <div className="form-container">
+      <input type="text" placeholder="Email address or phone number" />
+      <input type="password" placeholder="Password" />
+      {/* <Link> */}
+      <a href='/dashboard'> 
 
-                    </div>
-                </div>
-            </div>
+      <button className="btn-login">Login</button>
+
+      </a>
+      
+      {/* </Link> */}
+      <a href="#">Forgotten password?</a>
+      <a href='/register'> 
+
+      <button className="btn-new">Create new Account</button>
+      </a>
+    </div>
+  </div>
+</div>
+
         </>
     )
 }

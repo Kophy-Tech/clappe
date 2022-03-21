@@ -10,7 +10,7 @@ export default function Customer() {
             <div className="container">
                 <div className="mb-4">
                     {/* Customer title */}
-                    <h3 className="h3 fw-bold text-secondary ">Customers</h3>
+                    <h3 className="h3 fw-bold text-secondary my-4 ">Customers</h3>
                     <h5 className="color fs-5 mt-4 mx-5">Search</h5>
                 </div>
                 {/* Input field for Customer */}
@@ -21,7 +21,7 @@ export default function Customer() {
                                 {/* Customer Name Input Field */}
                                 <div className="form-group d-flex justify-content-between mb-3 ">
                                     <label htmlFor="customer">Customer Name:</label>
-                                    <input type="text" className="form-control w-50 " />
+                                    <input type="text" className="form-control w-50 h-2 " />
                                 </div>
                                 {/* Amount Input Field  */}
                                 <div className="form-group d-flex mb-3 justify-content-between">
