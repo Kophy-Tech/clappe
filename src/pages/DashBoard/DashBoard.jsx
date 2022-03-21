@@ -32,11 +32,11 @@ export default function DashBoard() {
                 <h6 className="fw-bold">Paid</h6>
                 <h6 className="fw-bold">Emailed</h6>
                 <h6 className="fw-bold">Overdue</h6>
-                <a className="text-decoration-underline" href="#">120</a>
-                <a className="text-decoration-underline" href="#">30</a>
-                <a className="text-decoration-underline" href="#">500</a>
-                <a className="text-decoration-underline" href="#">500</a>
-                <a className="text-decoration-underline" href="#">2</a>
+                <a className="text-decoration-underline" href="/">120</a>
+                <a className="text-decoration-underline" href="/">30</a>
+                <a className="text-decoration-underline" href="/">500</a>
+                <a className="text-decoration-underline" href="/">500</a>
+                <a className="text-decoration-underline" href="/">2</a>
               </div>
             </div>
           </div>
@@ -55,11 +55,11 @@ export default function DashBoard() {
               <h6 className="fw-bold">Paid</h6>
               <h6 className="fw-bold">Emailed</h6>
               <h6 className="fw-bold">Overdue</h6>
-              <a className="text-decoration-underline" href="#">10</a>
-              <a className="text-decoration-underline" href="#">150</a>
-              <a className="text-decoration-underline" href="#">140</a>
-              <a className="text-decoration-underline" href="#">10</a>
-              <a className="text-decoration-underline" href="#">2</a>
+              <a className="text-decoration-underline" href="/">10</a>
+              <a className="text-decoration-underline" href="/">150</a>
+              <a className="text-decoration-underline" href="/">140</a>
+              <a className="text-decoration-underline" href="/">10</a>
+              <a className="text-decoration-underline" href="/">2</a>
             </div>
           </div>
         </div>
@@ -82,11 +82,11 @@ export default function DashBoard() {
               <h6 className="fw-bold">Approved</h6>
               <h6 className="fw-bold">Rejected</h6>
               <h6 className="fw-bold">Emailed</h6>
-              <a className="text-decoration-underline" href="#">120</a>
-              <a className="text-decoration-underline" href="#">300</a>
-              <a className="text-decoration-underline" href="#">500</a>
-              <a className="text-decoration-underline" href="#">20</a>
-              <a className="text-decoration-underline" href="#">500</a>
+              <a className="text-decoration-underline" href="/">120</a>
+              <a className="text-decoration-underline" href="/">300</a>
+              <a className="text-decoration-underline" href="/">500</a>
+              <a className="text-decoration-underline" href="/">20</a>
+              <a className="text-decoration-underline" href="/">500</a>
             </div>
           </div>
         </div>
@@ -103,10 +103,10 @@ export default function DashBoard() {
               <h6 className="fw-bold">Pending</h6>
               <h6 className="fw-bold">Received</h6>
               <h6 className="fw-bold">Emailed</h6>
-              <a className="text-decoration-underline" href="#">10</a>
-              <a className="text-decoration-underline" href="#">140</a>
-              <a className="text-decoration-underline" href="#">150</a>
-              <a className="text-decoration-underline" href="#">10</a>
+              <a className="text-decoration-underline" href="/">10</a>
+              <a className="text-decoration-underline" href="/">140</a>
+              <a className="text-decoration-underline" href="/">150</a>
+              <a className="text-decoration-underline" href="/">10</a>
             </div>
           </div>
         </div>
@@ -129,11 +129,11 @@ export default function DashBoard() {
             <h6 className="fw-bold">Approved</h6>
             <h6 className="fw-bold">Rejected</h6>
             <h6 className="fw-bold">Emailed</h6>
-            <a className="text-decoration-underline" href="#">120</a>
-            <a className="text-decoration-underline" href="#">500</a>
-            <a className="text-decoration-underline" href="#">500</a>
-            <a className="text-decoration-underline" href="#">20</a>
-            <a className="text-decoration-underline" href="#">500</a>
+            <a className="text-decoration-underline" href="/">120</a>
+            <a className="text-decoration-underline" href="/">500</a>
+            <a className="text-decoration-underline" href="/">500</a>
+            <a className="text-decoration-underline" href="/">20</a>
+            <a className="text-decoration-underline" href="/">500</a>
           </div>
         </div>
       </div>
@@ -150,11 +150,11 @@ export default function DashBoard() {
             <h6 className="fw-bold">Paid</h6>
             <h6 className="fw-bold">Emailed</h6>
             <h6 className="fw-bold">Overdue</h6>
-            <a className="text-decoration-underline" href="#">120</a>
-            <a className="text-decoration-underline" href="#">30</a>
-            <a className="text-decoration-underline" href="#">500</a>
-            <a className="text-decoration-underline" href="#">500</a>
-            <a className="text-decoration-underline" href="#">2</a>
+            <a className="text-decoration-underline" href="/">120</a>
+            <a className="text-decoration-underline" href="/">30</a>
+            <a className="text-decoration-underline" href="/">500</a>
+            <a className="text-decoration-underline" href="/">500</a>
+            <a className="text-decoration-underline" href="/">2</a>
           </div>
         </div>
       </div>

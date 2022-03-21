@@ -21,7 +21,7 @@ function Register() {
       <input type="text" placeholder="Email address or phone number" />
       <input type="password" placeholder="Password" />
       <button className="btn-login">SignUp</button>
-      <a href="#">Already Have an Account?</a>
+      <a href="/">Already Have an Account?</a>
       <a href='/login'> 
 
       <button className="btn-new"> Sign In</button>

@@ -10,54 +10,54 @@ export default function Footer() {
                     <div className="col-md-2">
                         <h4>Community</h4>
                         <ul>
-                            <li><a href="#">Tutorials</a></li>
-                            <li><a href="#">Documentations</a></li>
-                            <li><a href="#">Forums</a></li>
+                            <li><a href="/">Tutorials</a></li>
+                            <li><a href="/">Documentations</a></li>
+                            <li><a href="/">Forums</a></li>
                         </ul>
                         <h4>Open source</h4>
                         <ul>
-                            <li><a href="#">Download</a></li>
-                            <li><a href="#">Github</a></li>
-                            <li><a href="#">Runbot</a></li>
-                            <li><a href="#">Translations</a></li>
+                            <li><a href="/">Download</a></li>
+                            <li><a href="/">Github</a></li>
+                            <li><a href="/">Runbot</a></li>
+                            <li><a href="/">Translations</a></li>
                         </ul>
                     </div>
                     <div className="col-md-2">
                         <h4>Services</h4>
                         <ul>
-                            <li><a href="#">Clappe Hosting</a></li>
-                            <li><a href="#">Support</a></li>
-                            <li><a href="#">Upgrade</a></li>
-                            <li><a href="#">Education</a></li>
+                            <li><a href="/">Clappe Hosting</a></li>
+                            <li><a href="/">Support</a></li>
+                            <li><a href="/">Upgrade</a></li>
+                            <li><a href="/">Education</a></li>
                         </ul>
                     </div>
                     <div className="col-md-2">
                         <h4>About us</h4>
                         <ul>
-                            <li><a href="#">Our Company</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Jobs</a></li>
+                            <li><a href="/">Our Company</a></li>
+                            <li><a href="/">Contact Us</a></li>
+                            <li><a href="/">Jobs</a></li>
                             <br />
-                            <li><a href="#">Events</a></li>
-                            <li><a href="#">Blogs</a></li>
-                            <li><a href="#">Customers</a></li>
-                            <li><a href="#">Patners</a></li>
+                            <li><a href="/">Events</a></li>
+                            <li><a href="/">Blogs</a></li>
+                            <li><a href="/">Customers</a></li>
+                            <li><a href="/">Patners</a></li>
                             <br />
-                            <li><a href="#">Legal</a></li>
-                            <li><a href="#">Privacy</a></li>
-                            <li><a href="#">Security</a></li>
+                            <li><a href="/">Legal</a></li>
+                            <li><a href="/">Privacy</a></li>
+                            <li><a href="/">Security</a></li>
                         </ul>
                     </div>
                     <div className="col-md-6">
                         <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" style={{color:'white'}} aria-expanded="false">
+                            <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" style={{color:'white'}} aria-expanded="false">
                                 English
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a className="dropdown-item" href="#">Spanish</a></li>
-                                <li><a className="dropdown-item" href="#">French</a></li>
-                                <li><a className="dropdown-item" href="#">Yoruba</a></li>
-                                <li><a className="dropdown-item" href="#">Hausa</a></li>
+                                <li><a className="dropdown-item" href="/">Spanish</a></li>
+                                <li><a className="dropdown-item" href="/">French</a></li>
+                                <li><a className="dropdown-item" href="/">Yoruba</a></li>
+                                <li><a className="dropdown-item" href="/">Hausa</a></li>
                             </ul>
                         </li>
                         <hr />

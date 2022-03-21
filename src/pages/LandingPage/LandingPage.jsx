@@ -92,7 +92,7 @@ function LandingPage() {
                             Atos Worldline or Adyen. Eliminate the hassle of sending reminders for late
                             or outstanding payments. Automated follow-ups are simple to configure
                             and help to streamline billing to make payments quick and easy.</p>
-                        <a href="#" className="btn btn-primary">Start now</a>
+                        <a href="/" className="btn btn-primary">Start now</a>
                     </div>
                     <div className='col-md-6 '>
                         <img src={require('../../assets/img/about.jpg')} className='img-fluid' alt="" />
@@ -120,7 +120,7 @@ function LandingPage() {
                         <h1 className='mt-4 fw-bold'>Analyze your sales</h1>
                         <p className='lead fw-bold'>Access insightful data to get the big picture.</p>
                         <p className='mt-2'>Get direct access to key information with dynamic and customizable dashboards. Make your own definition and analyze your invoicing by product, customer, salesperson, etc.</p>
-                        <a href="#" className="btn btn-primary">Business Intelligence</a>
+                        <a href="/" className="btn btn-primary">Business Intelligence</a>
 
                     </div>
                     <div className='col-md-6 p-5'>

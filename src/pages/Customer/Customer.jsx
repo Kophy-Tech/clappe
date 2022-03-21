@@ -17,7 +17,7 @@ export default function Customer() {
                 <div className="container-margin">
                     <div className="row d-flex justify-content-center ">
                         <div className="col-sm-3 mx-4">
-                            <form action="#">
+                            <form action="/">
                                 {/* Customer Name Input Field */}
                                 <div className="form-group d-flex justify-content-between mb-3 ">
                                     <label htmlFor="customer">Customer Name:</label>
@@ -114,7 +114,7 @@ export default function Customer() {
                                     {/* First Table Row */}
                                     <tr>
                                         <td>
-                                            <a href="#" className="text-decoration-underline">
+                                            <a href="/" className="text-decoration-underline">
                                                 Amazon Legal
                                             </a>
                                         </td>
@@ -138,7 +138,7 @@ export default function Customer() {
                                     {/* Second Table Row */}
                                     <tr>
                                         <td>
-                                            <a href="#" className="text-decoration-underline">
+                                            <a href="/" className="text-decoration-underline">
                                                 Applelaw
                                             </a>
                                         </td>
@@ -162,7 +162,7 @@ export default function Customer() {
                                     {/* Third Table Row */}
                                     <tr>
                                         <td>
-                                            <a href="#" className="text-decoration-underline">
+                                            <a href="/" className="text-decoration-underline">
                                                 ABC Coperation
                                             </a>
                                         </td>
@@ -186,7 +186,7 @@ export default function Customer() {
                                     {/* Fourth Table Row */}
                                     <tr>
                                         <td>
-                                            <a href="#" className="text-decoration-underline">
+                                            <a href="/" className="text-decoration-underline">
                                                 Al Qatar Coperation
                                             </a>
                                         </td>
@@ -210,7 +210,7 @@ export default function Customer() {
                                     {/* Fifth Table Row */}
                                     <tr>
                                         <td>
-                                            <a href="#" className="text-decoration-underline">
+                                            <a href="/" className="text-decoration-underline">
                                                 Al Jehaaz Inc.
                                             </a>
                                         </td>
@@ -234,7 +234,7 @@ export default function Customer() {
                                     {/* Sixth Table Row */}
                                     <tr>
                                         <td>
-                                            <a href="#" className="text-decoration-underline">
+                                            <a href="/" className="text-decoration-underline">
                                                 Bin Laden Corp.
                                             </a>
                                         </td>
@@ -258,7 +258,7 @@ export default function Customer() {
                                     {/* Seventh Table Row */}
                                     <tr>
                                         <td>
-                                            <a href="#" className="text-decoration-underline">
+                                            <a href="/" className="text-decoration-underline">
                                                 Plamlegal Corp.
                                             </a>
                                         </td>
@@ -282,7 +282,7 @@ export default function Customer() {
                                     {/* Eighth Table Row */}
                                     <tr>
                                         <td>
-                                            <a href="#" className="text-decoration-underline">
+                                            <a href="/" className="text-decoration-underline">
                                                 Dubai Consultants
                                             </a>
                                         </td>
@@ -306,7 +306,7 @@ export default function Customer() {
                                     {/* Ninth Table Row*/}
                                     <tr>
                                         <td>
-                                            <a href="#" className="text-decoration-underline">
+                                            <a href="/" className="text-decoration-underline">
                                                 Dubailegals
                                             </a>
                                         </td>
@@ -330,7 +330,7 @@ export default function Customer() {
                                     {/* Tenth Table Row*/}
                                     <tr>
                                         <td>
-                                            <a href="#" className="text-decoration-underline">
+                                            <a href="/" className="text-decoration-underline">
                                                 Kureshi Law firm
                                             </a>
                                         </td>
@@ -364,13 +364,13 @@ export default function Customer() {
                         <li className="page-item disabled">
                             <a className="page-link">Previous</a>
                         </li>
-                        <li className="page-item"><a className="page-link" href="#">1</a></li>
-                        <li className="page-item"><a className="page-link" href="#">2</a></li>
-                        <li className="page-item"><a className="page-link" href="#">3</a></li>
-                        <li className="page-item"><a className="page-link" href="#">4</a></li>
-                        <li className="page-item"><a className="page-link" href="#">5</a></li>
+                        <li className="page-item"><a className="page-link" href="/">1</a></li>
+                        <li className="page-item"><a className="page-link" href="/">2</a></li>
+                        <li className="page-item"><a className="page-link" href="/">3</a></li>
+                        <li className="page-item"><a className="page-link" href="/">4</a></li>
+                        <li className="page-item"><a className="page-link" href="/">5</a></li>
                         <li className="page-item">
-                            <a className="page-link" href="#">Next</a>
+                            <a className="page-link" href="/">Next</a>
                         </li>
                     </ul>
                 </nav>

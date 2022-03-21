@@ -19,7 +19,7 @@ export default function NewCustomer() {
                         <div className="border h-100">
                             <h5 className="fs-5 text-center bg-color py-3 text-white fw-bold">Customer Information</h5>
                             {/* Customer Information Form */}
-                            <form action="#" className="p-2">
+                            <form action="/" className="p-2">
                                 {/* First Name Input */}
                                 <div className="form-group my-2">
                                     <input type="text" className="form-control" placeholder="First Name" />
@@ -82,7 +82,7 @@ export default function NewCustomer() {
                                 <div>Logo Gallery</div>
                             </div>
                             <div className="px-3">
-                                <form action="#">
+                                <form action="/">
                                     <label htmlFor="theme">Select Theme</label>
                                     <div className="d-flex align-items-center">
                                         <div className="form-group">
@@ -101,7 +101,7 @@ export default function NewCustomer() {
                         <div className="border h-100">
                             <h4 className="h4 text-center bg-color py-3 text-white fw-bold fs-5">Shipping &amp; Billing</h4>
                             {/* Shipping & Billing Form  */}
-                            <form action="#" className="p-2">
+                            <form action="/" className="p-2">
                                 <div className="form-group my-2">
                                     <input type="text" className="form-control" placeholder="Shipping to" />
                                 </div>

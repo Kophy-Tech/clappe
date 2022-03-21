@@ -24,7 +24,7 @@ function Login() {
       </a>
       
       {/* </Link> */}
-      <a href="#">Forgotten password?</a>
+      <a href="/">Forgotten password?</a>
       <a href='/register'> 
 
       <button className="btn-new">Create new Account</button>
