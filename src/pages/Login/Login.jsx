@@ -1,13 +1,14 @@
 import React from 'react'
+import Navbar from '../Navbar/Navbar'
 import './Login.scss'
+
 function Login() {
     return (
+        <> 
+        <Navbar/>
         <div className='login'>
-            <nav>
-                <span>Clappe</span>
-            </nav>
             <div className='login__container'>
-                <div className='login__head'>
+                <div className='login__head text-primary'>
                     Login
                 </div>
                 <div className='login_form__container'>
@@ -29,7 +30,7 @@ function Login() {
                                     <span classname="psw">Forgot <a >password?</a></span>
                                 </div>
                                <div className='submit'>
-                                    <button type="submit">Login</button>
+                                    <a href='/dashboard' type="submit" className='btn btn-primary'>Login</a>
                                </div>
 
                             </div>
@@ -40,6 +41,7 @@ function Login() {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 
