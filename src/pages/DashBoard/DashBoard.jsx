@@ -9,7 +9,7 @@ export default function DashBoard() {
    <div>
   <div>
     <div className="container">
-      <h3 className="fw-bold"> Revenue</h3>
+      <h3 className="fw-bold my-4"> Revenue</h3>
       {/* Chart */}
       <div className="mb-5">
         Chart Here ...
