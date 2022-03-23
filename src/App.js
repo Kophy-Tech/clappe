@@ -10,15 +10,15 @@ import Container from './Container'
 
 import { useNProgress } from '@tanem/react-nprogress'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-const LoginPage = React.lazy(() => import('./pages/Login/Login'));
-const RegisterPage = React.lazy(() => import('./pages/Register/Register'));
-const ForgotPassword = React.lazy(() => import('./pages/ForgotPassword/ForgotPassword'));
-const LandingPage = React.lazy(() => import('./pages/LandingPage/LandingPage'));
-const Navbar = React.lazy(() => import('./pages/Navbar/Navbar'));
-const Footer = React.lazy(() => import('./pages/Footer/Footer'));
-const DashBoard = React.lazy(() => import('./pages/DashBoard/DashBoard'));
-const Customer = React.lazy(() => import('./pages/Customer/Customer'));
-const NewCustomer = React.lazy(() => import('./pages/NewCustomer/NewCustomer'));
+const LoginPage = React.lazy(() => import('./components/pages/Login/Login'));
+const RegisterPage = React.lazy(() => import('./components/pages/Register/Register'));
+const ForgotPassword = React.lazy(() => import('./components/pages/ForgotPassword/ForgotPassword'));
+const LandingPage = React.lazy(() => import('./components/pages/LandingPage/LandingPage'));
+const Navbar = React.lazy(() => import('./components/pages/Navbar/Navbar'));
+const Footer = React.lazy(() => import('./components/pages/Footer/Footer'));
+const DashBoard = React.lazy(() => import('./components/pages/DashBoard/DashBoard'));
+const Customer = React.lazy(() => import('./components/pages/Customer/Customer'));
+const NewCustomer = React.lazy(() => import('./components/pages/NewCustomer/NewCustomer'));
 
 
 

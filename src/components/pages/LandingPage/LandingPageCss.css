@@ -2,7 +2,7 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 .landing{
-    background: linear-gradient(to right, white, rgba(255,255,255,0)), url('../../assets/img/landing2.jpg')no-repeat center center/cover;
+    background: linear-gradient(to right, white, rgba(255,255,255,0)), url('../../../assets/img/landing2.jpg')no-repeat center center/cover;
     height: 100vh;
 }
 .content{

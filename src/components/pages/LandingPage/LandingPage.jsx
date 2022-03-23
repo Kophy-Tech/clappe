@@ -61,7 +61,7 @@ function LandingPage() {
                 </div>
             </div>
             <div className="container-fluid bg-light p-5" >
-                <img src={require('../../assets/img/Invoicing-Invoices.png')} style={{ width: "90%" }} alt="" />
+                <img src={require('../../../assets/img/Invoicing-Invoices.png')} style={{ width: "90%" }} alt="" />
             </div>
             <div className="invoice container my-5">
                 <h1 className='text-center'>Turn <b> Quotes into Invoices </b> with minimal effort</h1>
@@ -95,14 +95,14 @@ function LandingPage() {
                         <a href="/" className="btn btn-primary">Start now</a>
                     </div>
                     <div className='col-md-6 '>
-                        <img src={require('../../assets/img/about.jpg')} className='img-fluid' alt="" />
+                        <img src={require('../../../assets/img/about.jpg')} className='img-fluid' alt="" />
                     </div>
                 </div>
             </div>
             <div className="container my-5 d-flex justify-content-center">
                 <div className="row gx-0">
                     <div className='col-md-6'>
-                        <img src={require('../../assets/img/phone1.jpg')} style={{ width: "70%" }} className='img-fluid ps-5' alt="" />
+                        <img src={require('../../../assets/img/phone1.jpg')} style={{ width: "70%" }} className='img-fluid ps-5' alt="" />
                     </div>
                     <div className="paid col-md-6 p-5">
                         <h1 className='mt-4'>Simplify your accounting</h1>
@@ -124,7 +124,7 @@ function LandingPage() {
 
                     </div>
                     <div className='col-md-6 p-5'>
-                        <img src={require('../../assets/img/Invoicing-Dashboard.png')} className='img-fluid' alt="" />
+                        <img src={require('../../../assets/img/Invoicing-Dashboard.png')} className='img-fluid' alt="" />
                     </div>
                 </div>
             </div>
