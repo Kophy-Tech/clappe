@@ -1,0 +1,243 @@
+{
+	"info": {
+		"_postman_id": "d6191778-279d-4b1a-b5ea-4135212f8c64",
+		"name": "clappe-backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "home page",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://clappe-backend.herokuapp.com/",
+					"protocol": "https",
+					"host": [
+						"clappe-backend",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"test\",\r\n    \"last_name\": \"test\",\r\n    \"password\": \"test\",\r\n    \"email\": \"test@mail.com\",\r\n    \"phone_number\": \"911\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://clappe-backend.herokuapp.com/signup",
+					"protocol": "https",
+					"host": [
+						"clappe-backend",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"test@mail.com\",\r\n    \"password\": \"test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://clappe-backend.herokuapp.com/login",
+					"protocol": "https",
+					"host": [
+						"clappe-backend",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create customer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDc5NzM1NTgsInVzZXJfaWQiOjd9.SkH1xPezbA-yo2VisltufpOBOoTmqTxVhqkS5tolBzM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"customer\",\r\n    \"last_name\": \"customer\",\r\n    \"business_name\": \"business\",\r\n    \"address\": \"lagos\",\r\n    \"email\": \"customer@mail.com\",\r\n    \"phone_number\": \"911\",\r\n    \"taxable\": false,\r\n    \"invoice_pref\": \"12998\",\r\n    \"logo_path\": \"folder/folder/folder\",\r\n    \"ship_to\": \"akure\",\r\n    \"shipping_address\": \"futa north gate\",\r\n    \"billing_address\": \"futa north gate\",\r\n    \"notes\": \"none\",\r\n    \"status\": \"new\",\r\n    \"invoice_number\": 100,\r\n    \"amount\": 1000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://clappe-backend.herokuapp.com/customer",
+					"protocol": "https",
+					"host": [
+						"clappe-backend",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "single_customer",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDc5NzM1NTgsInVzZXJfaWQiOjd9.SkH1xPezbA-yo2VisltufpOBOoTmqTxVhqkS5tolBzM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://clappe-backend.herokuapp.com/customer/edit/3",
+					"protocol": "https",
+					"host": [
+						"clappe-backend",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"customer",
+						"edit",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit customer 3",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDc5NzM1NTgsInVzZXJfaWQiOjd9.SkH1xPezbA-yo2VisltufpOBOoTmqTxVhqkS5tolBzM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"customer_updated\",\r\n    \"last_name\": \"customer\",\r\n    \"business_name\": \"business\",\r\n    \"address\": \"lagos\",\r\n    \"email\": \"customer@mail.com\",\r\n    \"phone_number\": \"911\",\r\n    \"taxable\": false,\r\n    \"invoice_pref\": \"12998\",\r\n    \"logo_path\": \"folder/folder/folder\",\r\n    \"ship_to\": \"akure\",\r\n    \"shipping_address\": \"futa north gate\",\r\n    \"billing_address\": \"futa north gate\",\r\n    \"notes\": \"none\",\r\n    \"status\": \"new\",\r\n    \"invoice_number\": 100,\r\n    \"amount\": 1000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://clappe-backend.herokuapp.com/customer/edit/3",
+					"protocol": "https",
+					"host": [
+						"clappe-backend",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"customer",
+						"edit",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete customer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDc5NTkzMjEsInVzZXJfaWQiOjZ9.QYXs0jUiI7FSugIZts06jJhrnL4gkJiBWcMFS4u-7U8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://clappe-backend.herokuapp.com/customer/edit/2",
+					"protocol": "https",
+					"host": [
+						"clappe-backend",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"customer",
+						"edit",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
