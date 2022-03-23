@@ -79,16 +79,13 @@ export default function Navbar() {
                 className="btn btn-outline-primary me-3"
                 onClick={async () => {
                   if (user.loggedIn) {
-                    await logoutUser()
-                    return <Navigate to={"/"} />
+                    await logoutUser();
                   }
 
-                  else {
-                    return <Navigate to={"/login"} />
-                  }
+                  //go to login page
+                  window.location.href = "/login";
 
-                }
-                }
+                }}
               >
                 {" "}
                 {user.loggedIn ? "Sign Out" : "Sign in"}
