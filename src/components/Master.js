@@ -19,8 +19,32 @@ import { InLoader } from "../redux/shared";
 const Loader = InLoader;
 const LoginPage = React.lazy(() => import("./pages/Login/Login"));
 const RegisterPage = React.lazy(() => import("./pages/Register/Register"));
+const ForgotPassword = React.lazy(() =>
+  import("./pages/ForgotPassword/ForgotPassword")
+);
+const LandingPage = React.lazy(() => import("./pages/LandingPage/LandingPage"));
+const Navbar = React.lazy(() => import("./pages/Navbar/Navbar"));
+const Footer = React.lazy(() => import("./pages/Footer/Footer"));
 const DashBoard = React.lazy(() => import("./pages/DashBoard/DashBoard"));
+const Customer = React.lazy(() => import("./pages/Customer/Customer"));
+const NewCustomer = React.lazy(() => import("./pages/NewCustomer/NewCustomer"));
 
+const Progress = ({ isAnimating }) => {
+  const { animationDuration, isFinished, progress } = useNProgress({
+    isAnimating,
+  });
+
+  return (
+    <Container animationDuration={animationDuration} isFinished={isFinished}>
+      <Bar animationDuration={animationDuration} progress={progress} />
+      {/*
+      This example doesn't use a spinner component so the UI stays
+      tidy. You're free to render whatever is appropriate for your
+      use-case.
+      */}
+    </Container>
+  );
+};
 
 const NotFound = React.lazy(() => import("./pages/LandingPage/LandingPage"));
 const Login = React.lazy(() => import("./pages/Login/Login"));
@@ -55,6 +79,7 @@ export const allRoutes = [
 ];
 
 const Master = (props) => {
+  const location = props.location;
   // const routeNames = allRoutes.map((route) => route.name);
   const routePaths = allRoutes.map((route) => route.path);
   const authRoutes = allRoutes.filter((route) => route.auth);
@@ -85,7 +110,7 @@ const Master = (props) => {
     );
   };
 
-  const AuthAdmin = ({ element }) => {
+  const AuthAdmin = ({ element, ...rest }) => {
     if (login === false) {
       if (dontSave.includes(window.location.pathname) === false) {
         localStorage.setItem("path", window.location.pathname);
