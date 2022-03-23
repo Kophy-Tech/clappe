@@ -1,9 +1,8 @@
-import { capitalizeFirstLetter } from "../components/shared";
 import { overwriteStore, signIn, storeError, updStore } from "./ActionCreators";
 import { store } from "./store";
 
-const baseLink =
-  process.env.REACT_APP_BASE_URL || process.env.REACT_APP_USE_URL;
+const baseLink = "https://clappe-backend.herokuapp.com/"
+  // process.env.REACT_APP_BASE_URL || process.env.REACT_APP_USE_URL;
 const newtorkErrorAccrossBrowsers = [
   "Failed to fetch",
   "NetworkError when attempting to fetch resource",
@@ -19,6 +18,10 @@ const api = (method, path, data) => {
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + token,
+      "Access-Control-Allow-Origin": "*",
+      "Connection": "keep-alive",
+      "Accept-Encoding": "gzip, deflate, br",
+      "Accept": "*/*",
     },
     credentials: "same-origin",
   };
@@ -255,5 +258,15 @@ export const searchStoreHooks = (store, value, search) => {
   // if (typeof theStore)
 
   return rValue;
+};
+
+export const registerUSer = async (data) => {
+  try {
+    const r = await api("post", "signup", data);
+    return r;
+  }
+  catch (e) {
+    throw e;
+  }
 };
 

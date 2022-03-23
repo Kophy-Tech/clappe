@@ -58,5 +58,52 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      //add a listener to body tag when it's changed
+      var observeDOM = (function () {
+        var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+    
+        return function (obj, callback) {
+          if (!obj || obj.nodeType !== 1) return;
+    
+          if (MutationObserver) {
+            // define a new observer
+            var mutationObserver = new MutationObserver(callback)
+    
+            // have the observer observe foo for changes in children
+            mutationObserver.observe(obj, { childList: true, subtree: true })
+            return mutationObserver
+          }
+    
+          // browser support fallback
+          else if (window.addEventListener) {
+            obj.addEventListener('DOMNodeInserted', callback, false)
+            obj.addEventListener('DOMNodeRemoved', callback, false)
+          }
+        }
+      })()
+    
+      observeDOM(document.querySelector("body"), function (m) {
+    
+        document.querySelectorAll("form").forEach((form) => {
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+        });
+      })
+        // document.querySelectorAll("form").forEach((form) => {
+        //   //select all buttons within the form and add event listener
+        //   const children = form.querySelectorAll("button");
+        //   children.forEach((child) => {
+        //     child.addEventListener("click", (e) => {
+        //       e.preventDefault();
+        //     });
+        //   });
+        // });
+    
+      })
+    
+    
+    
+    </script>
   </body>
 </html>
