@@ -1,4 +1,4 @@
-import { overwriteStore, signIn, storeError, updStore } from "./ActionCreators";
+import { overwriteStore, signIn, signOut, storeError, updStore } from "./ActionCreators";
 import { store } from "./store";
 
 const baseLink = "https://clappe-backend.herokuapp.com/"
@@ -270,3 +270,34 @@ export const registerUSer = async (data) => {
   }
 };
 
+export const loginUser = async (data) => {
+  try {
+    const r = await api("post", "login", data);
+    localStorage.setItem("token", r.auth_token);
+    store.dispatch(signIn({ success: true, user: r.user }));
+    return r;
+  }
+  catch (e) {
+    throw e;
+  }
+};
+
+export const logoutUser = async () => {
+  try {
+    localStorage.removeItem("token")
+    store.dispatch(signOut({ success: true }));
+  }
+  catch (e) {
+    throw e;
+  }
+};
+
+export const fetchProfile = async () => {
+  try {
+    const r = await api("get", "profile");
+    return r;
+  }
+  catch (e) {
+    throw e;
+  }
+};

@@ -197,7 +197,7 @@ export function ConfirmComp({
     </div>
   );
 }
-export const Affect = ({ effect, useModal, Loader }) => {
+export const Affect = ({ effect, noModal, Loader }) => {
   // console.log(load, effect, cref);
   //   console.log(cref);
   if (effect.load) {
@@ -208,7 +208,7 @@ export const Affect = ({ effect, useModal, Loader }) => {
   }
 
   let message = "";
-  if (useModal) {
+  if (noModal !== true) { //true for using modal
     if (Object.keys(effect || {}).length > 0) {
       if (!effect.error) {
         message = effect.message;
