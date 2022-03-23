@@ -79,7 +79,7 @@ export const allRoutes = [
   {
     name: "NewCustomer",
     path: "/newcustomer",
-    auth: true,
+    auth: false,
     element: NewCustomer,
     exact: true,
     noLayout: false,
