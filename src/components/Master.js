@@ -71,10 +71,18 @@ export const allRoutes = [
   {
     name: "Customer",
     path: "/Customer",
-    auth: true,
+    auth: false,
     element: Customer,
     exact: true,
     noLayout: true,
+  },
+  {
+    name: "NewCustomer",
+    path: "/newcustomer",
+    auth: false,
+    element: NewCustomer,
+    exact: true,
+    noLayout: false,
   },
   {
     name: "Login",
