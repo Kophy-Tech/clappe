@@ -1,0 +1,423 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Poppins:ital,wght@1,600&display=swap");
+
+.modald-head {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 120%;
+  /* or 22px */
+
+  text-align: center;
+
+  /* word,60 */
+
+  color: #14a800;
+}
+
+.modald-head-2 {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 150%;
+  /* or 24px */
+
+  text-align: center;
+
+  /* Blaccck */
+
+  color: #474f48;
+}
+
+.modald-create {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+  align-items: center;
+}
+
+.modald-cancel {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 150%;
+  /* identical to box height, or 24px */
+
+  text-align: center;
+
+  /* Yellow 10 */
+
+  color: #f89d25;
+  margin-right: 10px;
+}
+
+.modald-proceed {
+  background: #f89d25;
+  /* ButTon shadow */
+
+  box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.14);
+  border-radius: 5px;
+  width: 122.31px;
+  height: 40px;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 150%;
+  /* identical to box height, or 24px */
+
+  text-align: center;
+
+  /* FFF */
+
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalg-head {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 150%;
+  /* identical to box height, or 45px */
+
+  text-align: center;
+
+  color: #000000;
+  display: flex;
+  justify-content: center;
+}
+
+.modalg-head-2 {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 150%;
+  text-align: center;
+  color: #14a800;
+  margin-top: 30px;
+}
+
+.modalg-head-err {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 150%;
+  text-align: center;
+  color: red;
+  margin-top: 30px;
+}
+
+.modalg-head-s {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 150%;
+  /* or 45px */
+
+  text-align: center;
+
+  color: #14a800;
+}
+
+.loader {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url("//upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Phi_fenomeni.gif/50px-Phi_fenomeni.gif") 50% 50% no-repeat rgb(249, 249, 249);
+}
+
+.topbar-title-text {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 150%;
+  color: #14A800;
+  ;
+}
+
+.card-size {
+  height: 17.651rem;
+  width: 14.75rem;
+  left: 0px;
+  top: 0px;
+  border-radius: 6.724137306213379px;
+  border: none;
+  box-sizing: border-box;
+
+}
+
+.card-imag {
+  width: 14.75rem;
+  height: 8.25rem;
+  left: 0px;
+  border-radius: 5px;
+  top: 0px;
+}
+
+.single-grant-text {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500px;
+  font-size: 0.875rem;
+  line-height: 150%;
+  color: #14A800;
+  flex-grow: 0;
+}
+
+.single-grant-text-footer {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.875rem;
+  line-height: 150%;
+  color: #474f48;
+}
+
+.appl-text {
+  font-family: Poppins;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #585858;
+}
+
+.appl-text-desc {
+  font-family: 'Poppins';
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #585858;
+
+
+}
+
+
+.apll-worshop {
+  height: 14.875rem;
+  /* width: 23.300rem; */
+
+  border-radius: 5px;
+  background: #00BEBE;
+  color: #ffffff;
+  font-family: poppins;
+}
+
+@media(max-width: 500px) {
+  .app-workshop {
+    height: auto;
+  }
+
+  .line-h {
+    line-height: 16px !important;
+  }
+
+  .apll-worshop2 {
+    width: 100% !important;
+    margin-top: 1rem !important;
+    height: auto !important;
+  }
+
+  .cta-webinar2 {
+    max-width: 140px !important;
+  }
+
+  .cta-webinar2 a {
+    line-height: 12px;
+    font-size: 11.5px !important;
+  }
+
+}
+
+.appl-w-h {
+
+  font-family: Poppins;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 30px;
+  letter-spacing: 0.05rem;
+  text-align: left;
+
+}
+
+
+.appl-w-text {
+
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: left;
+
+}
+
+.cta-webinar {
+  border: 1px solid #fff;
+  position: absolute;
+  bottom: 0;
+
+  text-align: center;
+
+  justify-content: center;
+  align-items: center;
+
+
+  height: 40px;
+  width: 155px;
+
+  /* left: 25px; */
+  top: 165px;
+  border-radius: 3.3620691299438477px;
+  padding: 3px, 5px, 3px, 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2.68966px 5.37931px;
+}
+
+.apll-worshop2 {
+
+  height: 14.875rem;
+  width: 23.300rem;
+
+  border-radius: 5px;
+  background: rgba(245, 180, 13, 1);
+
+  color: #ffffff;
+  font-family: poppins;
+}
+
+.cta-webinar2 {
+  border: 1px solid #fff;
+  /* position: absolute; */
+  bottom: 0;
+
+  text-align: center;
+
+  justify-content: center;
+  align-items: center;
+
+
+  height: 40px;
+  max-width: 180px;
+
+  /* left: 25px; */
+  top: 165px;
+  border-radius: 3.3620691299438477px;
+  padding: 3px, 5px, 3px, 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* padding: 2.68966px 5.37931px; */
+}
+
+.cta-webinar-apply {
+  border: 1px solid #fff;
+  /* position: absolute; */
+  bottom: 0;
+
+  text-align: center;
+
+  justify-content: center;
+  align-items: center;
+
+  color: #14A800 !important;
+  height: 30px;
+  width: 155px;
+
+  /* left: 25px; */
+  top: 165px;
+  border-radius: 3.3620691299438477px;
+  padding: 3px, 5px, 3px, 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2.68966px 5.37931px;
+  background: #FFFFFF;
+}
+
+.modal-name-text {
+  font-family: Poppins;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+
+}
+
+.modal-name-head {
+  font-family: Poppins;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 30px;
+  letter-spacing: 0em;
+  text-align: left;
+
+}
+
+.modal-text-body {
+  font-family: Poppins;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(86, 86, 86, 1);
+
+}
+
+.cardworks {
+  position: static;
+  width: 331px;
+  height: 172px;
+
+  top: 0px;
+  border: none;
+
+}
+
+.button-next-eli {
+  height: 44px;
+  width: 200px;
+  left: 744px;
+  top: 2187px;
+  border-radius: 5px;
+  padding: 10px, 20px, 10px, 20px;
+  color: #FFFFFF;
+  background: rgba(20, 168, 0, 1);
+  font-family: poppins;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border: 'none',
+
+
+}
