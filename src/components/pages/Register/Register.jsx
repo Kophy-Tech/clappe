@@ -13,6 +13,7 @@ function Register() {
       setEffect({load: true});
       const res = await registerUSer(data);
       setEffect({load: false, error: false, message: res.response});
+      e.target.reset();
     } catch (error) {
       setEffect({load: false, error: true, message: error.message});
     }
@@ -21,7 +22,7 @@ function Register() {
     <>
       <Navbar />
       <div className="row">
-        <Affect effect={effect} />
+        <Affect effect={effect} useModal={true} />
         <div className="colm-logo">
           {/* <img src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg" alt="Logo" /> */}
           <h1 className="text-primary "> Create Accout with Clappe Invoice</h1>

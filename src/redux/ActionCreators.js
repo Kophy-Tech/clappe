@@ -13,7 +13,6 @@ export const signIn = createAction("user/add", (status) => {
 export const signOut = createAction("user/logout", (status) => {
   // console.log(status.success)
   if (status.success) {
-    localStorage.removeItem("token")
     return { payload: false };
   }
   return { payload: true };
