@@ -21,7 +21,7 @@ function Register() {
   return (
     <>
       <Navbar />
-      <div className="row">
+      <div className="therow">
         <Affect effect={effect} useModal={true} />
         <div className="colm-logo">
           {/* <img src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg" alt="Logo" /> */}
