@@ -9,9 +9,9 @@ export default function Navbar() {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-        <Link className="navbar-brand fw-bold ms-5" href="/">
+          <a className="navbar-brand fw-bold ms-5" href="/">
             Clappe
-          </Link>
+          </a>
           <button
             className="navbar-toggler"
             type="button"
@@ -32,20 +32,20 @@ export default function Navbar() {
             <div className="ms-5"></div>
             <ul className="navbar-nav d-flex me-auto ms-5 mb-2 mb-lg-0">
               <li className="nav-item">
-              <Link  className="nav-link active" aria-current="page" href="/">
+                <a className="nav-link active" aria-current="page" href="/">
                   Home
-                </Link>
+                </a>
               </li>
               <li className="nav-item">
-              <Link  className="nav-link" href="/">
+                <a className="nav-link" href="/">
                   Features
-                </Link>
+                </a>
               </li>
 
               <li className="nav-item">
-              <Link  className="nav-link" href="/">
+                <a className="nav-link" href="/">
                   Tour
-                </Link>
+                </a>
               </li>
 
               {/* <li className="nav-item dropdown">
@@ -58,17 +58,17 @@ export default function Navbar() {
                   aria-expanded="false"
                 >
                  Tour
-                </Link>
+                </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
                     <a className="dropdown-item" href="/">
                       Action
-                    </Link>
+                    </a>
                   </li>
                   <li>
                     <a className="dropdown-item" href="/">
                       Another action
-                    </Link>
+                    </a>
                   </li>
                   <li>
                     <hr className="dropdown-divider" />
@@ -76,14 +76,14 @@ export default function Navbar() {
                   <li>
                     <a className="dropdown-item" href="/">
                       Something else here
-                    </Link>
+                    </a>
                   </li>
                 </ul>
               </li> */}
               <li className="nav-item">
-              <Link  className="nav-link" href="/">
+                <a className="nav-link" href="/">
                   Contact us
-                </Link>
+                </a>
               </li>
             </ul>
             <form className="d-flex">
@@ -103,14 +103,6 @@ export default function Navbar() {
                 {" "}
                 {user.loggedIn ? "Sign Out" : "Sign in"}
               </button>
-              {user.loggedIn && (
-                <Link
-                  to="/dashboard"
-                  className="btn btn-primary me-3"
-                >
-                  Dashboard
-                </Link>
-              )}
               {!user.loggedIn ? (
                 <Link
                   to="/register"

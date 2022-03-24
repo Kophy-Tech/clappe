@@ -31,21 +31,21 @@ export default function DashBoard() {
                       <h6 className="fw-bold">Paid</h6>
                       <h6 className="fw-bold">Emailed</h6>
                       <h6 className="fw-bold">Overdue</h6>
-                      <Link className="text-decoration-underline" to="/">
+                      <a className="text-decoration-underline" href="/">
                         120
-                      </Link>
-                      <Link className="text-decoration-underline" to="/">
+                      </a>
+                      <a className="text-decoration-underline" href="/">
                         30
-                      </Link>
-                      <Link className="text-decoration-underline" to="/">
+                      </a>
+                      <a className="text-decoration-underline" href="/">
                         500
-                      </Link>
-                      <Link className="text-decoration-underline" to="/">
+                      </a>
+                      <a className="text-decoration-underline" href="/">
                         500
-                      </Link>
-                      <Link className="text-decoration-underline" to="/">
+                      </a>
+                      <a className="text-decoration-underline" href="/">
                         2
-                      </Link>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -66,21 +66,21 @@ export default function DashBoard() {
                     <h6 className="fw-bold">Paid</h6>
                     <h6 className="fw-bold">Emailed</h6>
                     <h6 className="fw-bold">Overdue</h6>
-                    <Link className="text-decoration-underline" to="/">
+                    <a className="text-decoration-underline" href="/">
                       10
-                    </Link>
-                    <Link className="text-decoration-underline" to="/">
+                    </a>
+                    <a className="text-decoration-underline" href="/">
                       150
-                    </Link>
-                    <Link className="text-decoration-underline" to="/">
+                    </a>
+                    <a className="text-decoration-underline" href="/">
                       140
-                    </Link>
-                    <Link className="text-decoration-underline" to="/">
+                    </a>
+                    <a className="text-decoration-underline" href="/">
                       10
-                    </Link>
-                    <Link className="text-decoration-underline" to="/">
+                    </a>
+                    <a className="text-decoration-underline" href="/">
                       2
-                    </Link>
+                    </a>
                   </div>
                 </div>
               </div>

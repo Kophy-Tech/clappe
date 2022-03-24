@@ -135,7 +135,7 @@
                     prevok = false;
                     keyNavigationDisabled = false;
 
-                    // set a different url to be loaded using data-to="" - thanx @pixeline
+                    // set a different url to be loaded using data-href="" - thanx @pixeline
                     dest = obj.data('href') || obj.attr('href');
                     extraCss = obj.data( 'css' ) || '';
                     title = obj.attr(obj.data('titleattr')) || '';
@@ -241,7 +241,7 @@
                     }
                     preloader += '</div>';
 
-                    navigation = '<Link class="vbox-next">' + option.htmlNext + '</Link><Link class="vbox-prev">' + option.htmlPrev + '</Link>';
+                    navigation = '<a class="vbox-next">' + option.htmlNext + '</a><a class="vbox-prev">' + option.htmlPrev + '</a>';
                     vbheader = '<div class="vbox-title"></div><div class="vbox-left"><div class="vbox-num">0/0</div></div><div class="vbox-close">' + option.htmlClose + '</div>';
                     vbfooter = '<div class="vbox-share"></div>';
 
@@ -349,11 +349,11 @@
                     blockshare.html('');
                     if ( obj.data('vbtype') !== 'iframe' && obj.data('vbtype') !== 'inline' && obj.data('vbtype') !== 'ajax' ) {
                         sharelinks = { 
-                            pinterest : '<Link target="_blank" to="https://pinterest.com/pin/create/button/?url='+obj.prop('href')+'&media='+obj.prop('href')+'&description='+title+'">'+pinIcon+'</Link>', 
-                            facebook  : '<Link target="_blank" to="https://www.facebook.com/sharer/sharer.php?u='+obj.prop('href')+'">'+fbIcon+'</Link>', 
-                            twitter   : '<Link target="_blank" to="https://twitter.com/intent/tweet?text='+title+'&url='+obj.prop('href')+'">'+twitterIcon+'</Link>', 
-                            linkedin  : '<Link target="_blank" to="https://www.linkedin.com/sharing/share-offsite/?url='+obj.prop('href')+'">'+linkedinIcon+'</Link>',
-                            download  : '<Link target="_blank" to="'+obj.prop('href')+'">'+downloadIcon+'</Link>'
+                            pinterest : '<a target="_blank" href="https://pinterest.com/pin/create/button/?url='+obj.prop('href')+'&media='+obj.prop('href')+'&description='+title+'">'+pinIcon+'</a>', 
+                            facebook  : '<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u='+obj.prop('href')+'">'+fbIcon+'</a>', 
+                            twitter   : '<a target="_blank" href="https://twitter.com/intent/tweet?text='+title+'&url='+obj.prop('href')+'">'+twitterIcon+'</a>', 
+                            linkedin  : '<a target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url='+obj.prop('href')+'">'+linkedinIcon+'</a>',
+                            download  : '<a target="_blank" href="'+obj.prop('href')+'">'+downloadIcon+'</a>'
                         };
                         $.each( share, function( key, value ) {
                             blockshare.append(sharelinks[value]);
