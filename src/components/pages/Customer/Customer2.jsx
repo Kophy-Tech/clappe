@@ -1,6 +1,7 @@
 import React from "react";
 // import "./CustomerCss.css";
 import Navbar from "../Navbar/Navbar";
+import { Link,  } from "react-router-dom";
 
 export default function Customer() {
   return (
@@ -67,9 +68,11 @@ export default function Customer() {
             <div className="col-sm-12">
               <div className="d-flex flex-row justify-content-between">
                 <div className>
-                  <a href="/newcustomer" className="mybtn">
-                    [+] Add Customer
-                  </a>
+                <Link to='/newcustomer'>
+                [+] Add Customer
+                
+                </Link>
+               
                 </div>
                 {/* Select input for Add Customer */}
                 <div className="form-group d-flex  justify-content-center align-items-center">
@@ -119,9 +122,11 @@ export default function Customer() {
                     {/* First Table Row */}
                     <tr>
                       <td>
-                        <a href="/" className="text-decoration-underline">
-                          Amazon Legal
-                        </a>
+                      <Link to='/newcustomer'>
+                [+]  Amazon Legal
+                
+                </Link>
+                      
                       </td>
                       <td>154, James street</td>
                       <td>100</td>

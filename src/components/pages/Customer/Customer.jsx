@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../Navbar/Navbar";
 import { Container, Row, Col, Card, Image, Table } from "react-bootstrap";
 import "./CustomerCss.css";
+import { Link,  } from "react-router-dom";
 
 export default function Customer() {
   return (
@@ -101,9 +102,11 @@ export default function Customer() {
               <tbody>
                 <tr>
                   <td>
-                    <a href="/" className="text-decoration-underline">
-                      Amazon Legal
-                    </a>
+                  <Link to='/newcustomer'>
+             Amazon Legal
+                
+                </Link>
+                      
                   </td>
                   <td>154, James street</td>
                   <td>100</td>

@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../Navbar/Navbar'
 import '../NewCustomer/NewCustomerCss.css'
 
+import { Link,  } from "react-router-dom";
 
 export default function NewCustomer() {
     return (
@@ -137,7 +138,10 @@ export default function NewCustomer() {
             <div className="d-flex flex-row justify-content-center -2">
                 <button className="mybtn">Save</button>
                 <button className="mybtn">Save &amp; Continue</button>
+                <Link to='/customer'>
                 <button className="mybtn">Cancel</button>
+                
+                </Link>
             </div>
         </div>
         </>
