@@ -140,7 +140,7 @@ footer {
     background-color: #ffffff;
 }
 
-.row {
+.therow {
     display: flex;
     justify-content: space-around;
     align-items: center;

@@ -48,16 +48,16 @@ function LandingPage() {
             <div className='landing'>
                 <div className='content d-flex flex-column align-items-start justify-content-center p-5'>
                     <Animated animationIn="bounceInLeft" animationInDelay="2" animationOut="fadeOut" isVisible={true}>
-                        <h1 className='display-4'>Online <span className='fw-bold'> invoicing
+                        <h1 className='display-4'>Clappe <span className='fw-bold'> made invoicing
                         </span>
-                            <br />  made easy</h1>
+                            <br />   easy and simple</h1>
                     </Animated>
                     <Animated animationIn="bounceInLeft" animationInDelay="2" animationOut="fadeOut" isVisible={true}>
                         <p className='lead fs-4'>Manage contracts, create recurring invoices,
                             <br /> bill timesheets, get paid faster.</p>
                     </Animated>
 
-                    <a href="" className='btn btn-primary'>Start now, its free</a>
+                    <a href="" className='btn btn-primary'>Generate Invoice</a>
                 </div>
             </div>
             <div className="container-fluid bg-light p-5" >
@@ -67,8 +67,8 @@ function LandingPage() {
                 <h1 className='text-center'>Turn <b> Quotes into Invoices </b> with minimal effort</h1>
                 <p className='lead text-center fw-bold'>Bill automatically based on sales orders, delivery orders, contracts, or time and material.</p>
                 <div className="icons row d-flex justify-content-around mt-5">
-                    <div className="content1 col-md-4">
-                        <i className="fa-regular fa-file fa-2x my-2"></i>
+                    <div className="content1 col-md-4 justify-content-center align-items-center">
+                        <i className="fa-regular fa-file fa-2x my-2 ml-4 pl-4 text-center align-self-center"></i>
                         <p className='text-center'>Easily create invoices based on the quotes you <br /> have sent to your clients.</p>
                     </div>
                     <div className="content2 col-md-4">

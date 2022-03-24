@@ -49,7 +49,7 @@ function Login() {
     <>
       <Navbar />
       <Affect effect={effect} />
-      <div className="row">
+      <div className="therow">
         <div className="colm-logo">
           {/* <img src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg" alt="Logo" /> */}
           <h1 className="text-primary ">

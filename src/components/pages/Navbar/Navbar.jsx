@@ -33,7 +33,7 @@ export default function Navbar() {
             <ul className="navbar-nav d-flex me-auto ms-5 mb-2 mb-lg-0">
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="/">
-                  Overview
+                  Home
                 </a>
               </li>
               <li className="nav-item">
@@ -41,7 +41,14 @@ export default function Navbar() {
                   Features
                 </a>
               </li>
-              <li className="nav-item dropdown">
+
+              <li className="nav-item">
+                <a className="nav-link" href="/">
+                  Tour
+                </a>
+              </li>
+
+              {/* <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
                   href="/"
@@ -50,7 +57,7 @@ export default function Navbar() {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Invoicing
+                 Tour
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
@@ -72,6 +79,11 @@ export default function Navbar() {
                     </a>
                   </li>
                 </ul>
+              </li> */}
+              <li className="nav-item">
+                <a className="nav-link" href="/">
+                 Contact us
+                </a>
               </li>
             </ul>
             <form className="d-flex">
@@ -98,7 +110,7 @@ export default function Navbar() {
                   className="btn btn-primary me-3"
                   type="submit"
                 >
-                  Try for free
+                  Register
                 </Link>
               )}
             </form>
