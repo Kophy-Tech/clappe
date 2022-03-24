@@ -43,6 +43,7 @@ function Login() {
       // console.log(location, history, "datasss")
       // history.go(2)
     }
+  
   }, [user.loggedIn]);
 
   return (
