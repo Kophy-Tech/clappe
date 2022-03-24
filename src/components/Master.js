@@ -256,7 +256,7 @@ const Master = (props) => {
   if (showIcon) {
     return <Loader />;
   }
-  // console.log(ComposeRoutes(), "location compose");
+  console.log(ComposeRoutes(), "location compose");
   return (
     <Routes>
       {ComposeRoutes()}

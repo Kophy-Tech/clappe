@@ -12,7 +12,7 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/*" element={<App />} />
+        <Route path="/*" element={<Linkpp />} />
       </Routes>
     
       
