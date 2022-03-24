@@ -25,7 +25,7 @@ const ForgotPassword = React.lazy(() =>
 const LandingPage = React.lazy(() => import("./pages/LandingPage/LandingPage"));
 const Navbar = React.lazy(() => import("./pages/Navbar/Navbar"));
 const Footer = React.lazy(() => import("./pages/Footer/Footer"));
-const DashBoard = React.lazy(() => import("./pages/DashBoard/DashBoard2"));
+const DashBoard = React.lazy(() => import("./pages/DashBoard/DashBoard"));
 const Customer = React.lazy(() => import("./pages/Customer/Customer"));
 const NewCustomer = React.lazy(() => import("./pages/NewCustomer/NewCustomer"));
 
@@ -79,7 +79,7 @@ export const allRoutes = [
   {
     name: "NewCustomer",
     path: "/newcustomer",
-    auth: false,
+    auth: true,
     element: NewCustomer,
     exact: true,
     noLayout: false,
@@ -92,6 +92,14 @@ export const allRoutes = [
     exact: true,
     noLayout: true,
   },
+  {
+    name: "LandingPage",
+    path: "/",
+    auth: false,
+    element: LandingPage,
+    exact: true,
+    noLayout: true,
+  }
 ];
 
 const Master = (props) => {
@@ -156,7 +164,7 @@ const Master = (props) => {
 
     if (authRoutes.includes(window.location.pathname) && login === false) {
       finalReturn.push(
-        <React.Fragment>
+        <React.Fragment key={3121}>
           <Route path={"/login"} exact element={Login} />
           <Navigate to={{ pathname: "/login" }} />
           {/* <Redirect to={"/login"} /> */}

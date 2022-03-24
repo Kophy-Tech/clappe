@@ -68,15 +68,15 @@ function LandingPage() {
                 <p className='lead text-center fw-bold'>Bill automatically based on sales orders, delivery orders, contracts, or time and material.</p>
                 <div className="icons row d-flex justify-content-around mt-5">
                     <div className="content1 col-md-4">
-                        <i class="fa-regular fa-file fa-2x my-2"></i>
+                        <i className="fa-regular fa-file fa-2x my-2"></i>
                         <p className='text-center'>Easily create invoices based on the quotes you <br /> have sent to your clients.</p>
                     </div>
                     <div className="content2 col-md-4">
-                        <i class="fa-solid fa-arrow-rotate-right fa-2x my-2"></i>
+                        <i className="fa-solid fa-arrow-rotate-right fa-2x my-2"></i>
                         <p className='text-center'>Send professional looking invoices directly to <br /> your clients in just a click.</p>
                     </div>
                     <div className="content3 col-md-4">
-                        <i class="fa-solid fa-file-pdf fa-2x my-2"></i>
+                        <i className="fa-solid fa-file-pdf fa-2x my-2"></i>
                         <p className='text-center'>Automatically send them by email as a PDF <br /> attachment or print and send them by mail.</p>
                     </div>
                 </div>

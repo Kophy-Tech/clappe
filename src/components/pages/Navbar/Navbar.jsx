@@ -1,9 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { logoutUser } from "../../../redux/thunks";
 export default function Navbar() {
   const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -83,7 +84,8 @@ export default function Navbar() {
                   }
 
                   //go to login page
-                  window.location.href = "/login";
+                  // window.location.href = "/login";
+                  navigate("/login");
 
                 }}
               >
