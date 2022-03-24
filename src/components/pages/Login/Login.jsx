@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { Affect, handleForm } from "../../../redux/shared";
 import { loginUser } from "../../../redux/thunks";
 import Navbar from "../Navbar/Navbar";
@@ -8,6 +8,7 @@ import "./Login.css";
 // import { Link } from 'react-router-dom'
 function Login() {
   const [effect, setEffect] = React.useState({});
+  const navigate = useNavigate();
   const user = useSelector((s) => s.user);
   const handleSubmit = async (e) => {
     const data = handleForm(e);
@@ -15,28 +16,34 @@ function Login() {
       setEffect({ load: true });
       const res = await loginUser(data);
       console.log("res", res);
-      setEffect({ load: false, error: false, message: res.message });
+      // setEffect({ load: false, error: false, message: res.message });
       e.target.reset();
     } catch (error) {
       setEffect({ load: false, error: true, message: error.message });
     }
   };
-  
-  if (user.loggedIn) {
-    console.log("micheal ~ file: Login.jsx ~ line 26 ~ Login ~ user", user)
-    const thePath = localStorage.getItem("path");
-    // if (thePath === "/admin/signout") {
-    //   return <Redirect to="/admin/dashboard" />
-    // }
-    if (thePath) {
-      // localStorage.removeItem("path")
-      return <Navigate to={thePath} replace />;
-    } else {
-      return <Navigate to="/dashboard" replace />;
+
+  React.useEffect(() => {
+    if (user.loggedIn) {
+      console.log("micheal ~ file: Login.jsx ~ line 26 ~ Login ~ user", user);
+      const thePath = localStorage.getItem("path");
+      // if (thePath === "/admin/signout") {
+      //   return <Redirect to="/admin/dashboard" />
+      // }
+      if (thePath) {
+        // localStorage.removeItem("path")
+        navigate(thePath);
+        // return null;
+        // return <Navigate to={thePath} replace />;
+      } else {
+        navigate("/dashboard");
+        // return null;
+        // return <Navigate to="/dashboard" replace />;
+      }
+      // console.log(location, history, "datasss")
+      // history.go(2)
     }
-    // console.log(location, history, "datasss")
-    // history.go(2)
-  }
+  }, [user.loggedIn]);
 
   return (
     <>
