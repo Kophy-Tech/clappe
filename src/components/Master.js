@@ -25,7 +25,7 @@ const ForgotPassword = React.lazy(() =>
 const LandingPage = React.lazy(() => import("./pages/LandingPage/LandingPage"));
 const Navbar = React.lazy(() => import("./pages/Navbar/Navbar"));
 const Footer = React.lazy(() => import("./pages/Footer/Footer"));
-const DashBoard = React.lazy(() => import("./pages/DashBoard/DashBoard"));
+const DashBoard = React.lazy(() => import("./pages/DashBoard/DashBoard2"));
 const Customer = React.lazy(() => import("./pages/Customer/Customer"));
 const NewCustomer = React.lazy(() => import("./pages/NewCustomer/NewCustomer"));
 
@@ -222,7 +222,7 @@ const Master = (props) => {
   console.log(ComposeRoutes(), "location compose");
   return (
     <Routes>
-      {ComposeRoutes()}
+     {ComposeRoutes()}
       {/* <Suspense fallback={<Loader />}>{ComposeRoutes()}</Suspense> */}
     </Routes>
   );
