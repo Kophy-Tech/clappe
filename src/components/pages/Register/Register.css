@@ -1,118 +1,3 @@
-/* @use '../assets' as a;
-body{
-    font-family: 'Roboto', sans-serif;
-}
-.register{
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    nav{
-        height: a.$navbarHeight;
-        background-color: a.$blueColor;
-        display: flex;
-        align-items: center;
-
-        span{
-            font-size: a.$fontMedium;
-            color: a.$whiteColor;
-            margin-left: 10px;
-           font-family: a.$fontFamily;
-        }
-    }
-    .login__container{
- max-width: a.$max-width;
- min-height: a.$min-height;
- width: auto;
- border: 1px solid a.$bordedrColorContainer;
- margin: auto 0.5rem;
- align-self: center;
-
- .login__head{
-     background-color: a.$login__headbackColor;
-     height: a.$login__headHeight;
-     display: flex;
-     align-items:center ;
- border-bottom: 2px solid a.$loginBorderBottomColor;
- padding-left: 0.5rem;
- color: #2f06b8;
- font-weight: 700;
-           font-family: a.$fontFamily;
-           font-size: a.$fontSmall;
-
- }
- 
-.login_form__container{
-    display: flex;
-    height: 100%;
-    .login_form__image__container{
-       width: 10rem;
-       align-self: center;
-      
-      
-      
-    }
-   .form{
-        align-self: center;
-    
-   }
-}
-    }
-     .login_container_form{
-            padding: 1.5rem 0.5rem;
-            label{
-                margin-right: 0.5rem;
-                font-size: a.$fontExtraSmall;
-                font-weight: 500;
-            }
-            input{
-                outline: none;
-                height: 25px!important;
-                margin-right: 1.3rem;
-
-            }
-        }
-         .login_container_form2{
-            // padding: 1.5rem 0.5rem;
-            label{
-                margin-right: 0.5rem;
-                margin-left: 2.4rem;
-                font-size: a.$fontExtraSmall;
-                font-weight: 500;
-            }
-            input{
-                outline: none;
-                height: a.$LInputHeight;
-                margin-right: 1.3rem;
-
-            }
-        }
-        .forgot_password{
-            font-size:a.$fontExtraSS;
-            text-align: center;
-            text-decoration: underline;
-            color: a.$blueColor;
-            font-family: a.$fontFamily;
-            margin-top: 1rem;
-        }
-     .submit{
-         width: 100%;
-          display: flex;
-            justify-content: center;
-            margin-top: 1rem;
-            button{
-           
-            width: a.$Swidth;
-            height: a.$Sheight;
-            background-color: a.$blueColor;
-            border: none;
-            border-radius: 3px;
-            color: a.$whiteColor;
-            font-family: a.$fontFamily;
-            font-size: a.$fontExtraSmall;
-        }
-     }
-} */
-
 /* // @use '../assets' as a;
 // body{
 //     font-family: 'Roboto', sans-serif;
@@ -229,7 +114,7 @@ body{
 // } */
 
 
-/* * {
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -237,6 +122,7 @@ body{
            
 body {
     font-family: 'Roboto', sans-serif;
+
     background-color: #f0f2f5;
     color: #1c1e21;
     
@@ -254,7 +140,7 @@ footer {
     background-color: #ffffff;
 }
 
-.row {
+.therow {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -274,6 +160,7 @@ footer {
 .colm-form {
     flex: 0 0 40%;
     text-align: center;
+    
 }
 
 .colm-logo img {
@@ -411,7 +298,14 @@ footer ol li a:hover {
 footer small {
     font-size: 11px;
 }
-@media only screen and (max-width: 700px) {
+
+/* @media (min-width:450px) { 
+    .colm-logo{
+        display: hidden;
+    }
+  } */
+
+  @media only screen and (max-width: 700px) {
 
     .colm-logo{
         display: none;
@@ -422,4 +316,4 @@ footer small {
         
     }
   
-  } */
+  }
