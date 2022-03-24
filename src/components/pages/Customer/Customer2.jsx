@@ -159,37 +159,37 @@ export default function Customer() {
           <nav className="Page navigation example">
             <ul className="pagination pagination-md justify-content-end">
               <li className="page-item disabled">
-                <a className="page-link">Previous</a>
+                <Link className="page-link">Previous</Link>
               </li>
               <li className="page-item">
-                <a className="page-link" href="/">
+                <Link className="page-link" to="/">
                   1
-                </a>
+                </Link>
               </li>
               <li className="page-item">
-                <a className="page-link" href="/">
+                <Link className="page-link" to="/">
                   2
-                </a>
+                </Link>
               </li>
               <li className="page-item">
-                <a className="page-link" href="/">
+                <Link className="page-link" to="/">
                   3
-                </a>
+                </Link>
               </li>
               <li className="page-item">
-                <a className="page-link" href="/">
+                <Link className="page-link" to="/">
                   4
-                </a>
+                </Link>
               </li>
               <li className="page-item">
-                <a className="page-link" href="/">
+                <Link className="page-link" to="/">
                   5
-                </a>
+                </Link>
               </li>
               <li className="page-item">
-                <a className="page-link" href="/">
+                <Link className="page-link" to="/">
                   Next
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>

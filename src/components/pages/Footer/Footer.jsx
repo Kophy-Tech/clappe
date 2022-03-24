@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import '../Footer/FooterCss.css'
 
 export default function Footer() {
@@ -10,54 +11,54 @@ export default function Footer() {
                     <div className="col-md-2">
                         <h4>Community</h4>
                         <ul>
-                            <li><a href="/">Tutorials</a></li>
-                            <li><a href="/">Documentations</a></li>
-                            <li><a href="/">Forums</a></li>
+                            <li><Link to="/">Tutorials</Link></li>
+                            <li><Link to="/">Documentations</Link></li>
+                            <li><Link to="/">Forums</Link></li>
                         </ul>
                         <h4>Open source</h4>
                         <ul>
-                            <li><a href="/">Download</a></li>
-                            <li><a href="/">Github</a></li>
-                            <li><a href="/">Runbot</a></li>
-                            <li><a href="/">Translations</a></li>
+                            <li><Link to="/">Download</Link></li>
+                            <li><Link to="/">Github</Link></li>
+                            <li><Link to="/">Runbot</Link></li>
+                            <li><Link to="/">Translations</Link></li>
                         </ul>
                     </div>
                     <div className="col-md-2">
                         <h4>Services</h4>
                         <ul>
-                            <li><a href="/">Clappe Hosting</a></li>
-                            <li><a href="/">Support</a></li>
-                            <li><a href="/">Upgrade</a></li>
-                            <li><a href="/">Education</a></li>
+                            <li><Link to="/">Clappe Hosting</Link></li>
+                            <li><Link to="/">Support</Link></li>
+                            <li><Link to="/">Upgrade</Link></li>
+                            <li><Link to="/">Education</Link></li>
                         </ul>
                     </div>
                     <div className="col-md-2">
                         <h4>About us</h4>
                         <ul>
-                            <li><a href="/">Our Company</a></li>
-                            <li><a href="/">Contact Us</a></li>
-                            <li><a href="/">Jobs</a></li>
+                            <li><Link to="/">Our Company</Link></li>
+                            <li><Link to="/">Contact Us</Link></li>
+                            <li><Link to="/">Jobs</Link></li>
                             <br />
-                            <li><a href="/">Events</a></li>
-                            <li><a href="/">Blogs</a></li>
-                            <li><a href="/">Customers</a></li>
-                            <li><a href="/">Patners</a></li>
+                            <li><Link to="/">Events</Link></li>
+                            <li><Link to="/">Blogs</Link></li>
+                            <li><Link to="/">Customers</Link></li>
+                            <li><Link to="/">Patners</Link></li>
                             <br />
-                            <li><a href="/">Legal</a></li>
-                            <li><a href="/">Privacy</a></li>
-                            <li><a href="/">Security</a></li>
+                            <li><Link to="/">Legal</Link></li>
+                            <li><Link to="/">Privacy</Link></li>
+                            <li><Link to="/">Security</Link></li>
                         </ul>
                     </div>
                     <div className="col-md-6">
                         <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" style={{color:'white'}} aria-expanded="false">
+                            <Link className="nav-link dropdown-toggle" to="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" style={{color:'white'}} aria-expanded="false">
                                 English
-                            </a>
+                            </Link>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a className="dropdown-item" href="/">Spanish</a></li>
-                                <li><a className="dropdown-item" href="/">French</a></li>
-                                <li><a className="dropdown-item" href="/">Yoruba</a></li>
-                                <li><a className="dropdown-item" href="/">Hausa</a></li>
+                                <li><Link className="dropdown-item" to="/">Spanish</Link></li>
+                                <li><Link className="dropdown-item" to="/">French</Link></li>
+                                <li><Link className="dropdown-item" to="/">Yoruba</Link></li>
+                                <li><Link className="dropdown-item" to="/">Hausa</Link></li>
                             </ul>
                         </li>
                         <hr />

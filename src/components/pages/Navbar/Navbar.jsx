@@ -9,9 +9,9 @@ export default function Navbar() {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <a className="navbar-brand fw-bold ms-5" href="/">
+          <Link className="navbar-brand fw-bold ms-5" to="/">
             Clappe
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -32,63 +32,63 @@ export default function Navbar() {
             <div className="ms-5"></div>
             <ul className="navbar-nav d-flex me-auto ms-5 mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
+                <Link className="nav-link active" aria-current="page" to="/">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/">
+                <Link className="nav-link" to="/">
                   Features
-                </a>
+                </Link>
               </li>
 
               <li className="nav-item">
-                <a className="nav-link" href="/">
+                <Link className="nav-link" to="/">
                   Tour
-                </a>
+                </Link>
               </li>
 
               {/* <li className="nav-item dropdown">
-                <a
+                <Link
                   className="nav-link dropdown-toggle"
-                  href="/"
+                  to="/"
                   id="navbarDropdown"
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
                  Tour
-                </a>
+                </Link>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
-                    <a className="dropdown-item" href="/">
+                    <Link className="dropdown-item" to="/">
                       Action
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="/">
+                    <Link className="dropdown-item" to="/">
                       Another action
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <hr className="dropdown-divider" />
                   </li>
                   <li>
-                    <a className="dropdown-item" href="/">
+                    <Link className="dropdown-item" to="/">
                       Something else here
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </li> */}
               <li className="nav-item">
-                <a className="nav-link" href="/">
+                <Link className="nav-link" to="/">
                   Contact us
-                </a>
+                </Link>
               </li>
             </ul>
             <form className="d-flex">
               <button
-                href="/login"
+                to="/login"
                 className="btn btn-outline-primary me-3"
                 onClick={async () => {
                   if (user.loggedIn) {
