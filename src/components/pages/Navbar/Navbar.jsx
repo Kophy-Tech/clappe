@@ -114,6 +114,14 @@ export default function Navbar() {
               ) : (
                 <span>{user.user.first_name + " " + user.user.last_name}</span>
               )}
+              {user.loggedIn && (
+                <Link
+                  to="/dashboard"
+                  className="btn btn-primary me-3"
+                >
+                  Dashboard
+                </Link>
+              )}
             </form>
           </div>
         </div>
