@@ -273,6 +273,7 @@ export const registerUSer = async (data) => {
 export const loginUser = async (data) => {
   try {
     const r = await api("post", "login", data);
+    console.log("micheal ~ file: thunks.js ~ line 276 ~ loginUser ~ r", r.auth_token)
     localStorage.setItem("token", r.auth_token);
     store.dispatch(signIn({ success: true, user: r.user }));
     return r;

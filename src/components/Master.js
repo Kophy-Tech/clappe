@@ -71,7 +71,7 @@ export const allRoutes = [
   {
     name: "Customer",
     path: "/Customer",
-    auth: false,
+    auth: true,
     element: Customer,
     exact: true,
     noLayout: true,
@@ -92,6 +92,14 @@ export const allRoutes = [
     exact: true,
     noLayout: true,
   },
+  {
+    name: "LandingPage",
+    path: "/",
+    auth: false,
+    element: LandingPage,
+    exact: true,
+    noLayout: true,
+  }
 ];
 
 const Master = (props) => {
@@ -156,7 +164,7 @@ const Master = (props) => {
 
     if (authRoutes.includes(window.location.pathname) && login === false) {
       finalReturn.push(
-        <React.Fragment>
+        <React.Fragment key={3121}>
           <Route path={"/login"} exact element={Login} />
           <Navigate to={{ pathname: "/login" }} />
           {/* <Redirect to={"/login"} /> */}
