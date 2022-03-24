@@ -10,12 +10,12 @@ function Register() {
   const handleSubmit = async (e) => {
     const data = handleForm(e);
     try {
-      setEffect({load: true});
+      setEffect({ load: true });
       const res = await registerUSer(data);
-      setEffect({load: false, error: false, message: res.response});
+      setEffect({ load: false, error: false, message: res.response });
       e.target.reset();
     } catch (error) {
-      setEffect({load: false, error: true, message: error.message});
+      setEffect({ load: false, error: true, message: error.message });
     }
   };
   return (

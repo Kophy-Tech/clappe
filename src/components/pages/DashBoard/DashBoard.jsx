@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import "./DashBoardCss.css";
 
@@ -54,9 +55,9 @@ export default function DashBoard() {
                 <div className="alert alert-secondary alert-width">
                   <div className="d-flex flex-row justify-content-between align-items-center mb-2">
                     <h4 className="h5 fw-bold">Customer</h4>
-                    <a href="/customer" className="mybtn">
+                    <Link to="/customer" className="mybtn">
                       Add New Customer
-                    </a>
+                    </Link>
                   </div>
                   {/* */}
                   <div className="grid">

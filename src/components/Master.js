@@ -15,6 +15,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 // import { fetchToken } from "../redux/thunks";
 
 import { InLoader } from "../redux/shared";
+import { fetchProfile } from "../redux/thunks";
 
 const Loader = InLoader;
 const LoginPage = React.lazy(() => import("./pages/Login/Login"));
@@ -49,7 +50,7 @@ const Progress = ({ isAnimating }) => {
 const NotFound = React.lazy(() => import("./pages/LandingPage/LandingPage"));
 const Login = React.lazy(() => import("./pages/Login/Login"));
 
-export const dontSave = ["/login"];
+export const dontSave = ["/login", "/register", "/forgot-password"];
 
 export const allRoutes = [
   {
@@ -57,7 +58,6 @@ export const allRoutes = [
     path: "/register",
     auth: false,
     element: RegisterPage,
-    exact: true,
     noLayout: true,
   },
   {
@@ -65,7 +65,6 @@ export const allRoutes = [
     path: "/DashBoard",
     auth: true,
     element: DashBoard,
-    exact: true,
     noLayout: true,
   },
   {
@@ -73,7 +72,6 @@ export const allRoutes = [
     path: "/Customer",
     auth: true,
     element: Customer,
-    exact: true,
     noLayout: true,
   },
   {
@@ -81,7 +79,18 @@ export const allRoutes = [
     path: "/newcustomer",
     auth: true,
     element: NewCustomer,
-    exact: true,
+    // element: () => {
+    //   return <Route path="/newcustomer" element={<NewCustomer />} children={
+    //     <Route path=":id" element={<NewCustomer />} />
+    //   } />;
+    // },
+    noLayout: false,
+  },
+  {
+    name: "Edit Customer",
+    path: "/customer/:id",
+    auth: true,
+    element: NewCustomer,
     noLayout: false,
   },
   {
@@ -89,7 +98,6 @@ export const allRoutes = [
     path: "/login",
     auth: false,
     element: LoginPage,
-    exact: true,
     noLayout: true,
   },
   {
@@ -97,33 +105,32 @@ export const allRoutes = [
     path: "/",
     auth: false,
     element: LandingPage,
-    exact: true,
     noLayout: true,
-  }
+  },
 ];
 
 const Master = (props) => {
-  const location = props.location;
+  // const location = props.location;
+  const location = useLocation();
   // const routeNames = allRoutes.map((route) => route.name);
   const routePaths = allRoutes.map((route) => route.path);
   const authRoutes = allRoutes.filter((route) => route.auth);
   const login = useSelector((s) => s.user.loggedIn);
+  const [load, setLoad] = useState(true);
   // console.log(login, "in master");
 
   const [showIcon, setShowIcon] = useState(false);
-  // const tryToLogin = async () => {
-  //   try {
-  //     setShowIcon(true);
-  //     await fetchToken();
-  //     setShowIcon(false);
-  //   } catch (error) {
-  //     setShowIcon(false);
-
-  //     // console.log()
-  //   }
-  // };
+  const tryToLogin = async () => {
+    try {
+      await fetchProfile();
+      // setShowIcon(false);
+    } catch (error) {
+      setLoad(false);
+      // console.log()
+    }
+  };
   useEffect(() => {
-    // tryToLogin();
+    tryToLogin();
   }, []);
 
   const Element = (props) => {
@@ -139,24 +146,29 @@ const Master = (props) => {
       if (dontSave.includes(window.location.pathname) === false) {
         localStorage.setItem("path", window.location.pathname);
       }
+      // console.log(location, "location");
+      return (
+        <Navigate to={{ pathname: "/login", state: { from: location } }} />
+      );
     }
-    return (
-      <React.Fragment
-        children={
-          login === true ? (
-            <Element component={element} />
-          ) : (
-            <Navigate
-              to={{
-                pathname: "/login",
-                state: { from: props.location },
-              }}
-              replace
-            />
-          )
-        }
-      />
-    );
+    return <Element {...rest} component={element} />;
+    // return (
+    //   <React.Fragment
+    //     children={
+    //       login === true ? (
+    //         <Element component={element} />
+    //       ) : (
+    //         <Navigate
+    //           to={{
+    //             pathname: "/login",
+    //             state: { from: props.location },
+    //           }}
+    //           replace
+    //         />
+    //       )
+    //     }
+    //   />
+    // );
   };
 
   const ComposeRoutes = () => {
@@ -165,7 +177,7 @@ const Master = (props) => {
     if (authRoutes.includes(window.location.pathname) && login === false) {
       finalReturn.push(
         <React.Fragment key={3121}>
-          <Route path={"/login"} exact element={Login} />
+          <Route path={"/login"} element={Login} />
           <Navigate to={{ pathname: "/login" }} />
           {/* <Redirect to={"/login"} /> */}
         </React.Fragment>
@@ -173,15 +185,29 @@ const Master = (props) => {
       return finalReturn;
     }
     let mappedRoutes = allRoutes.map((route, i) => {
+      const theProps = {};
+      //iterate route
+      for (let key in route) {
+        if (
+          key !== "element" &&
+          key !== "auth" &&
+          key !== "noLayout" &&
+          key !== "name"
+        ) {
+          theProps[key] = route[key];
+        }
+      }
       if (route.auth) {
         // if (route.noLayout) {
+        // console.log(route, "route");
+       
+        // console.log(theProps, "theProps");
         return (
           <Route
             key={i}
-            path={route.path}
-            exact={route.exact}
+            {...theProps}
             element={
-              <AuthAdmin element={route.element} component={route.element} />
+              <AuthAdmin element={route.element} />
             }
           />
         );
@@ -190,7 +216,6 @@ const Master = (props) => {
           <AuthAdmin
             key={i}
             path={route.path}
-            exact={route.exact}
             // Element={(props) => (
             //   <DashboardLayout
             //     DashboardComponent={() => <route.component {...props} />}
@@ -203,13 +228,17 @@ const Master = (props) => {
           <Route
             key={i}
             path={route.path}
-            exact={route.exact}
+            {...theProps}
             element={<Element component={route.element} />}
           />
         );
       }
     });
-    if (routePaths.includes(window.location.pathname) === false) {
+    // console.log(window.location.pathname.split("/"), "path");
+    if (
+      routePaths.includes("/" + window.location.pathname.split("/")[1]) ===
+      false
+    ) {
       // console.log(mappedRoutes, "mappedRoutes", allRoutes.length);
       finalReturn.push(
         <React.Fragment key={31231}>
@@ -227,10 +256,10 @@ const Master = (props) => {
   if (showIcon) {
     return <Loader />;
   }
-  console.log(ComposeRoutes(), "location compose");
+  // console.log(ComposeRoutes(), "location compose");
   return (
     <Routes>
-     {ComposeRoutes()}
+      {ComposeRoutes()}
       {/* <Suspense fallback={<Loader />}>{ComposeRoutes()}</Suspense> */}
     </Routes>
   );

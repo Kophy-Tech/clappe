@@ -48,7 +48,6 @@ const Message = ({ success, message }) => {
   );
 };
 
-
 export const InLoader = () => {
   return (
     <div
@@ -80,7 +79,7 @@ export const FlatList = ({
 
   if (Array.isArray(items)) {
     const render = items.map((v, i) => {
-      return RenderItem({ data: v, key: i });
+      return RenderItem({ item: v, key: i });
     });
 
     // console.log(render, "render");
@@ -208,7 +207,8 @@ export const Affect = ({ effect, noModal, Loader }) => {
   }
 
   let message = "";
-  if (noModal !== true) { //true for using modal
+  if (noModal !== true) {
+    //true for using modal
     if (Object.keys(effect || {}).length > 0) {
       if (!effect.error) {
         message = effect.message;
@@ -371,6 +371,36 @@ export const handleForm = (e) => {
   }
   const formData = new FormData();
   let alldata = {};
+  try {
+    //get all input elements
+    const inputElements = e.target.getElementsByTagName("input");
+    //add the values from the input elements to the alldata object
+    for (let i = 0; i < inputElements.length; i++) {
+      if (inputElements[i].type === "checkbox") {
+        if (inputElements[i].checked) {
+          const value = inputElements[i].value;
+          if (value === "on") {
+            alldata[inputElements[i].name] = true;
+          } else {
+            alldata[inputElements[i].name] = value;
+          }
+        }
+        else {
+          alldata[inputElements[i].name] = false;
+        }
+      } else {
+        alldata[inputElements[i].name] = inputElements[i].value;
+      }
+    }
+    //get all select elements
+    const selectElements = e.target.getElementsByTagName("select");
+    //add the values from the select elements to the alldata object
+    for (let i = 0; i < selectElements.length; i++) {
+      alldata[selectElements[i].name] = selectElements[i].value;
+    }
+  } catch (e) {
+    console.warn(e, "No input elements found");
+  }
   console.log(elem, "elem", e);
   function getSelectValues(select) {
     var result = [];

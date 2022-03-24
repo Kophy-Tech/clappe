@@ -18,10 +18,10 @@ const api = (method, path, data) => {
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + token,
-      "Access-Control-Allow-Origin": "*",
-      "Connection": "keep-alive",
-      "Accept-Encoding": "gzip, deflate, br",
-      "Accept": "*/*",
+      // "Access-Control-Allow-Origin": "*",
+      // "Connection": "keep-alive",
+      // "Accept-Encoding": "gzip, deflate, br",
+      // "Accept": "*/*",
     },
     credentials: "same-origin",
   };
@@ -260,6 +260,33 @@ export const searchStoreHooks = (store, value, search) => {
   return rValue;
 };
 
+export const fetchAllCustomers = async () => {
+  try {
+    const r = await api("get", "customer/all");
+    console.log(r, "customers from api");
+    store.dispatch(overwriteStore({
+      name: "customers",
+      value: r.customers
+    }))
+    return r;
+  }
+  catch (e) {
+    store.dispatch(overwriteStore({
+      name: "customers",
+      value: []
+    }))
+    // throw e;
+  }
+};
+
+const requiredDatas = async () => {
+  fetchAllCustomers();
+}
+
+
+
+
+
 export const registerUSer = async (data) => {
   try {
     const r = await api("post", "signup", data);
@@ -273,9 +300,10 @@ export const registerUSer = async (data) => {
 export const loginUser = async (data) => {
   try {
     const r = await api("post", "login", data);
-    console.log("micheal ~ file: thunks.js ~ line 276 ~ loginUser ~ r", r.auth_token)
-    localStorage.setItem("token", r.auth_token);
-    store.dispatch(signIn({ success: true, user: r.user }));
+    // console.log("micheal ~ file: thunks.js ~ line 276 ~ loginUser ~ r", r, )
+    localStorage.setItem("token", r["auth_token "]);
+    requiredDatas();
+    store.dispatch(signIn({ success: true, user: r }));
     return r;
   }
   catch (e) {
@@ -293,12 +321,52 @@ export const logoutUser = async () => {
   }
 };
 
+
 export const fetchProfile = async () => {
   try {
     const r = await api("get", "profile");
+    requiredDatas();
+    store.dispatch(signIn({ success: true, user: r }));
     return r;
   }
   catch (e) {
     throw e;
   }
 };
+
+
+
+
+
+export const addNewCustomer = async (data) => {
+  try {
+    const r = await api("post", "customer", data);
+    fetchAllCustomers();
+    return r;
+  }
+  catch (e) {
+    throw e;
+  }
+}
+
+export const editCustomer = async (data, id) => {
+  try {
+    const r = await api("put", `customer/edit/${id}`, data);
+    fetchAllCustomers();
+    return r;
+  }
+  catch (e) {
+    throw e;
+  }
+}
+
+export const deleteCustomer = async (id) => {
+  try {
+    const r = await api("delete", `customer/edit/${id}`);
+    fetchAllCustomers();
+    return r;
+  }
+  catch (e) {
+    throw e;
+  }
+}

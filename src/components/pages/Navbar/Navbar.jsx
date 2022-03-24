@@ -82,7 +82,7 @@ export default function Navbar() {
               </li> */}
               <li className="nav-item">
                 <a className="nav-link" href="/">
-                 Contact us
+                  Contact us
                 </a>
               </li>
             </ul>
@@ -98,13 +98,12 @@ export default function Navbar() {
                   //go to login page
                   // window.location.href = "/login";
                   navigate("/login");
-
                 }}
               >
                 {" "}
                 {user.loggedIn ? "Sign Out" : "Sign in"}
               </button>
-              {!user.loggedIn && (
+              {!user.loggedIn ? (
                 <Link
                   to="/register"
                   className="btn btn-primary me-3"
@@ -112,6 +111,8 @@ export default function Navbar() {
                 >
                   Register
                 </Link>
+              ) : (
+                <span>{user.user.first_name + " " + user.user.last_name}</span>
               )}
             </form>
           </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { Affect, handleForm } from "../../../redux/shared";
 import { loginUser } from "../../../redux/thunks";
 import Navbar from "../Navbar/Navbar";
@@ -22,21 +22,23 @@ function Login() {
       setEffect({ load: false, error: true, message: error.message });
     }
   };
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/dashboard";
+
+
 
   React.useEffect(() => {
     if (user.loggedIn) {
-      console.log("micheal ~ file: Login.jsx ~ line 26 ~ Login ~ user", user);
       const thePath = localStorage.getItem("path");
-      // if (thePath === "/admin/signout") {
-      //   return <Redirect to="/admin/dashboard" />
-      // }
+     
+      // navigate(from, { replace: true });
       if (thePath) {
-        // localStorage.removeItem("path")
-        navigate(thePath);
+        localStorage.removeItem("path")
+        navigate(thePath, { replace: true });
         // return null;
         // return <Navigate to={thePath} replace />;
       } else {
-        navigate("/dashboard");
+        navigate("/dashboard", { replace: true });
         // return null;
         // return <Navigate to="/dashboard" replace />;
       }
