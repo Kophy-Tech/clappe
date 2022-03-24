@@ -68,7 +68,7 @@ function Login() {
             <input
               type="text"
               name="email"
-              placeholder="Email address or phone number"
+              placeholder="Email address"
             />
             <input type="password" name="password" placeholder="Password" />
             <button className="btn-login">Login</button>
