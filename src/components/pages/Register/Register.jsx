@@ -30,6 +30,7 @@ function Register() {
             Clappe helps you Create and share with Customers.
           </h1>
         </div>
+
         <div className="colm-form">
           <form className="form-container" onSubmit={handleSubmit}>
             <input name="first_name" type="text" placeholder="First Name" />
