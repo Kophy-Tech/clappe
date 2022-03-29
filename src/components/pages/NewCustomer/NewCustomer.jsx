@@ -46,11 +46,10 @@ export default function NewCustomer(props) {
   }, [store]);
   return (
     <>
-      <Navbar />
       <form onSubmit={handleSubmit}>
         <Affect effect={effect} />
 
-        <div className="container bg-light">
+        <div className="container bg-light pt-5">
           {/* Add New Customer */}
           <div className="bg-light p-2 border-bottom mb-4">
             <h3 className="fw-bold fs-3">Add New Customer</h3>

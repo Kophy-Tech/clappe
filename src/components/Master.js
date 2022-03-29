@@ -16,6 +16,11 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import { InLoader } from "../redux/shared";
 import { fetchProfile } from "../redux/thunks";
+import Sidebar from "./layouts/partials/Sidebar";
+import NavbarToggle from "react-bootstrap/esm/NavbarToggle"; 
+import NavBarToggler from "./layouts/partials/NavBarToggler";
+
+
 
 const Loader = InLoader;
 const LoginPage = React.lazy(() => import("./pages/Login/Login"));
@@ -29,6 +34,8 @@ const Footer = React.lazy(() => import("./pages/Footer/Footer"));
 const DashBoard = React.lazy(() => import("./pages/DashBoard/DashBoard"));
 const Customer = React.lazy(() => import("./pages/Customer/Customer"));
 const NewCustomer = React.lazy(() => import("./pages/NewCustomer/NewCustomer"));
+
+const Invoice = React.lazy(() => import("./pages/Invoices/Invoice"));
 
 const Progress = ({ isAnimating }) => {
   const { animationDuration, isFinished, progress } = useNProgress({
@@ -107,6 +114,13 @@ export const allRoutes = [
     element: LandingPage,
     noLayout: true,
   },
+  {
+    name: "Invoice",
+    path: "/invoice",
+    auth: true,
+    element: Invoice,
+    noLayout: false,
+  },
 ];
 
 const Master = (props) => {
@@ -151,7 +165,15 @@ const Master = (props) => {
         <Navigate to={{ pathname: "/login", state: { from: location } }} />
       );
     }
-    return <Element {...rest} component={element} />;
+    return (
+      <>
+      <Sidebar/>
+      <Element {...rest} component={element} />
+
+      </>
+    );
+    
+   
     // return (
     //   <React.Fragment
     //     children={
@@ -207,8 +229,14 @@ const Master = (props) => {
             key={i}
             {...theProps}
             element={
+             
               <AuthAdmin element={route.element} />
+
+           
             }
+
+
+            
           />
         );
         // }
