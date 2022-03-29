@@ -1,65 +1,93 @@
 export const dashboardCards = [
     {
-      id: 1,
-      title:"Invoices",
-      action1:"New",
-      action2: "Unpaid",
-      action3: "Paid",
-      action4:"Emailed",
-      action5:"Overdue",
-  
-  
+        id: 1,
+        title: "Invoice",
+        actions: {
+            item1: "New",
+            item2: "Unpaid",
+            item3: "Paid",
+            item4: "Emailed",
+            item5: "Overdue",
+        },
+        url: '/invoice'
+
+
+
+    },
+
+    {
+        id: 2,
+        title: "Customer",
+        actions: {
+            item1: "New",
+            // item2: "Unpaid",
+            item2: "Active",
+            item3: "Total",
+            item4: "Pending",
+        },
+
+        url:"/customer"
+
+
+    },
+
+    {
+        id: 3,
+        title: "Estimate",
+        actions: {
+            item1: "New",
+            item2: "Pending",
+            item3: "Approved",
+            item4: "Rejected",
+            item5: "Emailed",
+        },
+        url:"/customer"
+
+
     },
     {
-      id: 2,
-      title:"Customers",
-      action1:"New",
-      // action2: "Unpaid",
-      action3: "Active",
-      action4:"Total",
-      action5:"Pending",
-  
-    },  
-    {
-      id: 3,
-      title:"Estimates",
-      action1:"New",
-      action2: "Pending",
-      action3: "Approved",
-      action4:"Rejected",
-      action5:"Emailed",
-  
+        id: 4,
+        title: "Receipt",
+        actions: {
+            item1: "New",
+            item2: "Pending",
+            // item3: "Approved",
+            item4: "Received",
+            item5: "Emailed",
+        },
+        url:"/customer"
+
+
     },
     {
-      id: 4,
-      title:"Receipts",
-      action1:"New",
-      action2: "Pending",
-      // action3: "Approved",
-      action4:"Received",
-      action5:"Emailed",
-  
+        id: 5,
+        title: "Quote",
+
+        actions: {
+            item1: "New",
+            item2: "Pending",
+            item3: "Approved",
+            item4: "Rejected",
+            item5: "Emailed",
+        },
+        url:"/customer"
+
+
     },
     {
-      id: 5,
-      title:"Quotes",
-      action1:"New",
-      action2: "Pending",
-      action3: "Approved",
-      action4:"Rejected",
-      action5:"Emailed",
-  
-    },
-    {
-      id: 6,
-      title:"Profoma Invoice",
-      action1:"New",
-      action2:"unpaid",
-      action3: "Paid",
-      action4:"Emailed",
-      action5:"Overdue",
-  
-  
+        id: 6,
+        title: "Profoma Invoice",
+        actions: {
+            item1: "New",
+            item2: "unpaid",
+            item3: "Paid",
+            item4: "Emailed",
+            item5: "Overdue",
+        },
+        url:"/customer"
+
+
+
     }
-  
-  ]
+
+]

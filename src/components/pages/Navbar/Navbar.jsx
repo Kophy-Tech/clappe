@@ -101,7 +101,8 @@ export default function Navbar() {
                 }}
               >
                 {" "}
-                {user.loggedIn ? "Sign Out" : "Sign in"}
+                <div className="px-4">   {user.loggedIn ? "Sign Out" : "Sign in"}</div>
+              
               </button>
               {!user.loggedIn ? (
                 <Link
@@ -112,12 +113,12 @@ export default function Navbar() {
                   Register
                 </Link>
               ) : (
-                <span>{user.user.first_name + " " + user.user.last_name}</span>
+                <span className="mt-2">{user.user.first_name}</span>
               )}
               {user.loggedIn && (
                 <Link
                   to="/dashboard"
-                  className="btn btn-primary me-3"
+                  className="btn btn-primary me-3 mx-4"
                 >
                   Dashboard
                 </Link>
