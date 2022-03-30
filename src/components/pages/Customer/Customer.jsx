@@ -181,7 +181,8 @@ onClick={
           
           <Row>
             <div className="d-flex flex-row justify-content-between">
-              <div className>
+              
+              <div className='mx-auto'>
                 <Link to="/newcustomer" className="mybtn">
                   [+] Add Customer
                 </Link>
