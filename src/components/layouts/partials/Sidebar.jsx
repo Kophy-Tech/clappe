@@ -73,7 +73,7 @@ const Sidebar = () => {
             <Menu iconShape="square">
 
               
-                <MenuItem className="text-cl" active={true} icon={<FiHome />}>
+                <MenuItem className="text-cl my-4" active={true} icon={<FiHome />}>
                 Dashboard
               <Link to="/dashboard"/>
 
@@ -93,17 +93,17 @@ const Sidebar = () => {
               </MenuItem>
                 <MenuItem className="text-cl" active={false} icon={<FiCreditCard/>}>
                Proforma Invoices
-              <Link to="/proinvoice"/>
+              <Link to="/proformalInvoice"/>
 
               </MenuItem>
                 <MenuItem className="text-cl" active={false} icon={<FiDollarSign />}>
                Purchase Order
-              <Link to="/purchaseorder"/>
+              <Link to="/purchase"/>
 
               </MenuItem>
                 <MenuItem className="text-cl" active={false} icon={<FiActivity />}>
              Estimates
-             <Link to="/estimates"/>
+             <Link to="/Estimate"/>
 
               </MenuItem>
                 <MenuItem className="text-cl" active={false} icon={<FiHome />}>

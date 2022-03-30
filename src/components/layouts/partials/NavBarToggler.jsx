@@ -8,7 +8,7 @@ export default function NavBarToggler(props) {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container-fluid">
+        <div className="container-fluid ps-5">
           <Link className="navbar-brand fw-bold ms-5" to="/">
             Clappe
           </Link>

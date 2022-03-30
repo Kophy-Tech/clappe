@@ -36,6 +36,14 @@ const Customer = React.lazy(() => import("./pages/Customer/Customer"));
 const NewCustomer = React.lazy(() => import("./pages/Customer/NewCustomer"));
 
 const Invoice = React.lazy(() => import("./pages/Invoices/Invoice"));
+const NewInvoice = React.lazy(() => import("./pages/Invoices/NewInvoice"));
+const Estimate = React.lazy(() => import("./pages/Estimate/Estimate"));
+const ProformalInvoice = React.lazy(() => import("./pages/ProformalInvoice/ProformalInvoice"));
+const NewProformalInvoice = React.lazy(() => import("./pages/ProformalInvoice/NewProformalInvoice"));
+const NewEstimateInvoice = React.lazy(() => import("./pages/Estimate/NewEstimateInvoice"));
+const Purchase = React.lazy(() => import("./pages/Purchase/Purchase"));
+const NewPurchase = React.lazy(() => import("./pages/Purchase/NewPurchase"));
+
 
 const Progress = ({ isAnimating }) => {
   const { animationDuration, isFinished, progress } = useNProgress({
@@ -121,6 +129,55 @@ export const allRoutes = [
     element: Invoice,
     noLayout: false,
   },
+  {
+    name: "NewInvoice",
+    path: "/newinvoice",
+    auth: true,
+    element: NewInvoice,
+    noLayout: false,
+  },
+  {
+    name: "Estimate",
+    path: "/Estimate",
+    auth: true,
+    element: Estimate,
+    noLayout: false,
+  },
+  {
+    name: "ProformalInvoice",
+    path: "/ProformalInvoice",
+    auth: true,
+    element: ProformalInvoice,
+    noLayout: false,
+  },
+  {
+    name: "NewProformalInvoice",
+    path: "/NewProformalInvoice",
+    auth: true,
+    element: NewProformalInvoice,
+    noLayout: false,
+  },
+  {
+    name: "NewEstimateInvoice",
+    path: "/NewEstimateInvoice",
+    auth: true,
+    element: NewEstimateInvoice,
+    noLayout: false,
+  },
+  {
+    name: "Purchase",
+    path: "/Purchase",
+    auth: true,
+    element: Purchase,
+    noLayout: false,
+  },
+  {
+    name: "NewPurchase",
+    path: "/NewPurchase",
+    auth: true,
+    element: NewPurchase,
+    noLayout: false,
+  }
 ];
 
 const Master = (props) => {

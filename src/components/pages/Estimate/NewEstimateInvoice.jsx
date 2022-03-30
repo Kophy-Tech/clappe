@@ -1,8 +1,11 @@
 import React from "react";
 import Navbar from "../Navbar/Navbar";
-import "./NewCustomerCss.css";
+import "./NewEstimateInvoice.css";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import { FaList, FaRegHeart, FaArrowLeft } from "react-icons/fa";
+import { FiHome, FiLogOut, FiArrowLeftCircle, FiArrowLeft, FiArrowRightCircle, FiCreditCard, FiPenTool, FiUser, FiDollarSign, FiSettings, FiActivity, FiList } from "react-icons/fi";
+import { Container, Row, Col, Card, Image, Table } from "react-bootstrap";
 
-import { Link, useParams } from "react-router-dom";
 import { Affect, handleForm } from "../../../redux/shared";
 import {
   addNewCustomer,
@@ -12,7 +15,9 @@ import {
 } from "../../../redux/thunks";
 import { useSelector } from "react-redux";
 
-export default function NewCustomer(props) {
+export default function NewEstimateInvoice(props) {
+  const navigate = useNavigate();
+
   const [effect, setEffect] = React.useState({});
   const [customer, setCustomer] = React.useState({});
   const { id } = useParams();
@@ -52,7 +57,9 @@ export default function NewCustomer(props) {
         <div className="container bg-light pt-5">
           {/* Add New Customer */}
           <div className="bg-light p-2 border-bottom mb-4">
-            <h3 className="fw-bold fs-3">Add New Customer</h3>
+            <h3 className=" fs-3 fw-bold"> < FiArrowLeft onClick={() => {
+              navigate('/invoice')
+            }} /> Add New Estimate</h3>
           </div>
           <div className="row mb-3">
             {/* Customer Information Box */}
@@ -238,27 +245,165 @@ export default function NewCustomer(props) {
         </div>
         {/*  */}
         <div className="container">
-          <div className="row mb-3">
-            <div className="col-sm-12">
-              <div className="border h-auto">
+          <div className="row gx-0 p-2 mb-3">
+            <div className="col-12 col-md-9">
+              <div className="border" style={{ height: '55vh' }}>
                 <h5 className="fs-5 text-center bg-color py-3 text-white fw-bold">
-                  Customer Information
+                  Item Information
                 </h5>
-                <div className="border mx-4 mb-3 pb-5">
-                  Payment due within 15 days
+                <div className="row">
+                  <div className="col-12 col-md-3">
+                    <div className="mb-3">
+                      <input type="email" className="form-control rounded" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                    </div>
+                  </div>
+                  <div className="col-12 col-md-2">
+                    <div className="mb-3">
+                      <input type="email" className="form-control" placeholder="QTY" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                    </div>
+                  </div>
+                  <div className="col-12 col-md-2">
+                    <div className="mb-3">
+                      <select id="Select" class="form-select">
+                        <option>All</option>
+                        <option>Unpaid</option>
+                        <option>Overdue</option>
+                        <option>Emailed</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="col-12 col-md-2">
+                    <div className="mb-3 form-check">
+                      <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                      <label className="form-check-label" htmlFor="exampleCheck1">Taxable?</label>
+                    </div>
+                  </div>
+                  <div className="col-12 col-md-3">
+                    <a href="#" className="btn btn-sm btn-primary">[+]Add new item</a>
+                  </div>
+                  <div className="container">
+                    <Table striped bordered hover size="sm" className="m-1">
+                      <thead>
+                        <tr>
+                          <th>Item Name</th>
+                          <th>Qty</th>
+                          <th>Amount</th>
+                          <th>Total</th>
+                          <th>Tax</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td> Fabrics  shield
+                          </td>
+                          <td>4</td>
+                          <td>$100</td>
+                          <td>$500.00</td>
+                          <td>0.00</td>
+                          <td>No</td>
+                        </tr>
+                        <tr>
+                          <td> Tope shield
+                          </td>
+                          <td>4</td>
+                          <td>$100</td>
+                          <td>$500.00</td>
+                          <td>0.00</td>
+                          <td>No</td>
+                        </tr>
+
+                      </tbody>
+                    </Table>
+                  </div>
                 </div>
+
               </div>
+            </div>
+            <div className="col-12 col-md-3">
+              <div className="border" style={{ height: '55vh' }}>
+                <h5 className="fs-5 text-center bg-color py-3 text-white fw-bold">
+                  Estimate Total
+                </h5>
+                <div className="row p-2">
+                  <div className="col-md-6">
+                    <p>Item Total</p>
+                    <p>Tax</p>
+                    <p>Additional taxes</p>
+                    <p className="mt-2">Grand Total  <span> <a href="#">CAD</a> </span> </p>
+                  </div>
+                  <div className="col-md-6">
+                    <p>$10000.00</p>
+                    <input type="email" className="form-control mb-2" placeholder="" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                    <input type="email" className="form-control mb-2" placeholder="" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                    <p className="fw-bold">$10000.00</p>
+                  </div>
+                </div>
+
+              </div>
+
+
+
             </div>
           </div>
         </div>
+
+
+
+        <div className="container">
+          <div className="row gx-0 p-2 mb-3">
+            <div className="col-12 col-md-9">
+              <div className="border" style={{ height: '30vh' }}>
+                <h5 className="fs-5 text-center bg-color py-3 text-white fw-bold">
+                  Terms & condition
+                </h5>
+                <div className="form-floating m-2">
+                  <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style={{ height: 100 }} defaultValue={""} />
+                  <label htmlFor="floatingTextarea2">Pay due within 15 days</label>
+                </div>
+
+              </div>
+            </div>
+            <div className="col-12 col-md-3">
+              <div className="border" style={{ height: '30vh' }}>
+                <h5 className="fs-5 text-center bg-color py-3 text-white fw-bold">
+                  Sign Estimate
+                </h5>
+                <div className="d-flex justify-content-center">
+                  <a href="#" className="btn btn-lg btn-primary">Add signature</a>
+
+                </div>
+
+              </div>
+
+
+
+            </div>
+          </div>
+        </div>
+        <div className="container">
+          <div className="row gx-0 p-2">
+            <div className="border" style={{ height: '30vh' }}>
+              <div className="col-12 col-md-8">
+                <div className="d-flex justify-content-around mt-5">
+                  <a href="" className="btn btn-primary btn-sm">Save</a>
+                  <a href="" className="btn btn-primary btn-sm">Save & Email</a>
+                  <a href="" className="btn btn-primary btn-sm">Download</a>
+                  <a href="" className="btn btn-primary btn-sm">Cancel</a>
+                  <a href="" className="btn btn-primary btn-sm">Recurring</a>
+                </div>
+              </div>
+              <div className="col-12 col-md-4"></div>
+            </div>
+          </div>
+        </div>  
         {/* Save, Save & Continue, Cancel Buttons  */}
-        <div className="d-flex flex-row justify-content-center -2">
+        {/* <div className="d-flex flex-row justify-content-center -2">
           <button className="mybtn">Save</button>
-          {/* <button className="mybtn">Save &amp; Continue</button> */}
           <Link to="/customer" className="mybtn">
             Cancel
           </Link>
-        </div>
+        </div> */}
       </form>
     </>
   );

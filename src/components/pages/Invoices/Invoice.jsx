@@ -168,8 +168,8 @@ export default function Invoice() {
           <Row>
             <div className="d-flex flex-row justify-content-between">
               <div className>
-                <Link to="/newcustomer" className="mybtn">
-                  [+] Add New invoice
+                <Link to="/newinvoice" className="mybtn">
+                  [+] Add New invoice 
                 </Link>
               </div>
               {/* Select input for Add Customer */}

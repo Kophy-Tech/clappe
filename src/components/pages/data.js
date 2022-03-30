@@ -41,7 +41,7 @@ export const dashboardCards = [
             item4: "Rejected",
             item5: "Emailed",
         },
-        url:"/customer"
+        url:"/Estimate"
 
 
     },
@@ -84,7 +84,7 @@ export const dashboardCards = [
             item4: "Emailed",
             item5: "Overdue",
         },
-        url:"/customer"
+        url:"/Proformalinvoice"
 
 
 
