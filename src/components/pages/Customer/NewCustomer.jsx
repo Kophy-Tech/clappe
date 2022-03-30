@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../Navbar/Navbar";
-import "../NewCustomer/NewCustomerCss.css";
+import "./NewCustomerCss.css";
 
 import { Link, useParams } from "react-router-dom";
 import { Affect, handleForm } from "../../../redux/shared";

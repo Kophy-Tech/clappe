@@ -33,7 +33,7 @@ const Navbar = React.lazy(() => import("./pages/Navbar/Navbar"));
 const Footer = React.lazy(() => import("./pages/Footer/Footer"));
 const DashBoard = React.lazy(() => import("./pages/DashBoard/DashBoard"));
 const Customer = React.lazy(() => import("./pages/Customer/Customer"));
-const NewCustomer = React.lazy(() => import("./pages/NewCustomer/NewCustomer"));
+const NewCustomer = React.lazy(() => import("./pages/Customer/NewCustomer"));
 
 const Invoice = React.lazy(() => import("./pages/Invoices/Invoice"));
 

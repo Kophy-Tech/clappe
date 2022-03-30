@@ -9,27 +9,6 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import Master from "./components/Master";
-const LoginPage = React.lazy(() => import("./components/pages/Login/Login"));
-const RegisterPage = React.lazy(() =>
-  import("./components/pages/Register/Register")
-);
-const ForgotPassword = React.lazy(() =>
-  import("./components/pages/ForgotPassword/ForgotPassword")
-);
-const LandingPage = React.lazy(() =>
-  import("./components/pages/LandingPage/LandingPage")
-);
-const Navbar = React.lazy(() => import("./components/pages/Navbar/Navbar"));
-const Footer = React.lazy(() => import("./components/pages/Footer/Footer"));
-const DashBoard = React.lazy(() =>
-  import("./components/pages/DashBoard/DashBoard")
-);
-const Customer = React.lazy(() =>
-  import("./components/pages/Customer/Customer")
-);
-const NewCustomer = React.lazy(() =>
-  import("./components/pages/NewCustomer/NewCustomer")
-);
 
 // const Progress = ({ isAnimating }) => {
 //   const { animationDuration, isFinished, progress } = useNProgress({
