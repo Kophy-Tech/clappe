@@ -48,7 +48,7 @@ const Sidebar = () => {
     <NavBarToggler menuClick={menuIconClick}/>
       <div id="header">
           {/* collapsed props to change menu size using menucollapse state */}
-        <ProSidebar collapsed={menuCollapse}>
+        <ProSidebar collapsed={menuCollapse} >
           <SidebarHeader>
           <div className="logotext">
               {/* small and big change using menucollapse state */}
@@ -69,7 +69,7 @@ const Sidebar = () => {
               )}
             </div>
           </SidebarHeader>
-          <SidebarContent>
+          <SidebarContent onMouseEnter={menuIconClick}>
             <Menu iconShape="square">
 
               

@@ -72,7 +72,7 @@
       overflow-wrap: hidden;
     }
     #header .pro-sidebar.collapsed {
-        width: 220px;
+        width: 0px;
         min-width: 0px;
       }
       #header{
