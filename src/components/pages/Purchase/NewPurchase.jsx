@@ -56,7 +56,7 @@ export default function NewPurchase(props) {
   }, [store]);
   return (
     <>
-   <CenteredModal show={modalShow}
+      <CenteredModal show={modalShow}
         onHide={() => setModalShow(false)} />
 
       <form onSubmit={handleSubmit}>
@@ -176,23 +176,39 @@ export default function NewPurchase(props) {
                   Business Details
                 </h4>
                 {/* Inner Box */}
-                <div className="border w-50 m-5 p-5">
+                <div className="border w-50 justify-content-center text-center ms-5 p-2">
                   <div>Select Logo</div>
                   <div className="border p-4"></div>
                   <div>Logo Gallery</div>
                 </div>
                 <div className="px-3">
-                  <div>
-                    <label htmlFor="theme">Select Theme</label>
-                    <div className="d-flex align-items-center">
-                      <div className="form-group">
-                        <input type="text" className="form-control w-100" />
-                      </div>
-                      <div>
-                      <a href="#" className="btn btn-sm btn-primary">Browser Gallery</a>
-                      </div>
+
+                  <div className="d-flex align-items-center">
+                    <div className="form-group">
+                      <label htmlFor="theme">Select Theme</label>
+
+                      <input type="text" className="form-control w-100" />
                     </div>
+                    <div>
+                      <button className="mybtn mx-3">Browser Gallery</button>
+                    </div>
+
                   </div>
+                  
+                
+                  <div className="form-group mt-2">
+
+
+                    <input type="text" placeholder="P.O #" className="form-control w-100" />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="theme">Purchase Order Date</label>
+
+                    <input type="date"  className="form-control w-100" />
+                  </div>
+
+
+
                 </div>
               </div>
             </div>
@@ -287,7 +303,7 @@ export default function NewPurchase(props) {
                     </div>
                   </div>
                   <div className="col-12 col-md-3">
-                  <Button  className="btn btn-sm btn-primary" onClick={() => setModalShow(true)}>[+]Add new item</Button>
+                    <Button className="btn btn-sm btn-primary" onClick={() => setModalShow(true)}>[+]Add new item</Button>
 
                   </div>
                   <div className="container">
@@ -405,7 +421,7 @@ export default function NewPurchase(props) {
               <div className="col-12 col-md-4"></div>
             </div>
           </div>
-        </div>  
+        </div>
         {/* Save, Save & Continue, Cancel Buttons  */}
         {/* <div className="d-flex flex-row justify-content-center -2">
           <button className="mybtn">Save</button>

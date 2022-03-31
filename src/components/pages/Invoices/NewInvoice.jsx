@@ -202,19 +202,38 @@ export default function NewInvoice(props) {
                   <div>Logo Gallery</div>
                 </div>
                 <div className="px-3">
-                  
-                    <div className="d-flex align-items-center">
-                      <div className="form-group">
-                        <label htmlFor="theme">Select Theme</label>
 
-                        <input type="text" className="form-control w-100" />
-                      </div>
-                      <div>
-                        <button className="mybtn mx-3">Browser Gallery</button>
-                      </div>
+                  <div className="d-flex align-items-center">
+                    <div className="form-group">
+                      <label htmlFor="theme">Select Theme</label>
+
+                      <input type="text" className="form-control w-100" />
                     </div>
-                 
-                 
+                    <div>
+                      <button className="mybtn mx-3">Browser Gallery</button>
+                    </div>
+
+                  </div>
+                  <div className="form-group">
+
+                    <input type="text" placeholder="Invoice #" className="form-control w-100" />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="theme">Invoice Date</label>
+
+                    <input type="date" placeholder="Invoice #" className="form-control w-100" />
+                  </div>
+                  <div className="form-group mt-2">
+
+
+                    <input type="text" placeholder="P.O #" className="form-control w-100" />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="theme">Due Date</label>
+
+                    <input type="date" placeholder="Invoice #" className="form-control w-100" />
+                  </div>
+
 
 
                 </div>
@@ -331,7 +350,7 @@ export default function NewInvoice(props) {
                     </div>
                   </div>
                   <div className="col-12 col-md-3">
-                  <Button  className="btn btn-sm btn-primary" onClick={() => setModalShow(true)}>[+]Add new item</Button>
+                    <Button className="btn btn-sm btn-primary" onClick={() => setModalShow(true)}>[+]Add new item</Button>
                   </div>
 
 
