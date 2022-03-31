@@ -293,7 +293,7 @@ export default function NewProformalInvoice(props) {
                   </div>
                   <div className="col-12 col-md-2">
                     <div className="mb-3">
-                      <select id="Select" class="form-select">
+                      <select id="Select" className="form-select">
                         <option>All</option>
                         <option>Unpaid</option>
                         <option>Overdue</option>
