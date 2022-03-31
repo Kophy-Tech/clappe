@@ -7,6 +7,7 @@ import { Table } from "react-bootstrap";
 // import { Button } from 'bootstrap';
 import { Affect, handleForm } from "../../../redux/shared";
 import Button from "react-bootstrap/Button";
+import { FiHome,FiEdit, FiDelete, FiLogOut, FiArrowLeftCircle, FiArrowRightCircle,FiCreditCard, FiPenTool, FiUser, FiDollarSign, FiSettings, FiActivity,FiList } from "react-icons/fi";
 
 import {
   addNewCustomer,
@@ -14,11 +15,16 @@ import {
   searchStoreHooks,
 } from "../../../redux/thunks";
 import { useSelector } from "react-redux";
+import CenteredModal from "../Common/Modal";
+import CurrencyModal from "../Common/CurrencyModal";
+
 
 export default function NewInvoice(props) {
   const navigate = useNavigate();
 
   const [modalShow, setModalShow] = React.useState(false);
+  const [cmodalShow, setCModalShow] = React.useState(false);
+
 
   const [effect, setEffect] = React.useState({});
   const [customer, setCustomer] = React.useState({});
@@ -54,7 +60,9 @@ export default function NewInvoice(props) {
 
   return (
     <>
-      {/* <CenteredModal show={modalShow} onHide={() => setModalShow(false)} /> */}
+    
+      <CenteredModal show={modalShow} onHide={() => setModalShow(false)} />
+      <CurrencyModal show={cmodalShow} onHide={()=> setCModalShow(false)}/>
       <Modal
         show={modalShow}
         onHide={() => setModalShow(false)}
@@ -429,7 +437,7 @@ export default function NewInvoice(props) {
                           <th>Amount</th>
                           <th>Total</th>
                           <th>Tax</th>
-                          <th></th>
+                          <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -439,7 +447,13 @@ export default function NewInvoice(props) {
                           <td>$100</td>
                           <td>$500.00</td>
                           <td>0.00</td>
-                          <td>No</td>
+                          <td>
+<div className="d-flex ">
+<div className="me-4"> <FiEdit/> </div>
+<div> <FiDelete/> </div>
+</div>
+
+                          </td>
                         </tr>
                         <tr>
                           <td> Tope shield</td>
@@ -447,7 +461,10 @@ export default function NewInvoice(props) {
                           <td>$100</td>
                           <td>$500.00</td>
                           <td>0.00</td>
-                          <td>No</td>
+                          <div className="d-flex ">
+<div className="me-4"> <FiEdit/> </div>
+<div> <FiDelete/> </div>
+</div>
                         </tr>
                       </tbody>
                     </Table>
@@ -468,8 +485,9 @@ export default function NewInvoice(props) {
                     <p className="mt-2">
                       Grand Total{" "}
                       <span>
-                        {" "}
-                        <a href="#">CAD</a>{" "}
+                        
+                        <div className="me-4">CAD <FiEdit onClick={() => setCModalShow(true)} /> </div>
+
                       </span>{" "}
                     </p>
                   </div>

@@ -6,7 +6,7 @@ import { FaList, FaRegHeart, FaArrowLeft } from "react-icons/fa";
 import { FiHome, FiLogOut, FiArrowLeftCircle, FiArrowLeft, FiArrowRightCircle, FiCreditCard, FiPenTool, FiUser, FiDollarSign, FiSettings, FiActivity, FiList } from "react-icons/fi";
 import { Container, Row, Col, Card, Image, Table } from "react-bootstrap";
 import Button from 'react-bootstrap/Button'
-import CenteredModal from "../Modal";
+import CenteredModal from "../Common/Modal";
 import { Affect, handleForm } from "../../../redux/shared";
 import {
   addNewCustomer,

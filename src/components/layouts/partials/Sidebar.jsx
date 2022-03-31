@@ -85,7 +85,11 @@ const Sidebar = () => {
               <Link to="/customer"/>
 
               </MenuItem>
-             
+              <MenuItem className="text-cl" active={false} icon={<FiList />}>
+              Items
+              <Link to="/item"/>
+
+              </MenuItem>
                 <MenuItem className="text-cl" active={false} icon={<FiCreditCard />}>
                 Invoices
               <Link to="/invoice"/>
@@ -126,9 +130,7 @@ const Sidebar = () => {
               <Link to="/deliverynotes"/>
 
               </MenuItem>
-                <MenuItem className="text-cl" active={false} icon={<FiList />}>
-              Items
-              </MenuItem>
+                
                 <MenuItem className="text-cl" active={false} icon={<FiSettings />}>
                Settings
               </MenuItem>

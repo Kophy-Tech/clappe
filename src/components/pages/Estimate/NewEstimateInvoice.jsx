@@ -5,7 +5,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { FaList, FaRegHeart, FaArrowLeft } from "react-icons/fa";
 import { FiHome, FiLogOut, FiArrowLeftCircle, FiArrowLeft, FiArrowRightCircle, FiCreditCard, FiPenTool, FiUser, FiDollarSign, FiSettings, FiActivity, FiList } from "react-icons/fi";
 import { Container, Row, Col, Card, Image, Table } from "react-bootstrap";
-import CenteredModal from "../Modal";
+import CenteredModal from "../Common/Modal";
 import Button from 'react-bootstrap/Button'
 import { Affect, handleForm } from "../../../redux/shared";
 import {

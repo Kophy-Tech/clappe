@@ -1,0 +1,25 @@
+
+.color{
+    color: #0099ff;
+}
+body{
+    font-family: 'poppins';
+    background-color: #f0f2f5;
+}
+.bg-color{
+    background-color: #0099ff;
+}
+
+
+.mybtn{
+    background-color: #0099ff;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    font-weight: 500;
+    color: #ffffff;
+    outline: none;
+    margin: 1rem;
+    /* cursor: pointer; */
+}
+

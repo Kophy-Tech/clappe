@@ -1,6 +1,21 @@
 export const dashboardCards = [
     {
         id: 1,
+        title: "Item",
+        actions: {
+            item1: "New",
+            item2: "InStock",
+            item3: "Out of Stock",
+            // item4: "",
+            // item5: "Overdue",
+        },
+        url: '/item'
+
+
+
+    },
+    {
+        id: 1,
         title: "Invoice",
         actions: {
             item1: "New",

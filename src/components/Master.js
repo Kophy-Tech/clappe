@@ -43,7 +43,11 @@ const NewProformalInvoice = React.lazy(() => import("./pages/ProformalInvoice/Ne
 const NewEstimateInvoice = React.lazy(() => import("./pages/Estimate/NewEstimateInvoice"));
 const Purchase = React.lazy(() => import("./pages/Purchase/Purchase"));
 const NewPurchase = React.lazy(() => import("./pages/Purchase/NewPurchase"));
-const Modal = React.lazy(() => import("./pages/Modal"));
+const NewItem= React.lazy(() => import("./pages/Item/NewItem"));
+const Item= React.lazy(() => import("./pages/Item/Item"));
+
+
+const Modal = React.lazy(() => import("./pages/Common/Modal"));
 
 
 const Progress = ({ isAnimating }) => {
@@ -184,6 +188,20 @@ export const allRoutes = [
     path: "/NewPurchase",
     auth: true,
     element: NewPurchase,
+    noLayout: false,
+  },
+  {
+    name: "Item",
+    path: "/item",
+    auth: true,
+    element: Item,
+    noLayout: false,
+  },
+  {
+    name: "NewItem",
+    path: "/newitem",
+    auth: true,
+    element: NewItem,
     noLayout: false,
   }
 ];
