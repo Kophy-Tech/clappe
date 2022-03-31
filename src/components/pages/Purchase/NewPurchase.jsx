@@ -5,7 +5,8 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { FaList, FaRegHeart, FaArrowLeft } from "react-icons/fa";
 import { FiHome, FiLogOut, FiArrowLeftCircle, FiArrowLeft, FiArrowRightCircle, FiCreditCard, FiPenTool, FiUser, FiDollarSign, FiSettings, FiActivity, FiList } from "react-icons/fi";
 import { Container, Row, Col, Card, Image, Table } from "react-bootstrap";
-
+import Button from 'react-bootstrap/Button'
+import CenteredModal from "../Modal";
 import { Affect, handleForm } from "../../../redux/shared";
 import {
   addNewCustomer,
@@ -16,6 +17,10 @@ import {
 import { useSelector } from "react-redux";
 
 export default function NewPurchase(props) {
+  const [modalShow, setModalShow] = React.useState(false);
+
+
+
   const navigate = useNavigate();
 
   const [effect, setEffect] = React.useState({});
@@ -51,6 +56,9 @@ export default function NewPurchase(props) {
   }, [store]);
   return (
     <>
+   <CenteredModal show={modalShow}
+        onHide={() => setModalShow(false)} />
+
       <form onSubmit={handleSubmit}>
         <Affect effect={effect} />
 
@@ -279,7 +287,8 @@ export default function NewPurchase(props) {
                     </div>
                   </div>
                   <div className="col-12 col-md-3">
-                    <a href="#" className="btn btn-sm btn-primary">[+]Add new item</a>
+                  <Button  className="btn btn-sm btn-primary" onClick={() => setModalShow(true)}>[+]Add new item</Button>
+
                   </div>
                   <div className="container">
                     <Table striped bordered hover size="sm" className="m-1">

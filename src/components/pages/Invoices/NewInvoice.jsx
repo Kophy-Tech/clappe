@@ -71,8 +71,8 @@ export default function NewInvoice(props) {
 
   return (
     <>
-      <CenteredModal   show={modalShow}
-        onHide={() => setModalShow(false)}/>
+      <CenteredModal show={modalShow}
+        onHide={() => setModalShow(false)} />
       <form onSubmit={handleSubmit}>
         <Affect effect={effect} />
 
@@ -196,23 +196,27 @@ export default function NewInvoice(props) {
                   Business Details
                 </h4>
                 {/* Inner Box */}
-                <div className="border w-50 m-5 p-5">
+                <div className="border w-50 justify-content-center text-center ms-5 p-2">
                   <div>Select Logo</div>
                   <div className="border p-4"></div>
                   <div>Logo Gallery</div>
                 </div>
                 <div className="px-3">
-                  <div>
-                    <label htmlFor="theme">Select Theme</label>
+                  
                     <div className="d-flex align-items-center">
                       <div className="form-group">
+                        <label htmlFor="theme">Select Theme</label>
+
                         <input type="text" className="form-control w-100" />
                       </div>
                       <div>
                         <button className="mybtn mx-3">Browser Gallery</button>
                       </div>
                     </div>
-                  </div>
+                 
+                 
+
+
                 </div>
               </div>
             </div>
@@ -327,12 +331,10 @@ export default function NewInvoice(props) {
                     </div>
                   </div>
                   <div className="col-12 col-md-3">
-                    <a href="#" className="btn btn-sm btn-primary">
-                      [+]Add new item
-                    </a>
+                  <Button  className="btn btn-sm btn-primary" onClick={() => setModalShow(true)}>[+]Add new item</Button>
                   </div>
 
-                
+
                   <div className="container">
                     <Table striped bordered hover size="sm" className="m-1">
                       <thead>
