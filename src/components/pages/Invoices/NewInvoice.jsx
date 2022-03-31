@@ -1,35 +1,21 @@
 import React from "react";
-import Navbar from "../Navbar/Navbar";
 import "./NewInvoice.css";
-import { Link, useParams, useNavigate } from "react-router-dom";
-import { FaList, FaRegHeart, FaArrowLeft } from "react-icons/fa";
+import { useParams, useNavigate } from "react-router-dom";
+import Modal from "react-bootstrap/Modal";
 import {
-  FiHome,
-  FiLogOut,
-  FiArrowLeftCircle,
   FiArrowLeft,
-  FiArrowRightCircle,
-  FiCreditCard,
-  FiPenTool,
-  FiUser,
-  FiDollarSign,
-  FiSettings,
-  FiActivity,
-  FiList,
 } from "react-icons/fi";
-import { Container, Row, Col, Card, Image, Table } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 // import { Button } from 'bootstrap';
 import { Affect, handleForm } from "../../../redux/shared";
-import Button from 'react-bootstrap/Button'
+import Button from "react-bootstrap/Button";
 
 import {
   addNewCustomer,
   editCustomer,
-  searchStore,
   searchStoreHooks,
 } from "../../../redux/thunks";
 import { useSelector } from "react-redux";
-import CenteredModal from "../Modal";
 
 export default function NewInvoice(props) {
   const navigate = useNavigate();
@@ -68,11 +54,81 @@ export default function NewInvoice(props) {
     // console.log("foundCustomer", foundCustomer);
   }, [store]);
 
-
   return (
     <>
-      <CenteredModal show={modalShow}
-        onHide={() => setModalShow(false)} />
+      {/* <CenteredModal show={modalShow} onHide={() => setModalShow(false)} /> */}
+      <Modal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        size="sm"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            New items
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form>
+            <div className="form-group mb-2">
+              <label htmlFor="exampleInputEmail1">Item name</label>
+              <input
+                type="text"
+                className="form-control"
+                aria-describedby="emailHelp"
+              />
+            </div>
+            <div className="form-group mb-2">
+              <label htmlFor="exampleInputEmail1">Qty</label>
+              <input
+                type="number"
+                className="form-control"
+                aria-describedby="emailHelp"
+              />
+            </div>
+            <div className="form-group mb-2">
+              <label htmlFor="exampleInputEmail1">Amount </label>
+              <input
+                type="number"
+                className="form-control"
+                aria-describedby="emailHelp"
+              />
+            </div>
+            <div className="form-group mb-2">
+              <label htmlFor="exampleInputEmail1">Total </label>
+              <input
+                type="number"
+                className="form-control"
+                aria-describedby="emailHelp"
+              />
+            </div>
+            <div className="form-group mb-2">
+              <label htmlFor="exampleInputEmail1">Tax </label>
+              <input
+                type="text"
+                className="form-control"
+                aria-describedby="emailHelp"
+              />
+            </div>
+            <div className="form-group mb-2">
+              <label htmlFor="exampleInputEmail1">Actions </label>
+              <input
+                type="text"
+                className="form-control"
+                aria-describedby="emailHelp"
+              />
+            </div>
+
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
+          </form>
+        </Modal.Body>
+        {/* <Modal.Footer>
+                <Button onClick={props.onHide}>Close</Button>
+            </Modal.Footer> */}
+      </Modal>
       <form onSubmit={handleSubmit}>
         <Affect effect={effect} />
 
@@ -202,21 +258,16 @@ export default function NewInvoice(props) {
                   <div>Logo Gallery</div>
                 </div>
                 <div className="px-3">
-                  
-                    <div className="d-flex align-items-center">
-                      <div className="form-group">
-                        <label htmlFor="theme">Select Theme</label>
+                  <div className="d-flex align-items-center">
+                    <div className="form-group">
+                      <label htmlFor="theme">Select Theme</label>
 
-                        <input type="text" className="form-control w-100" />
-                      </div>
-                      <div>
-                        <button className="mybtn mx-3">Browser Gallery</button>
-                      </div>
+                      <input type="text" className="form-control w-100" />
                     </div>
-                 
-                 
-
-
+                    <div>
+                      <button className="mybtn mx-3">Browser Gallery</button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -307,7 +358,7 @@ export default function NewInvoice(props) {
                   </div>
                   <div className="col-12 col-md-2">
                     <div className="mb-3">
-                      <select id="Select" class="form-select">
+                      <select id="Select" className="form-select">
                         <option>All</option>
                         <option>Unpaid</option>
                         <option>Overdue</option>
@@ -331,9 +382,13 @@ export default function NewInvoice(props) {
                     </div>
                   </div>
                   <div className="col-12 col-md-3">
-                  <Button  className="btn btn-sm btn-primary" onClick={() => setModalShow(true)}>[+]Add new item</Button>
+                    <Button
+                      className="btn btn-sm btn-primary"
+                      onClick={() => setModalShow(true)}
+                    >
+                      [+]Add new item
+                    </Button>
                   </div>
-
 
                   <div className="container">
                     <Table striped bordered hover size="sm" className="m-1">

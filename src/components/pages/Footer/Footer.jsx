@@ -69,12 +69,12 @@ export default function Footer() {
                             Clappe's unique value proposition is to be at the same time very easy to use and fully integrated.
                         </p>
                         <div className="ico">
-                            <i class="fa-brands fa-facebook-f pe-4"></i>
-                            <i class="fa-brands fa-linkedin pe-4"></i>
-                            <i class="fa-brands fa-instagram pe-4"></i>
-                            <i class="fa-solid fa-message pe-4"></i>
-                            <i class="fa-brands fa-github-square pe-4"></i>
-                            <i class="fa-brands fa-twitter pe-4"></i>
+                            <i className="fa-brands fa-facebook-f pe-4"></i>
+                            <i className="fa-brands fa-linkedin pe-4"></i>
+                            <i className="fa-brands fa-instagram pe-4"></i>
+                            <i className="fa-solid fa-message pe-4"></i>
+                            <i className="fa-brands fa-github-square pe-4"></i>
+                            <i className="fa-brands fa-twitter pe-4"></i>
                         </div>
                     </div>
                 </div>

@@ -57,7 +57,7 @@ export default function ProformalInvoice() {
                                 <label htmlFor="inputPassword6" className="col-form-label">Status:</label>
                             </div>
                             <div className="col-auto">
-                                <select id="Select" class="form-select">
+                                <select id="Select" className="form-select">
                                     <option>All</option>
                                     <option>Unpaid</option>
                                     <option>Overdue</option>
