@@ -5,12 +5,13 @@ import Modal from "react-bootstrap/Modal";
 import { FiArrowLeft } from "react-icons/fi";
 import { Table } from "react-bootstrap";
 // import { Button } from 'bootstrap';
-import { Affect, handleForm } from "../../../redux/shared";
+import { Affect, FlatList, handleForm } from "../../../redux/shared";
 import Button from "react-bootstrap/Button";
 import { FiHome,FiEdit, FiDelete, FiLogOut, FiArrowLeftCircle, FiArrowRightCircle,FiCreditCard, FiPenTool, FiUser, FiDollarSign, FiSettings, FiActivity,FiList } from "react-icons/fi";
 
 import {
   addNewCustomer,
+  createInvoice,
   editCustomer,
   searchStoreHooks,
 } from "../../../redux/thunks";
@@ -18,6 +19,19 @@ import { useSelector } from "react-redux";
 import CenteredModal from "../Common/Modal";
 import CurrencyModal from "../Common/CurrencyModal";
 
+
+const RenderItem = ({ item, key }) => {
+  return (
+    <tr key={key}>
+      <td>{item.name}</td>
+      <td>{item.quantity}</td>
+      <td>${item.amount}</td>
+      <td>${item.sales_price}</td>
+      <td>{item.tax}</td>
+      <td>No</td>
+    </tr>
+  );
+};
 
 export default function NewInvoice(props) {
   const navigate = useNavigate();
@@ -28,6 +42,7 @@ export default function NewInvoice(props) {
 
   const [effect, setEffect] = React.useState({});
   const [customer, setCustomer] = React.useState({});
+  const [items, setItems] = React.useState([]);
   const { id } = useParams();
   const store = useSelector((state) => state.store);
 
@@ -42,7 +57,8 @@ export default function NewInvoice(props) {
       if (id) {
         res = await editCustomer(data, id);
       } else {
-        res = await addNewCustomer(data);
+        res = await createInvoice(data);
+        console.log(res);
         e.target.reset();
       }
 
@@ -57,6 +73,13 @@ export default function NewInvoice(props) {
     setCustomer(foundCustomer || {});
     // console.log("foundCustomer", foundCustomer);
   }, [store]);
+
+  const handleAddNewItem = (e) => {
+    const theItems = handleForm(e);
+    console.log("theItems", theItems);
+    setItems([...items, theItems]);
+    setModalShow(false);
+  };
 
   return (
     <>
@@ -76,13 +99,14 @@ export default function NewInvoice(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form>
+          <form onSubmit={handleAddNewItem}>
             <div className="form-group mb-2">
               <label htmlFor="exampleInputEmail1">Item name</label>
               <input
                 type="text"
                 className="form-control"
                 aria-describedby="emailHelp"
+                name="name"
               />
             </div>
             <div className="form-group mb-2">
@@ -90,6 +114,7 @@ export default function NewInvoice(props) {
               <input
                 type="number"
                 className="form-control"
+                name="quantity"
                 aria-describedby="emailHelp"
               />
             </div>
@@ -98,33 +123,36 @@ export default function NewInvoice(props) {
               <input
                 type="number"
                 className="form-control"
-                aria-describedby="emailHelp"
-              />
-            </div>
-            <div className="form-group mb-2">
-              <label htmlFor="exampleInputEmail1">Total </label>
-              <input
-                type="number"
-                className="form-control"
+                name="amount"
                 aria-describedby="emailHelp"
               />
             </div>
             <div className="form-group mb-2">
               <label htmlFor="exampleInputEmail1">Tax </label>
               <input
-                type="text"
+                type="number"
+                name="tax"
                 className="form-control"
                 aria-describedby="emailHelp"
               />
             </div>
             <div className="form-group mb-2">
+              <label htmlFor="exampleInputEmail1">Sales Price </label>
+              <input
+                type="text"
+                name="sales_price"
+                className="form-control"
+                aria-describedby="emailHelp"
+              />
+            </div>
+            {/* <div className="form-group mb-2">
               <label htmlFor="exampleInputEmail1">Actions </label>
               <input
                 type="text"
                 className="form-control"
                 aria-describedby="emailHelp"
               />
-            </div>
+            </div> */}
 
             <button type="submit" className="btn btn-primary">
               Submit
@@ -279,6 +307,8 @@ export default function NewInvoice(props) {
                       type="text"
                       placeholder="Invoice #"
                       className="form-control w-100"
+                      name="invoice_number"
+                      defaultValue={customer.invoice_number}
                     />
                   </div>
                   <div className="form-group">
@@ -288,6 +318,8 @@ export default function NewInvoice(props) {
                       type="date"
                       placeholder="Invoice #"
                       className="form-control w-100"
+                      name="invoice_date"
+                      defaultValue={customer.invoice_date}
                     />
                   </div>
                   <div className="form-group mt-2">
@@ -295,6 +327,8 @@ export default function NewInvoice(props) {
                       type="text"
                       placeholder="P.O #"
                       className="form-control w-100"
+                      name="po_number"
+                      defaultValue={customer.po_number}
                     />
                   </div>
                   <div className="form-group">
@@ -304,6 +338,8 @@ export default function NewInvoice(props) {
                       type="date"
                       placeholder="Invoice #"
                       className="form-control w-100"
+                      name="due_date"
+                      defaultValue={customer.due_date}
                     />
                   </div>
                 </div>
@@ -349,7 +385,7 @@ export default function NewInvoice(props) {
                       type="text"
                       className="form-control"
                       placeholder="Billing address"
-                      name="billing_address"
+                      name="bill_to"
                       defaultValue={customer.billing_address}
                     />
                   </div>
@@ -466,6 +502,7 @@ export default function NewInvoice(props) {
 <div> <FiDelete/> </div>
 </div>
                         </tr>
+                        <FlatList items={items} RenderItem={RenderItem} />
                       </tbody>
                     </Table>
                   </div>
@@ -482,6 +519,18 @@ export default function NewInvoice(props) {
                     <p>Item Total</p>
                     <p>Tax</p>
                     <p>Additional taxes</p>
+                    <select
+                      className="form-select"
+                      name="discount_type"
+                      defaultValue={customer.invoice_pref}
+                    >
+                      <option value="percentage" selected>
+                        DIscount Percentage
+                      </option>
+                      <option value="amount">
+                        Discount Amount
+                      </option>
+                    </select>
                     <p className="mt-2">
                       Grand Total{" "}
                       <span>
@@ -506,6 +555,12 @@ export default function NewInvoice(props) {
                       placeholder=""
                       id="exampleInputEmail1"
                       aria-describedby="emailHelp"
+                    />
+                   <input
+                      type="number"
+                      className="form-control mb-2"
+                      name="discount_amount"
+                      defaultValue={customer.discount_amount}
                     />
                     <p className="fw-bold">$10000.00</p>
                   </div>
@@ -555,10 +610,13 @@ export default function NewInvoice(props) {
             <div className="border" style={{ height: "30vh" }}>
               <div className="col-12 col-md-8">
                 <div className="d-flex justify-content-around mt-5">
-                  <a href="" className="btn btn-primary btn-sm">
+                  <button
+                    className="btn btn-primary btn-sm"
+                    onSubmit={handleSubmit}
+                  >
                     Save
-                  </a>
-                  <a href="" className="btn btn-primary btn-sm">
+                  </button>
+                  {/* <a href="" className="btn btn-primary btn-sm">
                     Save & Email
                   </a>
                   <a href="" className="btn btn-primary btn-sm">
@@ -569,7 +627,7 @@ export default function NewInvoice(props) {
                   </a>
                   <a href="" className="btn btn-primary btn-sm">
                     Recurring
-                  </a>
+                  </a> */}
                 </div>
               </div>
               <div className="col-12 col-md-4"></div>

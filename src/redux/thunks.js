@@ -53,11 +53,9 @@ const api = (method, path, data) => {
 
       if (!successStatusCodes.includes(r.status)) {
         console.warn(result, "not 200s status codes");
-
         if (result.message) {
           throw new Error(result.message);
         }
-
         if (result.error) {
           //determine if result.error is String
           if (typeof result.error === "string") {
@@ -364,6 +362,18 @@ export const deleteCustomer = async (id) => {
   try {
     const r = await api("delete", `customer/edit/${id}`);
     fetchAllCustomers();
+    return r;
+  }
+  catch (e) {
+    throw e;
+  }
+}
+
+
+//INVOICE
+export const createInvoice = async (data) => {
+  try {
+    const r = await api("post", "invoice/create", data);
     return r;
   }
   catch (e) {
