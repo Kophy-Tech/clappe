@@ -62,7 +62,7 @@ export default function NewEstimateInvoice(props) {
           {/* Add New Customer */}
           <div className="bg-light p-2 border-bottom mb-4">
             <h3 className=" fs-3 fw-bold"> < FiArrowLeft onClick={() => {
-              navigate('/invoice')
+              navigate('/Estimate')
             }} /> Add New Estimate</h3>
           </div>
           <div className="row mb-3">
