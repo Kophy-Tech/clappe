@@ -2,9 +2,7 @@ import React from "react";
 import "./NewInvoice.css";
 import { useParams, useNavigate } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
-import {
-  FiArrowLeft,
-} from "react-icons/fi";
+import { FiArrowLeft } from "react-icons/fi";
 import { Table } from "react-bootstrap";
 // import { Button } from 'bootstrap';
 import { Affect, handleForm } from "../../../redux/shared";
@@ -267,6 +265,38 @@ export default function NewInvoice(props) {
                     <div>
                       <button className="mybtn mx-3">Browser Gallery</button>
                     </div>
+                  </div>
+                  <div className="form-group">
+                    <input
+                      type="text"
+                      placeholder="Invoice #"
+                      className="form-control w-100"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="theme">Invoice Date</label>
+
+                    <input
+                      type="date"
+                      placeholder="Invoice #"
+                      className="form-control w-100"
+                    />
+                  </div>
+                  <div className="form-group mt-2">
+                    <input
+                      type="text"
+                      placeholder="P.O #"
+                      className="form-control w-100"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="theme">Due Date</label>
+
+                    <input
+                      type="date"
+                      placeholder="Invoice #"
+                      className="form-control w-100"
+                    />
                   </div>
                 </div>
               </div>

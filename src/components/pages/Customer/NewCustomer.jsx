@@ -1,8 +1,10 @@
 import React from "react";
 import Navbar from "../Navbar/Navbar";
 import "./NewCustomerCss.css";
+import { FiHome, FiLogOut, FiArrowLeftCircle, FiArrowLeft, FiArrowRightCircle, FiCreditCard, FiPenTool, FiUser, FiDollarSign, FiSettings, FiActivity, FiList } from "react-icons/fi";
 
-import { Link, useParams } from "react-router-dom";
+
+import { Link, useParams,useNavigate } from "react-router-dom";
 import { Affect, handleForm } from "../../../redux/shared";
 import {
   addNewCustomer,
@@ -13,6 +15,8 @@ import {
 import { useSelector } from "react-redux";
 
 export default function NewCustomer(props) {
+  const navigate = useNavigate();
+
   const [effect, setEffect] = React.useState({});
   const [customer, setCustomer] = React.useState({});
   const { id } = useParams();
@@ -52,7 +56,9 @@ export default function NewCustomer(props) {
         <div className="container bg-light pt-5">
           {/* Add New Customer */}
           <div className="bg-light p-2 border-bottom mb-4">
-            <h3 className="fw-bold fs-3">Add New Customer</h3>
+            <h3 className=" fs-3 fw-bold"> < FiArrowLeft onClick={() => {
+              navigate('/customer')
+            }} /> Add New Customer</h3>
           </div>
           <div className="row mb-3">
             {/* Customer Information Box */}
