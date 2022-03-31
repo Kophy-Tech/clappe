@@ -65,7 +65,7 @@ export default function NewPurchase(props) {
         <div className="container bg-light pt-5">
           {/* Add New Customer */}
           <div className="bg-light p-2 border-bottom mb-4">
-            <h3 className=" fs-3 fw-bold"> < FiArrowLeft onClick={() => {
+            <h3 className=" fs-3 "> < FiArrowLeft onClick={() => {
               navigate('/purchase')
             }} /> Add New Purchase Order</h3>
           </div>

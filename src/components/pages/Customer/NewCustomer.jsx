@@ -4,7 +4,7 @@ import "./NewCustomerCss.css";
 import { FiHome, FiLogOut, FiArrowLeftCircle, FiArrowLeft, FiArrowRightCircle, FiCreditCard, FiPenTool, FiUser, FiDollarSign, FiSettings, FiActivity, FiList } from "react-icons/fi";
 
 
-import { Link, useParams,useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { Affect, handleForm } from "../../../redux/shared";
 import {
   addNewCustomer,
@@ -56,7 +56,7 @@ export default function NewCustomer(props) {
         <div className="container bg-light pt-5">
           {/* Add New Customer */}
           <div className="bg-light p-2 border-bottom mb-4">
-            <h3 className=" fs-3 fw-bold"> < FiArrowLeft onClick={() => {
+            <h3 className=" fs-3 "> < FiArrowLeft onClick={() => {
               navigate('/customer')
             }} /> Add New Customer</h3>
           </div>
@@ -167,23 +167,29 @@ export default function NewCustomer(props) {
                   Business Details
                 </h4>
                 {/* Inner Box */}
-                <div className="border w-50 m-5 p-5">
+                <div className="border w-50 justify-content-center text-center ms-5 p-2">
                   <div>Select Logo</div>
                   <div className="border p-4"></div>
                   <div>Logo Gallery</div>
                 </div>
                 <div className="px-3">
-                  <div>
-                    <label htmlFor="theme">Select Theme</label>
-                    <div className="d-flex align-items-center">
-                      <div className="form-group">
-                        <input type="text" className="form-control w-100" />
-                      </div>
-                      <div>
-                      <a href="#" className="btn btn-sm btn-primary">Browser Gallery</a>
-                      </div>
+
+                  <div className="d-flex align-items-center">
+                    <div className="form-group">
+                      <label htmlFor="theme">Select Theme</label>
+
+                      <input type="text" className="form-control w-100" />
                     </div>
+                    <div>
+                      <button className="mybtn mx-3">Browser Gallery</button>
+                    </div>
+
                   </div>
+               
+            
+
+
+
                 </div>
               </div>
             </div>
