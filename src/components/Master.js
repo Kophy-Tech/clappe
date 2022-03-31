@@ -43,6 +43,7 @@ const NewProformalInvoice = React.lazy(() => import("./pages/ProformalInvoice/Ne
 const NewEstimateInvoice = React.lazy(() => import("./pages/Estimate/NewEstimateInvoice"));
 const Purchase = React.lazy(() => import("./pages/Purchase/Purchase"));
 const NewPurchase = React.lazy(() => import("./pages/Purchase/NewPurchase"));
+const Modal = React.lazy(() => import("./pages/Modal"));
 
 
 const Progress = ({ isAnimating }) => {
@@ -169,6 +170,13 @@ export const allRoutes = [
     path: "/Purchase",
     auth: true,
     element: Purchase,
+    noLayout: false,
+  },
+  {
+    name: "Modal",
+    path: "/Modal",
+    auth: true,
+    element: Modal,
     noLayout: false,
   },
   {

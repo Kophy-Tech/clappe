@@ -9,11 +9,16 @@ body{
     height: 100vh;
 
 }
-.icons i{
+.cont i{
     border: 1px solid red;
     color: red;
     padding: 1rem 1.2rem;
     border-radius: 50%;
-    margin-left: 6rem;
+    /* margin-left: 6rem; */
+}
+@media (max-width:400px) {
+    .cons{
+        display: flex;
+    }
 }
 

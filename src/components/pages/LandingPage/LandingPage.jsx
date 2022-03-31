@@ -15,8 +15,8 @@ function LandingPage() {
             title: 'Accounting',
             content: 'Record all invoices in your books and keep track of payments.',
             footer: '2 Days ago',
-            img:'fa-solid fa-calculator fa-2x',
-            color:'red'
+            img: 'fa-solid fa-calculator fa-2x',
+            color: 'red'
         },
         {
             id: 2,
@@ -24,23 +24,23 @@ function LandingPage() {
             content: 'Easily select your invoicing method for every product and service.',
             footer: '5 Days ago',
             img: 'fa-solid fa-money-bills-simple',
-            color:'cyan'
+            color: 'cyan'
         },
         {
             id: 3,
             title: 'Purchase',
             content: 'Obtain meaningful information about supplier invoices.',
             footer: '2 weeks ago',
-            img:'fa-solid fa-cart-shopping fa-2x',
-            color:'purple'
+            img: 'fa-solid fa-cart-shopping fa-2x',
+            color: 'purple'
         },
         {
             id: 4,
             title: 'Project',
             content: 'Enable your project right way. Step by step get work done.',
             footer: '1 month ago',
-            img:'fa-solid fa-diagram-project fa-2x',
-            color:'orange'
+            img: 'fa-solid fa-diagram-project fa-2x',
+            color: 'orange'
         }
     ]
     return (
@@ -64,20 +64,26 @@ function LandingPage() {
             <div className="container-fluid bg-light p-5" >
                 <img src={require('../../../assets/img/Invoicing-Invoices.png')} style={{ width: "90%" }} alt="" />
             </div>
+
             <div className="invoice container my-5">
-                <h1 className='text-center'>Turn <b> Quotes into Invoices </b> with minimal effort</h1>
                 <p className='lead text-center fw-bold'>Bill automatically based on sales orders, delivery orders, contracts, or time and material.</p>
-                <div className="icons row d-flex justify-content-around mt-5">
-                    <div className="content1 col-md-4 justify-content-center align-items-center">
-                        <i className="fa-regular fa-file fa-2x my-2 ml-4 pl-4 text-center align-self-center"></i>
+                <div className="row mt-5">
+                    <div className="col-12 col-md-4">
+                        <div className=" cont d-flex justify-content-center">
+                            <i className="fa-regular fa-file fa-2x   rounded-circle " ></i>
+                        </div>
                         <p className='text-center'>Easily create invoices based on the quotes you <br /> have sent to your clients.</p>
                     </div>
-                    <div className="content2 col-md-4">
-                        <i className="fa-solid fa-arrow-rotate-right fa-2x my-2"></i>
+                    <div className=" col-12 col-md-4">
+                        <div className=" cont d-flex justify-content-center">
+                            <i className="fa-solid fa-arrow-rotate-right fa-2x   rounded-circle "></i>
+                        </div>
                         <p className='text-center'>Send professional looking invoices directly to <br /> your clients in just a click.</p>
                     </div>
-                    <div className="content3 col-md-4">
-                        <i className="fa-solid fa-file-pdf fa-2x my-2"></i>
+                    <div className="col-12 col-md-4 ">
+                        <div className=" cont  d-flex justify-content-center">
+                            <i className="fa-solid fa-file-pdf fa-2x    rounded-circle "></i>
+                        </div>
                         <p className='text-center'>Automatically send them by email as a PDF <br /> attachment or print and send them by mail.</p>
                     </div>
                 </div>
@@ -135,14 +141,14 @@ function LandingPage() {
                         cards.map(card => {
                             return (
                                 <div className="card me-4 col-md-3" style={{ width: '18rem' }}>
-                                   <i className={`${card.img}`} style={{color:`${card.color}`}} ></i>
+                                    <i className={`${card.img}`} style={{ color: `${card.color}` }} ></i>
                                     <div className="card-body">
                                         <h5 className="card-title">{card.title}</h5>
                                         <p className="card-text">{card.content}</p>
                                         <div className="card-footer text-muted">
                                             {card.footer}
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             )
@@ -152,7 +158,7 @@ function LandingPage() {
 
             </div>
 
-<Footer />
+            <Footer />
         </>
 
     )

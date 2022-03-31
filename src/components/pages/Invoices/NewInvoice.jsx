@@ -5,8 +5,10 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { FaList, FaRegHeart, FaArrowLeft } from "react-icons/fa";
 import { FiHome, FiLogOut, FiArrowLeftCircle, FiArrowLeft, FiArrowRightCircle, FiCreditCard, FiPenTool, FiUser, FiDollarSign, FiSettings, FiActivity, FiList } from "react-icons/fi";
 import { Container, Row, Col, Card, Image, Table } from "react-bootstrap";
-
+// import { Button } from 'bootstrap';
 import { Affect, handleForm } from "../../../redux/shared";
+import Button from 'react-bootstrap/Button'
+
 import {
   addNewCustomer,
   editCustomer,
@@ -14,9 +16,12 @@ import {
   searchStoreHooks,
 } from "../../../redux/thunks";
 import { useSelector } from "react-redux";
+import CenteredModal from "../Modal";
 
 export default function NewInvoice(props) {
   const navigate = useNavigate();
+
+  const [modalShow, setModalShow] = React.useState(false);
 
   const [effect, setEffect] = React.useState({});
   const [customer, setCustomer] = React.useState({});
@@ -49,8 +54,12 @@ export default function NewInvoice(props) {
     setCustomer(foundCustomer || {});
     // console.log("foundCustomer", foundCustomer);
   }, [store]);
+
+
   return (
     <>
+      <CenteredModal   show={modalShow}
+        onHide={() => setModalShow(false)}/>
       <form onSubmit={handleSubmit}>
         <Affect effect={effect} />
 
@@ -279,8 +288,12 @@ export default function NewInvoice(props) {
                     </div>
                   </div>
                   <div className="col-12 col-md-3">
-                    <a href="#" className="btn btn-sm btn-primary">[+]Add new item</a>
+                    <Button  className="btn btn-sm btn-primary" onClick={() => setModalShow(true)}>[+]Add new item</Button>
+                  
+                 
                   </div>
+
+                
                   <div className="container">
                     <Table striped bordered hover size="sm" className="m-1">
                       <thead>
@@ -396,7 +409,7 @@ export default function NewInvoice(props) {
               <div className="col-12 col-md-4"></div>
             </div>
           </div>
-        </div>  
+        </div>
         {/* Save, Save & Continue, Cancel Buttons  */}
         {/* <div className="d-flex flex-row justify-content-center -2">
           <button className="mybtn">Save</button>
