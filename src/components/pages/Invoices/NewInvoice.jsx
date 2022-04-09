@@ -38,13 +38,21 @@ export default function NewInvoice(props) {
 
   const [modalShow, setModalShow] = React.useState(false);
   const [cmodalShow, setCModalShow] = React.useState(false);
-
+  const [itemList, setItemList] = React.useState(true)
 
   const [effect, setEffect] = React.useState({});
   const [customer, setCustomer] = React.useState({});
   const [items, setItems] = React.useState([]);
   const { id } = useParams();
   const store = useSelector((state) => state.store);
+
+  const handleDropDown = (e) => {
+    const itemValue = e.target.value;
+    setItemList(false)
+    if(itemValue.length === 0) {
+      setItemList(true)
+    }
+  }
 
   const handleSubmit = async (e) => {
     const data = handleForm(e);
@@ -401,22 +409,52 @@ export default function NewInvoice(props) {
           </div>
         </div>
         {/*  */}
-        <div className="container">
+        <section className="container">
           <div className="row gx-0 p-2 mb-3">
             <div className="col-12 col-md-9">
               <div className="border" style={{ height: "55vh" }}>
                 <h5 className="fs-5 text-center bg-color py-3 text-white fw-bold">
                   Item Information
                 </h5>
-                <div className="row">
+                <div id="info-box" className="row">
                   <div className="col-12 col-md-3">
-                    <div className="mb-3">
+                    <div className="mb-3 d-flex flex-column px-3 py-2">
                       <input
                         type="email"
                         className="form-control rounded"
                         id="exampleInputEmail1"
                         aria-describedby="emailHelp"
+                        onInput={handleDropDown}
                       />
+                      <div className={`${itemList ? 'd-none' : 'd-flex'}  card search-box`}>
+                        <ul>
+                          <li className="border-bottom">hello thia</li>
+                          <li className="border-bottom">hello thia</li>
+                          <li className="border-bottom">hello thia</li>
+                          <li className="border-bottom">hello thia</li>
+                          <li className="border-bottom">hello thia</li>
+                          <li className="border-bottom">hello thia</li>
+                          <li className="border-bottom">hello thia</li>
+                          <li className="border-bottom">hello thia</li>
+                          <li className="border-bottom">hello thia</li>
+                          <li className="border-bottom">hello thia</li>
+                          <li className="border-bottom">hello thia</li>
+                          <li className="border-bottom">hello thia</li>
+                          <li className="border-bottom">hello thia</li>
+                          <li className="border-bottom">hello thia</li>
+                          <li className="border-bottom">hello thia</li>
+                          <li className="border-bottom">hello thia</li>
+                          <li className="border-bottom">hello thia</li>
+                          <li className="border-bottom">hello thia</li>
+                          <li className="border-bottom">hello thia</li>
+                          <li className="border-bottom">hello thia</li>
+                          <li className="border-bottom">hello thia</li>
+                          <li className="border-bottom">hello thia</li>
+                          <li className="border-bottom">hello thia</li>
+                          <li className="border-bottom">hello thia</li>
+                          <li className="border-bottom">hello thia</li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                   <div className="col-12 col-md-2">
@@ -568,7 +606,7 @@ export default function NewInvoice(props) {
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
         <div className="container">
           <div className="row gx-0 p-2 mb-3">

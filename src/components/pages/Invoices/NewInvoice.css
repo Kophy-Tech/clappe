@@ -1,4 +1,40 @@
 
+:root {
+    --border-bottom: 0.4px solid #c4c4c4;
+}
+
+.border-bottom {
+    border-bottom: var(--border-bottom);
+}
+
+#info-box {
+    position: relative;
+}
+
+.search-box {
+    width: 100%;
+    max-width: 190px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1;
+    position: absolute;
+    top: 40px;
+}
+
+ul {
+    list-style: none;
+    background-color: #fff;
+    margin-bottom: 0 !important;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.1), -3px -3px 10px rgba(0,0,0,0.1);
+    padding-left: 0 !important;
+
+}
+
+li {
+    padding-left: .5em !important;
+
+}
+
 .color{
     color: #0099ff;
 }
