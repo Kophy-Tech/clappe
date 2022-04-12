@@ -7,7 +7,21 @@ import { Table } from "react-bootstrap";
 // import { Button } from 'bootstrap';
 import { Affect, FlatList, handleForm } from "../../../redux/shared";
 import Button from "react-bootstrap/Button";
-import { FiHome,FiEdit, FiDelete, FiLogOut, FiArrowLeftCircle, FiArrowRightCircle,FiCreditCard, FiPenTool, FiUser, FiDollarSign, FiSettings, FiActivity,FiList } from "react-icons/fi";
+import {
+  FiHome,
+  FiEdit,
+  FiDelete,
+  FiLogOut,
+  FiArrowLeftCircle,
+  FiArrowRightCircle,
+  FiCreditCard,
+  FiPenTool,
+  FiUser,
+  FiDollarSign,
+  FiSettings,
+  FiActivity,
+  FiList,
+} from "react-icons/fi";
 
 import {
   addNewCustomer,
@@ -18,7 +32,6 @@ import {
 import { useSelector } from "react-redux";
 import CenteredModal from "../Common/Modal";
 import CurrencyModal from "../Common/CurrencyModal";
-
 
 const RenderItem = ({ item, key }) => {
   return (
@@ -38,7 +51,7 @@ export default function NewInvoice(props) {
 
   const [modalShow, setModalShow] = React.useState(false);
   const [cmodalShow, setCModalShow] = React.useState(false);
-  const [itemList, setItemList] = React.useState(true)
+  const [itemList, setItemList] = React.useState(true);
 
   const [effect, setEffect] = React.useState({});
   const [customer, setCustomer] = React.useState({});
@@ -48,15 +61,15 @@ export default function NewInvoice(props) {
 
   const handleDropDown = (e) => {
     const itemValue = e.target.value;
-    setItemList(false)
-    if(itemValue.length === 0) {
-      setItemList(true)
+    setItemList(false);
+    if (itemValue.length === 0) {
+      setItemList(true);
     }
-  }
+  };
 
   const handleSubmit = async (e) => {
     const data = handleForm(e);
-    data.logo_path =
+    data.item_total =
       "https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg";
     console.log("data", data);
     try {
@@ -91,9 +104,8 @@ export default function NewInvoice(props) {
 
   return (
     <>
-    
       <CenteredModal show={modalShow} onHide={() => setModalShow(false)} />
-      <CurrencyModal show={cmodalShow} onHide={()=> setCModalShow(false)}/>
+      <CurrencyModal show={cmodalShow} onHide={() => setCModalShow(false)} />
       <Modal
         show={modalShow}
         onHide={() => setModalShow(false)}
@@ -426,7 +438,11 @@ export default function NewInvoice(props) {
                         aria-describedby="emailHelp"
                         onInput={handleDropDown}
                       />
-                      <div className={`${itemList ? 'd-none' : 'd-flex'}  card search-box`}>
+                      <div
+                        className={`${
+                          itemList ? "d-none" : "d-flex"
+                        }  card search-box`}
+                      >
                         <ul>
                           <li className="border-bottom">hello thia</li>
                           <li className="border-bottom">hello thia</li>
@@ -522,11 +538,16 @@ export default function NewInvoice(props) {
                           <td>$500.00</td>
                           <td>0.00</td>
                           <td>
-<div className="d-flex ">
-<div className="me-4"> <FiEdit/> </div>
-<div> <FiDelete/> </div>
-</div>
-
+                            <div className="d-flex ">
+                              <div className="me-4">
+                                {" "}
+                                <FiEdit />{" "}
+                              </div>
+                              <div>
+                                {" "}
+                                <FiDelete />{" "}
+                              </div>
+                            </div>
                           </td>
                         </tr>
                         <tr>
@@ -536,9 +557,15 @@ export default function NewInvoice(props) {
                           <td>$500.00</td>
                           <td>0.00</td>
                           <div className="d-flex ">
-<div className="me-4"> <FiEdit/> </div>
-<div> <FiDelete/> </div>
-</div>
+                            <div className="me-4">
+                              {" "}
+                              <FiEdit />{" "}
+                            </div>
+                            <div>
+                              {" "}
+                              <FiDelete />{" "}
+                            </div>
+                          </div>
                         </tr>
                         <FlatList items={items} RenderItem={RenderItem} />
                       </tbody>
@@ -565,16 +592,14 @@ export default function NewInvoice(props) {
                       <option value="percentage" selected>
                         DIscount Percentage
                       </option>
-                      <option value="amount">
-                        Discount Amount
-                      </option>
+                      <option value="amount">Discount Amount</option>
                     </select>
                     <p className="mt-2">
                       Grand Total{" "}
                       <span>
-                        
-                        <div className="me-4">CAD <FiEdit onClick={() => setCModalShow(true)} /> </div>
-
+                        <div className="me-4">
+                          CAD <FiEdit onClick={() => setCModalShow(true)} />{" "}
+                        </div>
                       </span>{" "}
                     </p>
                   </div>
@@ -594,7 +619,7 @@ export default function NewInvoice(props) {
                       id="exampleInputEmail1"
                       aria-describedby="emailHelp"
                     />
-                   <input
+                    <input
                       type="number"
                       className="form-control mb-2"
                       name="discount_amount"

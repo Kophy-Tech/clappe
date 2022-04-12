@@ -1,8 +1,14 @@
-import { overwriteStore, signIn, signOut, storeError, updStore } from "./ActionCreators";
+import {
+  overwriteStore,
+  signIn,
+  signOut,
+  storeError,
+  updStore,
+} from "./ActionCreators";
 import { store } from "./store";
 
-const baseLink = "https://clappe-backend.herokuapp.com/"
-  // process.env.REACT_APP_BASE_URL || process.env.REACT_APP_USE_URL;
+const baseLink = "https://clappe-backend.herokuapp.com/";
+// process.env.REACT_APP_BASE_URL || process.env.REACT_APP_USE_URL;
 const newtorkErrorAccrossBrowsers = [
   "Failed to fetch",
   "NetworkError when attempting to fetch resource",
@@ -262,35 +268,33 @@ export const fetchAllCustomers = async () => {
   try {
     const r = await api("get", "customer/all");
     console.log(r, "customers from api");
-    store.dispatch(overwriteStore({
-      name: "customers",
-      value: r.customers
-    }))
+    store.dispatch(
+      overwriteStore({
+        name: "customers",
+        value: r.customers,
+      })
+    );
     return r;
-  }
-  catch (e) {
-    store.dispatch(overwriteStore({
-      name: "customers",
-      value: []
-    }))
+  } catch (e) {
+    store.dispatch(
+      overwriteStore({
+        name: "customers",
+        value: [],
+      })
+    );
     // throw e;
   }
 };
 
 const requiredDatas = async () => {
   fetchAllCustomers();
-}
-
-
-
-
+};
 
 export const registerUSer = async (data) => {
   try {
     const r = await api("post", "signup", data);
     return r;
-  }
-  catch (e) {
+  } catch (e) {
     throw e;
   }
 };
@@ -303,22 +307,19 @@ export const loginUser = async (data) => {
     requiredDatas();
     store.dispatch(signIn({ success: true, user: r }));
     return r;
-  }
-  catch (e) {
+  } catch (e) {
     throw e;
   }
 };
 
 export const logoutUser = async () => {
   try {
-    localStorage.removeItem("token")
+    localStorage.removeItem("token");
     store.dispatch(signOut({ success: true }));
-  }
-  catch (e) {
+  } catch (e) {
     throw e;
   }
 };
-
 
 export const fetchProfile = async () => {
   try {
@@ -326,57 +327,100 @@ export const fetchProfile = async () => {
     requiredDatas();
     store.dispatch(signIn({ success: true, user: r }));
     return r;
-  }
-  catch (e) {
+  } catch (e) {
     throw e;
   }
 };
-
-
-
-
 
 export const addNewCustomer = async (data) => {
   try {
     const r = await api("post", "customer", data);
     fetchAllCustomers();
     return r;
-  }
-  catch (e) {
+  } catch (e) {
     throw e;
   }
-}
+};
 
 export const editCustomer = async (data, id) => {
   try {
     const r = await api("put", `customer/edit/${id}`, data);
     fetchAllCustomers();
     return r;
-  }
-  catch (e) {
+  } catch (e) {
     throw e;
   }
-}
+};
 
 export const deleteCustomer = async (id) => {
   try {
     const r = await api("delete", `customer/edit/${id}`);
     fetchAllCustomers();
     return r;
-  }
-  catch (e) {
+  } catch (e) {
     throw e;
   }
-}
+};
 
+//ITEM
+
+export const fetchAllItems = async () => {
+  try {
+    const r = await api("get", "item/all");
+    store.dispatch(
+      overwriteStore({
+        name: "items",
+        value: r.message,
+      })
+    );
+    return r;
+  } catch (e) {
+    store.dispatch(
+      overwriteStore({
+        name: "items",
+        value: [],
+      })
+    );
+    console.warn("Error fetching items", e);
+  }
+};
+
+export const addNewItem = async (data) => {
+  try {
+    const r = await api("post", "item/create", data);
+    fetchAllItems();
+    return r;
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const editItem = async (data, id) => {
+  try {
+    const r = await api("put", `item/edit/${id}`, data);
+    fetchAllItems();
+    return r;
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const deleteItem = async (id) => {
+  try {
+    const r = await api("delete", `item/edit/${id}`);
+    fetchAllItems();
+    return r;
+  } catch (e) {
+    throw e;
+  }
+};
 
 //INVOICE
 export const createInvoice = async (data) => {
   try {
     const r = await api("post", "invoice/create", data);
     return r;
-  }
-  catch (e) {
+  } catch (e) {
     throw e;
   }
-}
+};

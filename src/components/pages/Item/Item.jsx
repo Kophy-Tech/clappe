@@ -4,7 +4,12 @@ import { Container, Row, Col, Card, Image, Table } from "react-bootstrap";
 import "./Item.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { deleteCustomer, fetchAllCustomers } from "../../../redux/thunks";
+import {
+  deleteCustomer,
+  deleteItem,
+  fetchAllCustomers,
+  fetchAllItems,
+} from "../../../redux/thunks";
 import {
   Affect,
   ConfirmComp,
@@ -14,22 +19,22 @@ import {
 
 export default function Item() {
   const store = useSelector((state) => state.store);
-  const [allCustomers, setAllCustomers] = React.useState([]);
+  const [allItems, setAllItems] = React.useState([]);
   const [confirmP, setConfirmP] = React.useState({});
   const [effect, setEffect] = React.useState({});
   const navigate = useNavigate();
   React.useEffect(() => {
-    fetchAllCustomers();
+    fetchAllItems();
   }, []);
   React.useEffect(() => {
-    setAllCustomers(store.customers);
-    console.log("store.customers", store.customers);
+    setAllItems(store.items);
+    console.log("store.items", store.items);
   }, [store]);
 
   const handleDelete = async (id) => {
     try {
       setEffect({ load: true });
-      const res = await deleteCustomer(id);
+      const res = await deleteItem(id);
       setEffect({ load: false, error: false, message: res.message });
     } catch (error) {
       setEffect({ load: false, error: true, message: error.message });
@@ -38,12 +43,11 @@ export default function Item() {
 
   return (
     <>
-
       <div className="pt-5">
         <Container>
           <Affect effect={effect} />
           <ConfirmComp {...confirmP} />
-          <form 
+          <form
           // onSubmit={
           //   (e) => {
           //     e.target.reset();
@@ -56,85 +60,66 @@ export default function Item() {
                   {/* Customer Name Input Field */}
                   <div className="form-group d-flex justify-content-between mb-3 ">
                     <label htmlFor="customer">Item Name:</label>
-                    <input
-                      type="text"
-                      className="form-control w-50 h-2 "
-                     
-                    />
+                    <input type="text" className="form-control w-50 h-2 " />
                   </div>
                   {/* Amount Input Field  */}
                   <div className="form-group d-flex mb-3 justify-content-between">
                     <label htmlFor="customer">Sales Price:</label>
-                    <input
-                      type="text"
-                      className="form-control w-50"
-                
-                    />
+                    <input type="text" className="form-control w-50" />
                   </div>
                   {/* Invoice Input Field  */}
-           </div>
+                </div>
               </Col>
               <Col sm={12} md={6}>
                 <div className="mx-5">
                   {/* Customer Address Input Field  */}
                   <div className="form-group d-flex mb-3 justify-content-between">
                     <label htmlFor="CostPrice">Cost Price:</label>
-                    <input
-                      type="text"
-                      className="form-control w-50"
-                
-                    />
+                    <input type="text" className="form-control w-50" />
                   </div>
                   {/* Customer Status Input Field */}
-                
                 </div>
               </Col>
             </Row>
             <Container>
-
-
-
-            <div className="my-4">
-
-<Row>
-<Col sm={4} xs={4} md={6}>
-<div className="text-center  mb-5 justify-content-center">
-<button className="mybtn" type="reset"
-onClick={
-  () => {
-    setAllCustomers(store.customers);
-  }
-}
-> Search</button>
-</div>
-</Col>
-<Col  sm={4} md={6} xs={4}>
-<div className="text-center  mb-5">
-<button className="mybtn" type="reset" 
-onClick={
-  () => {
-    setAllCustomers(store.customers);
-  }
-}
-
-> Reset</button>
-</div>
-</Col>
-
-</Row>
-</div>
-
-
-
-           
-          </Container>
+              <div className="my-4">
+                <Row>
+                  <Col sm={4} xs={4} md={6}>
+                    <div className="text-center  mb-5 justify-content-center">
+                      <button
+                        className="mybtn"
+                        type="reset"
+                        onClick={() => {
+                          setAllItems(store.items);
+                        }}
+                      >
+                        {" "}
+                        Search
+                      </button>
+                    </div>
+                  </Col>
+                  <Col sm={4} md={6} xs={4}>
+                    <div className="text-center  mb-5">
+                      <button
+                        className="mybtn"
+                        type="reset"
+                        onClick={() => {
+                          setAllItems(store.items);
+                        }}
+                      >
+                        {" "}
+                        Reset
+                      </button>
+                    </div>
+                  </Col>
+                </Row>
+              </div>
+            </Container>
           </form>
 
-          
           <Row>
             <div className="d-flex flex-row justify-content-between">
-              
-              <div className='mx-auto'>
+              <div className="mx-auto">
                 <Link to="/newitem" className="mybtn">
                   [+] Add Item
                 </Link>
@@ -170,17 +155,17 @@ onClick={
               </thead>
               <tbody>
                 <FlatList
-                  items={allCustomers}
+                  items={allItems}
                   RenderItem={({ item }) => {
                     console.log("item", item);
                     return (
                       <tr key={item.id}>
-                        <td>{item.business_name}</td>
-                        <td>{item.address}</td>
-                        <td>{item.invoice_number}</td>
-                        <td>{item.amount}</td>
-                        <td>{item.email}</td>
-                        <td>{item.status}</td>
+                        <td>{item.name}</td>
+                        <td>{item.description}</td>
+                        <td>{item.cost_price}</td>
+                        <td>{item.sales_price}</td>
+                        {/* <td>{item.email}</td> */}
+                        <td>{item.sales_tax}</td>
                         <td>
                           <select
                             className="form-select"
@@ -188,28 +173,27 @@ onClick={
                               const value = e.target.value;
                               // console.log("value", value);
                               if (value === "Edit Item") {
+
                                 navigate(`/item/${item.id}`);
-                              } else if (value === "Delete Customer") {
+                              } else if (value === "Delete Item") {
                                 setConfirmP((s) => ({
                                   ...s,
                                   show: true,
-                                  title: "Delete Customer?",
+                                  title: "Delete Item?",
                                   message:
-                                    "Are you sure you want to delete this customer? This action cannot be undone.",
+                                    "Are you sure you want to delete this Item? This action cannot be undone.",
                                   handleYes: () => handleDelete(item.id),
                                   func: setConfirmP,
                                 }));
-                                // console.log("Delete Customer");
+                                // console.log("Delete Item");
                               }
                             }}
                           >
                             <option value="Action" selected disabled>
                               Action
                             </option>
-                            <option value="Edit Customer">Edit Item</option>
-                            <option value="Delete Customer">
-                              Delete Item
-                            </option>
+                            <option value="Edit Item">Edit Item</option>
+                            <option value="Delete Item">Delete Item</option>
                             <option value="Item">Item</option>
                           </select>
                         </td>
@@ -218,7 +202,7 @@ onClick={
                   }}
                 />
                 {/* <td>
-                    <Link to="/newcustomer">Amazon Legal</Link>
+                    <Link to="/newItem">Amazon Legal</Link>
                   </td>
                   <td>154, James street</td>
                   <td>100</td>
@@ -231,8 +215,8 @@ onClick={
                       <option value="Action" selected disabled>
                         Action
                       </option>
-                      <option value="Edit Customer">Edit Customer</option>
-                      <option value="Delete Customer">Delete Customer</option>
+                      <option value="Edit Item">Edit Item</option>
+                      <option value="Delete Item">Delete Item</option>
                       <option value="Invoice">Invoice</option>
                     </select>
                   </td> */}

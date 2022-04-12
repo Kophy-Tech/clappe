@@ -3,9 +3,22 @@ import Navbar from "../Navbar/Navbar";
 import "./NewPurchase.css";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { FaList, FaRegHeart, FaArrowLeft } from "react-icons/fa";
-import { FiHome, FiLogOut, FiArrowLeftCircle, FiArrowLeft, FiArrowRightCircle, FiCreditCard, FiPenTool, FiUser, FiDollarSign, FiSettings, FiActivity, FiList } from "react-icons/fi";
+import {
+  FiHome,
+  FiLogOut,
+  FiArrowLeftCircle,
+  FiArrowLeft,
+  FiArrowRightCircle,
+  FiCreditCard,
+  FiPenTool,
+  FiUser,
+  FiDollarSign,
+  FiSettings,
+  FiActivity,
+  FiList,
+} from "react-icons/fi";
 import { Container, Row, Col, Card, Image, Table } from "react-bootstrap";
-import Button from 'react-bootstrap/Button'
+import Button from "react-bootstrap/Button";
 import CenteredModal from "../Common/Modal";
 import { Affect, handleForm } from "../../../redux/shared";
 import {
@@ -18,8 +31,6 @@ import { useSelector } from "react-redux";
 
 export default function NewPurchase(props) {
   const [modalShow, setModalShow] = React.useState(false);
-
-
 
   const navigate = useNavigate();
 
@@ -56,8 +67,7 @@ export default function NewPurchase(props) {
   }, [store]);
   return (
     <>
-      <CenteredModal show={modalShow}
-        onHide={() => setModalShow(false)} />
+      <CenteredModal show={modalShow} onHide={() => setModalShow(false)} />
 
       <form onSubmit={handleSubmit}>
         <Affect effect={effect} />
@@ -65,9 +75,15 @@ export default function NewPurchase(props) {
         <div className="container bg-light pt-5">
           {/* Add New Customer */}
           <div className="bg-light p-2 border-bottom mb-4">
-            <h3 className=" fs-3 "> < FiArrowLeft onClick={() => {
-              navigate('/purchase')
-            }} /> Add New Purchase Order</h3>
+            <h3 className=" fs-3 ">
+              {" "}
+              <FiArrowLeft
+                onClick={() => {
+                  navigate("/purchase");
+                }}
+              />{" "}
+              Add New Purchase Order
+            </h3>
           </div>
           <div className="row mb-3">
             {/* Customer Information Box */}
@@ -182,7 +198,6 @@ export default function NewPurchase(props) {
                   <div>Logo Gallery</div>
                 </div>
                 <div className="px-3">
-
                   <div className="d-flex align-items-center">
                     <div className="form-group">
                       <label htmlFor="theme">Select Theme</label>
@@ -192,23 +207,20 @@ export default function NewPurchase(props) {
                     <div>
                       <button className="mybtn mx-3">Browser Gallery</button>
                     </div>
-
                   </div>
-                  
-                
+
                   <div className="form-group mt-2">
-
-
-                    <input type="text" placeholder="P.O #" className="form-control w-100" />
+                    <input
+                      type="text"
+                      placeholder="P.O #"
+                      className="form-control w-100"
+                    />
                   </div>
                   <div className="form-group">
                     <label htmlFor="theme">Purchase Order Date</label>
 
-                    <input type="date"  className="form-control w-100" />
+                    <input type="date" className="form-control w-100" />
                   </div>
-
-
-
                 </div>
               </div>
             </div>
@@ -271,19 +283,30 @@ export default function NewPurchase(props) {
         <div className="container">
           <div className="row gx-0 p-2 mb-3">
             <div className="col-12 col-md-9">
-              <div className="border" style={{ height: '55vh' }}>
+              <div className="border" style={{ height: "55vh" }}>
                 <h5 className="fs-5 text-center bg-color py-3 text-white fw-bold">
                   Item Information
                 </h5>
                 <div className="row">
                   <div className="col-12 col-md-3">
                     <div className="mb-3">
-                      <input type="email" className="form-control rounded" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                      <input
+                        type="email"
+                        className="form-control rounded"
+                        id="exampleInputEmail1"
+                        aria-describedby="emailHelp"
+                      />
                     </div>
                   </div>
                   <div className="col-12 col-md-2">
                     <div className="mb-3">
-                      <input type="email" className="form-control" placeholder="QTY" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                      <input
+                        type="email"
+                        className="form-control"
+                        placeholder="QTY"
+                        id="exampleInputEmail1"
+                        aria-describedby="emailHelp"
+                      />
                     </div>
                   </div>
                   <div className="col-12 col-md-2">
@@ -298,13 +321,26 @@ export default function NewPurchase(props) {
                   </div>
                   <div className="col-12 col-md-2">
                     <div className="mb-3 form-check">
-                      <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                      <label className="form-check-label" htmlFor="exampleCheck1">Taxable?</label>
+                      <input
+                        type="checkbox"
+                        className="form-check-input"
+                        id="exampleCheck1"
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="exampleCheck1"
+                      >
+                        Taxable?
+                      </label>
                     </div>
                   </div>
                   <div className="col-12 col-md-3">
-                    <Button className="btn btn-sm btn-primary" onClick={() => setModalShow(true)}>[+]Add new item</Button>
-
+                    <Button
+                      className="btn btn-sm btn-primary"
+                      onClick={() => setModalShow(true)}
+                    >
+                      [+]Add new item
+                    </Button>
                   </div>
                   <div className="container">
                     <Table striped bordered hover size="sm" className="m-1">
@@ -320,8 +356,7 @@ export default function NewPurchase(props) {
                       </thead>
                       <tbody>
                         <tr>
-                          <td> Fabrics  shield
-                          </td>
+                          <td> Fabrics shield</td>
                           <td>4</td>
                           <td>$100</td>
                           <td>$500.00</td>
@@ -329,24 +364,21 @@ export default function NewPurchase(props) {
                           <td>No</td>
                         </tr>
                         <tr>
-                          <td> Tope shield
-                          </td>
+                          <td> Tope shield</td>
                           <td>4</td>
                           <td>$100</td>
                           <td>$500.00</td>
                           <td>0.00</td>
                           <td>No</td>
                         </tr>
-
                       </tbody>
                     </Table>
                   </div>
                 </div>
-
               </div>
             </div>
             <div className="col-12 col-md-3">
-              <div className="border" style={{ height: '55vh' }}>
+              <div className="border" style={{ height: "55vh" }}>
                 <h5 className="fs-5 text-center bg-color py-3 text-white fw-bold">
                   Estimate Total
                 </h5>
@@ -355,67 +387,93 @@ export default function NewPurchase(props) {
                     <p>Item Total</p>
                     <p>Tax</p>
                     <p>Additional taxes</p>
-                    <p className="mt-2">Grand Total  <span> <a href="#">CAD</a> </span> </p>
+                    <p className="mt-2">
+                      Grand Total{" "}
+                      <span>
+                        {" "}
+                        <a href="#">CAD</a>{" "}
+                      </span>{" "}
+                    </p>
                   </div>
                   <div className="col-md-6">
                     <p>$10000.00</p>
-                    <input type="email" className="form-control mb-2" placeholder="" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                    <input type="email" className="form-control mb-2" placeholder="" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                    <input
+                      type="email"
+                      className="form-control mb-2"
+                      placeholder=""
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                    />
+                    <input
+                      type="email"
+                      className="form-control mb-2"
+                      placeholder=""
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                    />
                     <p className="fw-bold">$10000.00</p>
                   </div>
                 </div>
-
               </div>
-
-
-
             </div>
           </div>
         </div>
 
-
-
         <div className="container">
           <div className="row gx-0 p-2 mb-3">
             <div className="col-12 col-md-9">
-              <div className="border" style={{ height: '30vh' }}>
+              <div className="border" style={{ height: "30vh" }}>
                 <h5 className="fs-5 text-center bg-color py-3 text-white fw-bold">
                   Terms & condition
                 </h5>
                 <div className="form-floating m-2">
-                  <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style={{ height: 100 }} defaultValue={""} />
-                  <label htmlFor="floatingTextarea2">Pay due within 15 days</label>
+                  <textarea
+                    className="form-control"
+                    placeholder="Leave a comment here"
+                    id="floatingTextarea2"
+                    style={{ height: 100 }}
+                    defaultValue={""}
+                  />
+                  <label htmlFor="floatingTextarea2">
+                    Pay due within 15 days
+                  </label>
                 </div>
-
               </div>
             </div>
             <div className="col-12 col-md-3">
-              <div className="border" style={{ height: '30vh' }}>
+              <div className="border" style={{ height: "30vh" }}>
                 <h5 className="fs-5 text-center bg-color py-3 text-white fw-bold">
                   Sign Estimate
                 </h5>
                 <div className="d-flex justify-content-center">
-                  <a href="#" className="btn btn-lg btn-primary">Add signature</a>
-
+                  <a href="#" className="btn btn-lg btn-primary">
+                    Add signature
+                  </a>
                 </div>
-
               </div>
-
-
-
             </div>
           </div>
         </div>
         <div className="container">
           <div className="row gx-0 p-2">
-            <div className="border" style={{ height: '30vh' }}>
+            <div className="border" style={{ height: "30vh" }}>
               <div className="col-12 col-md-8">
                 <div className="d-flex justify-content-around mt-5">
-                  <a href="" className="btn btn-primary btn-sm">Save</a>
-                  <a href="" className="btn btn-primary btn-sm">Save & Email</a>
-                  <a href="" className="btn btn-primary btn-sm">Download</a>
-                  <a href="" className="btn btn-primary btn-sm">Cancel</a>
-                  <a href="" className="btn btn-primary btn-sm">Recurring</a>
+                  <a href="" className="btn btn-primary btn-sm">
+                    Save
+                  </a>
+                  <a href="" className="btn btn-primary btn-sm">
+                    Save & Email
+                  </a>
+                  <a href="" className="btn btn-primary btn-sm">
+                    Download
+                  </a>
+                  <a href="" className="btn btn-primary btn-sm">
+                    Cancel
+                  </a>
+                  <a href="" className="btn btn-primary btn-sm">
+                    Recurring
+                  </a>
                 </div>
               </div>
               <div className="col-12 col-md-4"></div>
