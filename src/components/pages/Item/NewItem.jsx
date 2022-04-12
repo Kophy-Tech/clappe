@@ -1,14 +1,28 @@
 import React from "react";
 import Navbar from "../Navbar/Navbar";
 import "./NewItem.css";
-import { FiHome, FiLogOut, FiArrowLeftCircle, FiArrowLeft, FiArrowRightCircle, FiCreditCard, FiPenTool, FiUser, FiDollarSign, FiSettings, FiActivity, FiList } from "react-icons/fi";
-
+import {
+  FiHome,
+  FiLogOut,
+  FiArrowLeftCircle,
+  FiArrowLeft,
+  FiArrowRightCircle,
+  FiCreditCard,
+  FiPenTool,
+  FiUser,
+  FiDollarSign,
+  FiSettings,
+  FiActivity,
+  FiList,
+} from "react-icons/fi";
 
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Affect, handleForm } from "../../../redux/shared";
 import {
   addNewCustomer,
+  addNewItem,
   editCustomer,
+  editItem,
   searchStore,
   searchStoreHooks,
 } from "../../../redux/thunks";
@@ -24,16 +38,17 @@ export default function NewItem(props) {
 
   const handleSubmit = async (e) => {
     const data = handleForm(e);
-    data.logo_path =
-      "https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg";
-    console.log("data", data);
+    // console.log(data);
+    // data.logo_path =
+    //   "https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg";
+    // console.log("data", data);
     try {
       setEffect({ load: true });
       let res;
       if (id) {
-        res = await editCustomer(data, id);
+        res = await editItem(data, id);
       } else {
-        res = await addNewCustomer(data);
+        res = await addNewItem(data);
         e.target.reset();
       }
 
@@ -50,78 +65,90 @@ export default function NewItem(props) {
   }, [store]);
   return (
     <>
-    <div className="container "> 
-     <div className="bg-light p-2 border-bottom mb-4">
-            <h3 className=" fs-3 "> < FiArrowLeft onClick={() => {
-              navigate('/item')
-            }} /> Add New Item</h3>
-          </div>
-       <form>
-         
-        <div className="col-md-6 col-12 bg-light pt-5 mx-2 px-4 mb-4">
-       
-          <div className="form-group mb-2">
-            <label htmlFor="exampleInputEmail1">Item name</label>
-            <input
-              type="text"
-              className="form-control"
-              aria-describedby="emailHelp"
-            />
-          </div>
-          <div className="form-group mb-2">
-            <label htmlFor="exampleInputEmail1">Qty</label>
-            <input
-              type="number"
-              className="form-control"
-              aria-describedby="emailHelp"
-            />
-          </div>
-          <div className="form-group mb-2">
-            <label htmlFor="exampleInputEmail1">Cost Price </label>
-            <input
-              type="number"
-              className="form-control"
-              aria-describedby="emailHelp"
-            />
-          </div>
-          <div className="form-group mb-2">
-            <label htmlFor="exampleInputEmail1">Sales Price</label>
-            <input
-              type="number"
-              className="form-control"
-              aria-describedby="emailHelp"
-            />
-          </div>
-          <div className="form-group mb-2">
-            <label htmlFor="exampleInputEmail1">Total </label>
-            <input
-              type="number"
-              className="form-control"
-              aria-describedby="emailHelp"
-            />
-          </div>
-          <div className="form-group mb-2">
-            <label htmlFor="exampleInputEmail1">Tax </label>
-            <input
-              type="text"
-              className="form-control"
-              aria-describedby="emailHelp"
-            />
-          </div>
-          <div className="form-group mb-2">
-            <label htmlFor="exampleInputEmail1">Item Description</label>
-            <textarea
-              type="text"
-              className="form-control"
-              aria-describedby="emailHelp"
-            />
-          </div>
+      <div className="container ">
+        <Affect effect={effect} />
+        <div className="bg-light p-2 border-bottom mb-4">
+          <h3 className=" fs-3 ">
+            {" "}
+            <FiArrowLeft
+              onClick={() => {
+                navigate("/item");
+              }}
+            />{" "}
+            Add New Item
+          </h3>
+        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="col-md-6 col-12 bg-light pt-5 mx-2 px-4 mb-4">
+            <div className="form-group mb-2">
+              <label htmlFor="exampleInputEmail1">Item name</label>
+              <input
+                type="text"
+                className="form-control"
+                aria-describedby="emailHelp"
+                name="name"
+              />
+            </div>
+            <div className="form-group mb-2">
+              <label htmlFor="exampleInputEmail1">Qty</label>
+              <input
+                type="number"
+                className="form-control"
+                aria-describedby="emailHelp"
+                name="quantity"
+              />
+            </div>
+            <div className="form-group mb-2">
+              <label htmlFor="exampleInputEmail1">Cost Price </label>
+              <input
+                type="number"
+                className="form-control"
+                aria-describedby="emailHelp"
+                name="cost_price"
+              />
+            </div>
+            <div className="form-group mb-2">
+              <label htmlFor="exampleInputEmail1">Sales Price</label>
+              <input
+                type="number"
+                className="form-control"
+                aria-describedby="emailHelp"
+                name="sales_price"
+              />
+            </div>
+            {/* <div className="form-group mb-2">
+              <label htmlFor="exampleInputEmail1">Total </label>
+              <input
+                type="number"
+                className="form-control"
+                aria-describedby="emailHelp"
+              />
+            </div> */}
+            <div className="form-group mb-2">
+              <label htmlFor="exampleInputEmail1">Tax </label>
+              <input
+                type="text"
+                className="form-control"
+                aria-describedby="emailHelp"
+                name="sales_tax"
+              />
+            </div>
+            <div className="form-group mb-2">
+              <label htmlFor="exampleInputEmail1">Item Description</label>
+              <textarea
+                type="text"
+                className="form-control"
+                aria-describedby="emailHelp"
+                name="description"
+              />
+            </div>
 
-          <button type="submit" className="btn btn-primary mb-4">
-            Submit
-          </button>
+            <button type="submit" className="btn btn-primary mb-4">
+              Submit
+            </button>
           </div>
         </form>
-</div>    </>
+      </div>{" "}
+    </>
   );
 }
