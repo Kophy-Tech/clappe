@@ -198,6 +198,13 @@ export const allRoutes = [
     noLayout: false,
   },
   {
+    name: "Edit Item",
+    path: "/item/:id",
+    auth: true,
+    element: NewItem,
+    noLayout: false,
+  },
+  {
     name: "NewItem",
     path: "/newitem",
     auth: true,

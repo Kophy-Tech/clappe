@@ -32,7 +32,7 @@ export default function NewItem(props) {
   const navigate = useNavigate();
 
   const [effect, setEffect] = React.useState({});
-  const [item, setCustomer] = React.useState({});
+  const [item, setItem] = React.useState({});
   const { id } = useParams();
   const store = useSelector((state) => state.store);
 
@@ -75,7 +75,7 @@ export default function NewItem(props) {
                 navigate("/item");
               }}
             />{" "}
-            Add New Item
+            {id ? "Edit Item" : "Add New Item"}
           </h3>
         </div>
         <form onSubmit={handleSubmit}>

@@ -69,8 +69,11 @@ export default function NewInvoice(props) {
 
   const handleSubmit = async (e) => {
     const data = handleForm(e);
-    data.item_total =
+    data.logo_path =
       "https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg";
+    data.item_total = items.reduce((acc, item) => {
+      return acc + item.sales_price;
+    }, 0);
     console.log("data", data);
     try {
       setEffect({ load: true });

@@ -288,6 +288,7 @@ export const fetchAllCustomers = async () => {
 
 const requiredDatas = async () => {
   fetchAllCustomers();
+  fetchAllItems();
 };
 
 export const registerUSer = async (data) => {
@@ -364,7 +365,7 @@ export const deleteCustomer = async (id) => {
 
 //ITEM
 
-export const fetchAllItems = async () => {
+export async function fetchAllItems () {
   try {
     const r = await api("get", "item/all");
     store.dispatch(
