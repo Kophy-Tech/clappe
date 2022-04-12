@@ -32,7 +32,7 @@ export default function NewItem(props) {
   const navigate = useNavigate();
 
   const [effect, setEffect] = React.useState({});
-  const [customer, setCustomer] = React.useState({});
+  const [item, setCustomer] = React.useState({});
   const { id } = useParams();
   const store = useSelector((state) => state.store);
 
@@ -59,8 +59,8 @@ export default function NewItem(props) {
   };
 
   React.useEffect(() => {
-    const foundCustomer = searchStoreHooks(store.customers, id, "id");
-    setCustomer(foundCustomer || {});
+    const foundCustomer = searchStoreHooks(store.items, id, "id");
+    setItem(foundCustomer || {});
     // console.log("foundCustomer", foundCustomer);
   }, [store]);
   return (
@@ -87,6 +87,7 @@ export default function NewItem(props) {
                 className="form-control"
                 aria-describedby="emailHelp"
                 name="name"
+                defaultValue={item.name}
               />
             </div>
             <div className="form-group mb-2">
@@ -96,6 +97,7 @@ export default function NewItem(props) {
                 className="form-control"
                 aria-describedby="emailHelp"
                 name="quantity"
+                defaultValue={item.quantity}
               />
             </div>
             <div className="form-group mb-2">
@@ -105,6 +107,7 @@ export default function NewItem(props) {
                 className="form-control"
                 aria-describedby="emailHelp"
                 name="cost_price"
+                defaultValue={item.cost_price}
               />
             </div>
             <div className="form-group mb-2">
@@ -114,6 +117,7 @@ export default function NewItem(props) {
                 className="form-control"
                 aria-describedby="emailHelp"
                 name="sales_price"
+                defaultValue={item.sales_price}
               />
             </div>
             {/* <div className="form-group mb-2">
@@ -131,6 +135,7 @@ export default function NewItem(props) {
                 className="form-control"
                 aria-describedby="emailHelp"
                 name="sales_tax"
+                defaultValue={item.sales_tax}
               />
             </div>
             <div className="form-group mb-2">
@@ -140,6 +145,7 @@ export default function NewItem(props) {
                 className="form-control"
                 aria-describedby="emailHelp"
                 name="description"
+                defaultValue={item.description}
               />
             </div>
 
