@@ -45,6 +45,7 @@ const Purchase = React.lazy(() => import("./pages/Purchase/Purchase"));
 const NewPurchase = React.lazy(() => import("./pages/Purchase/NewPurchase"));
 const NewItem= React.lazy(() => import("./pages/Item/NewItem"));
 const Item= React.lazy(() => import("./pages/Item/Item"));
+const Settings = React.lazy(() => import('./pages/Settings/Settings'));
 
 
 const Modal = React.lazy(() => import("./pages/Common/Modal"));
@@ -111,6 +112,13 @@ export const allRoutes = [
     path: "/customer/:id",
     auth: true,
     element: NewCustomer,
+    noLayout: false,
+  },
+  {
+    name: "Settings",
+    path: "/settings",
+    auth: true,
+    element: Settings,
     noLayout: false,
   },
   {

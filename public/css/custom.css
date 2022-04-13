@@ -1,0 +1,27 @@
+:root {
+    --card-border: 1px solid #c4c4c4;
+    --primary-color: #ff9100;
+    --button-outlined: 1px solid #ff9100;
+    --round-1: 3px;
+}
+
+.round-1 {
+    border-radius: var(--round-1);
+}
+
+.card-border {
+    border: var(--card-border);
+}
+
+.primary-color {
+    color: var(--primary-color);
+}
+
+.primary-bg {
+    background: var(--primary-color);
+}
+
+.button-outlined {
+    background: #fff;
+    border: var(--button-outlined) !important;
+}
