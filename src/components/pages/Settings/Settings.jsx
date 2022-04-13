@@ -4,10 +4,7 @@ const Settings = () => {
 
     const [step, setStep] = useState(0)
 
-    const handleSubmit = (e) => {
-        const formInput = e.target.value;
-        console.log(formInput)
-    }
+    
     return (
         <>
             <div className="container">
@@ -181,7 +178,7 @@ const Settings = () => {
                                                 </select>
                                             </div>
                                             <div className="button-group mt-3 d-flex">
-                                                <button onClick={handleSubmit} type="submit" className="bg-primary round-1 w-100 py-2 border-0 text-white">Save</button>
+                                                <button type="submit" className="bg-primary round-1 w-100 py-2 border-0 text-white">Save</button>
                                                 <button type="submit" className="bg-primary round-1 w-100 py-2 border-0 mx-3 text-white">Cancel</button>
                                             </div>
                                         </form>
@@ -213,7 +210,7 @@ const Settings = () => {
                                                 <input className='form-control' type="text" />
                                             </div>
                                             <div className="button-group mt-3 d-flex">
-                                                <button onClick={handleSubmit} className="bg-primary round-1 w-100 py-2 border-0 text-white">Save</button>
+                                                <button className="bg-primary round-1 w-100 py-2 border-0 text-white">Save</button>
                                                 <button className="bg-primary round-1 w-100 py-2 border-0 mx-3 text-white">Cancel</button>
                                             </div>
                                         </form>
