@@ -42,7 +42,7 @@ const Settings = () => {
                                         <form onSubmit={(e) => e.preventDefault(e)}>
                                             <div className="form-group mb-3">
                                                 <label htmlFor="">Profile photo</label>
-                                                <input className='form-control' type="text" placeholder='Business Name' />
+                                                <input className='form-control' type="file" placeholder='Business Name' />
                                             </div>
                                             <div className="form-group mb-3">
                                                 <input className='form-control' type="text" placeholder='First Name' />
