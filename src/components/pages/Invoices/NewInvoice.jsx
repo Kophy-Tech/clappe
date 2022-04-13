@@ -5,7 +5,12 @@ import Modal from "react-bootstrap/Modal";
 import { FiArrowLeft } from "react-icons/fi";
 import { Table } from "react-bootstrap";
 // import { Button } from 'bootstrap';
-import { Affect, FlatList, handleForm } from "../../../redux/shared";
+import {
+  Affect,
+  FlatList,
+  handleForm,
+  searchData,
+} from "../../../redux/shared";
 import Button from "react-bootstrap/Button";
 import {
   FiHome,
@@ -33,19 +38,6 @@ import { useSelector } from "react-redux";
 import CenteredModal from "../Common/Modal";
 import CurrencyModal from "../Common/CurrencyModal";
 
-const RenderItem = ({ item, key }) => {
-  return (
-    <tr key={key}>
-      <td>{item.name}</td>
-      <td>{item.quantity}</td>
-      <td>${item.amount}</td>
-      <td>${item.sales_price}</td>
-      <td>{item.tax}</td>
-      <td>No</td>
-    </tr>
-  );
-};
-
 export default function NewInvoice(props) {
   const navigate = useNavigate();
 
@@ -58,6 +50,9 @@ export default function NewInvoice(props) {
   const [items, setItems] = React.useState([]);
   const { id } = useParams();
   const store = useSelector((state) => state.store);
+  const [dueDate, setDueDate] = React.useState();
+  const [selectedItems, setSelectedItems] = React.useState([]);
+  const [itemTotal, setItemTotal] = React.useState(0);
 
   const handleDropDown = (e) => {
     const itemValue = e.target.value;
@@ -103,6 +98,68 @@ export default function NewInvoice(props) {
     console.log("theItems", theItems);
     setItems([...items, theItems]);
     setModalShow(false);
+  };
+
+  const handleRemoveItem = (id) => {
+    const newItems = selectedItems.filter((item) => item.id !== id);
+    setSelectedItems(newItems);
+  };
+  const handleItemSearch = (e) => {
+    const itemValue = e.target.value;
+    const search = searchData(itemValue, "name", store.items) || [];
+    return search;
+  };
+
+  const handleItemQuantityChange = (e, id) => {
+    const { value } = e.target;
+    const newItems = selectedItems.map((item) => {
+      //deep copy item 
+      const newItem = { ...item };
+      if (newItem.id === id) {
+        newItem.quantity = value;
+      }
+      return newItem;
+    });
+    setSelectedItems(newItems);
+  };
+
+  React.useEffect(() => {
+    setItemTotal(
+      selectedItems.reduce((acc, item) => {
+        return acc + item.sales_price;
+      }, 0)
+    );
+  }, [selectedItems]);
+
+  const RenderItem = ({ item, key }) => {
+    return (
+      <tr key={item.id}>
+        <td> {item.name}</td>
+        <td>
+          <input
+            type="number"
+            className="form-control"
+            placeholder="QTY"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            onChange={(e) => handleItemQuantityChange(e, item.id)}
+          />
+        </td>
+        <td>${item.sales_price}</td>
+        <td>${(item.quantity * item.sales_price) || 0}</td>
+        <td>{item.sales_tax}</td>
+        <div className="d-flex ">
+          {/* <div className="me-4">
+              {" "}
+              <FiEdit />{" "}
+            </div> */}
+          <div>
+            {" "}
+            <FiDelete onClick={(index) => handleRemoveItem(item.id)} />{" "}
+          </div>
+        </div>
+      </tr>
+    );
   };
 
   return (
@@ -343,6 +400,14 @@ export default function NewInvoice(props) {
                       className="form-control w-100"
                       name="invoice_date"
                       defaultValue={customer.invoice_date}
+                      onChange={(v) => {
+                        //let the due date be one month from the invoice date
+                        let due_date = new Date(v.target.value);
+                        due_date.setMonth(due_date.getMonth() + 1);
+                        //convrt to string YYYY-MM-DD
+                        due_date = due_date.toISOString().split("T")[0];
+                        setDueDate(due_date);
+                      }}
                     />
                   </div>
                   <div className="form-group mt-2">
@@ -359,9 +424,11 @@ export default function NewInvoice(props) {
 
                     <input
                       type="date"
+                      disabled
                       placeholder="Invoice #"
                       className="form-control w-100"
                       name="due_date"
+                      value={dueDate}
                       defaultValue={customer.due_date}
                     />
                   </div>
@@ -435,43 +502,51 @@ export default function NewInvoice(props) {
                   <div className="col-12 col-md-3">
                     <div className="mb-3 d-flex flex-column px-3 py-2">
                       <input
-                        type="email"
+                        // type="text"
                         className="form-control rounded"
                         id="exampleInputEmail1"
                         aria-describedby="emailHelp"
-                        onInput={handleDropDown}
+                        onFocus={() => setItemList(true)}
+                        // onBlur={() => setItemList(false)}
+                        autoComplete="off"
+                        onInput={(e) => {
+                          const searched = handleItemSearch(e) || [];
+                          console.log(searched, e.target.value, itemList);
+                          setItems(searched);
+                        }}
                       />
                       <div
                         className={`${
-                          itemList ? "d-none" : "d-flex"
+                          !itemList ? "d-none" : "d-flex"
                         }  card search-box`}
                       >
-                        <ul>
-                          <li className="border-bottom">hello thia</li>
-                          <li className="border-bottom">hello thia</li>
-                          <li className="border-bottom">hello thia</li>
-                          <li className="border-bottom">hello thia</li>
-                          <li className="border-bottom">hello thia</li>
-                          <li className="border-bottom">hello thia</li>
-                          <li className="border-bottom">hello thia</li>
-                          <li className="border-bottom">hello thia</li>
-                          <li className="border-bottom">hello thia</li>
-                          <li className="border-bottom">hello thia</li>
-                          <li className="border-bottom">hello thia</li>
-                          <li className="border-bottom">hello thia</li>
-                          <li className="border-bottom">hello thia</li>
-                          <li className="border-bottom">hello thia</li>
-                          <li className="border-bottom">hello thia</li>
-                          <li className="border-bottom">hello thia</li>
-                          <li className="border-bottom">hello thia</li>
-                          <li className="border-bottom">hello thia</li>
-                          <li className="border-bottom">hello thia</li>
-                          <li className="border-bottom">hello thia</li>
-                          <li className="border-bottom">hello thia</li>
-                          <li className="border-bottom">hello thia</li>
-                          <li className="border-bottom">hello thia</li>
-                          <li className="border-bottom">hello thia</li>
-                          <li className="border-bottom">hello thia</li>
+                        <ul onBlur={() => setItemList(false)}>
+                          {items.map((item) => (
+                            <li
+                              key={item.id}
+                              onClick={() => {
+                                // alert(item.id);
+
+                                setSelectedItems((s) => {
+                                  if (s.length === 0) {
+                                    return [...s, item];
+                                  }
+                                  let toAdd = s.find((i) => i.id == item.id);
+                                  if (toAdd) {
+                                    return s;
+                                  } else {
+                                    return [...s, item];
+                                  }
+                                });
+                                // setSelectedItems([...selectedItems, item]);
+                                setItemList(false);
+
+                                // setItems([]);
+                              }}
+                            >
+                              {item.name}
+                            </li>
+                          ))}
                         </ul>
                       </div>
                     </div>
@@ -534,43 +609,12 @@ export default function NewInvoice(props) {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td> Fabrics shield</td>
-                          <td>4</td>
-                          <td>$100</td>
-                          <td>$500.00</td>
-                          <td>0.00</td>
-                          <td>
-                            <div className="d-flex ">
-                              <div className="me-4">
-                                {" "}
-                                <FiEdit />{" "}
-                              </div>
-                              <div>
-                                {" "}
-                                <FiDelete />{" "}
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td> Tope shield</td>
-                          <td>4</td>
-                          <td>$100</td>
-                          <td>$500.00</td>
-                          <td>0.00</td>
-                          <div className="d-flex ">
-                            <div className="me-4">
-                              {" "}
-                              <FiEdit />{" "}
-                            </div>
-                            <div>
-                              {" "}
-                              <FiDelete />{" "}
-                            </div>
-                          </div>
-                        </tr>
-                        <FlatList items={items} RenderItem={RenderItem} />
+                        {/* {selectedItems.map()} */}
+
+                        <FlatList
+                          items={selectedItems}
+                          RenderItem={RenderItem}
+                        />
                       </tbody>
                     </Table>
                   </div>
@@ -607,7 +651,7 @@ export default function NewInvoice(props) {
                     </p>
                   </div>
                   <div className="col-md-6">
-                    <p>$10000.00</p>
+                    <p>${itemTotal}</p>
                     <input
                       type="email"
                       className="form-control mb-2"
