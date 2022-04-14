@@ -1,0 +1,95 @@
+
+:root {
+    --border-bottom: 0.4px solid #c4c4c4;
+}
+
+.border-bottom {
+    border-bottom: var(--border-bottom);
+}
+
+#info-box {
+    position: relative;
+}
+
+.search-box {
+    width: 100%;
+    max-width: 190px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1;
+    position: absolute;
+    top: 40px;
+}
+
+ul {
+    list-style: none;
+    background-color: #fff;
+    margin-bottom: 0 !important;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.1), -3px -3px 10px rgba(0,0,0,0.1);
+    padding-left: 0 !important;
+
+}
+
+li {
+    padding-left: .5em !important;
+
+}
+
+.color{
+    color: #0099ff;
+}
+body{
+    font-family: 'poppins';
+    background-color: #f0f2f5;
+}
+.bg-color{
+    background-color: #0099ff;
+}
+
+
+.mybtn{
+    background-color: #0099ff;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    font-weight: 500;
+    color: #ffffff;
+    outline: none;
+    margin: 1rem;
+    /* cursor: pointer; */
+}
+
+
+.search {
+    position: relative;
+    box-shadow: 0 0 40px rgba(51, 51, 51, .1)
+}
+
+.search input {
+    /* height: 60px; */
+    text-indent: 25px;
+    border: 2px solid #d6d4d4
+}
+
+.search input:focus {
+    box-shadow: none;
+    border: 2px solid blue
+}
+
+.search .fa-search {
+    position: absolute;
+    top: 20px;
+    left: 16px
+}
+
+.search button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    /* height: 50px; */
+    width: 110px;
+    background: blue
+}
+input, select{
+    height: 30px;
+}

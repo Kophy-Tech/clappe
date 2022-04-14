@@ -45,6 +45,18 @@ const Purchase = React.lazy(() => import("./pages/Purchase/Purchase"));
 const NewPurchase = React.lazy(() => import("./pages/Purchase/NewPurchase"));
 const NewItem= React.lazy(() => import("./pages/Item/NewItem"));
 const Item= React.lazy(() => import("./pages/Item/Item"));
+const Quotes= React.lazy(() => import("./pages/Quotes/Quotes"));
+const NewQuotes= React.lazy(() => import("./pages/Quotes/NewQuotes"));
+const Receipt= React.lazy(() => import("./pages/Receipt/Receipt"));
+const NewReceipt= React.lazy(() => import("./pages/Receipt/NewReceipt"));
+
+const CreditNote= React.lazy(() => import("./pages/CreditNote/CreditNote"));
+const NewCreditNote= React.lazy(() => import("./pages/CreditNote/NewCreditNote"));
+const DeliveryNote= React.lazy(() => import("./pages/DeliveryNote/Delivery"));
+const NewDeliveryNote= React.lazy(() => import("./pages/DeliveryNote/NewDelivery"));
+
+
+
 const Settings = React.lazy(() => import('./pages/Settings/Settings'));
 
 
@@ -218,7 +230,73 @@ export const allRoutes = [
     auth: true,
     element: NewItem,
     noLayout: false,
-  }
+  },
+
+  {
+  name: "Quotes",
+  path: "/quotes",
+  auth: true,
+  element: Quotes,
+  noLayout: false,
+  },
+  
+  {
+    name: "NewQuotes",
+  path: "/newquotes",
+  auth: true,
+  element: NewQuotes,
+  noLayout: false,
+  },
+  
+  {
+    name: "Receipt",
+    path: "/receipt",
+    auth: true,
+    element: Receipt,
+    noLayout: false,
+    },
+    
+    {
+      name: "NewReceipt",
+    path: "/newreceipt",
+    auth: true,
+    element: NewReceipt,
+    noLayout: false,
+    },
+    
+  {
+    name: "CreditNote",
+    path: "/creditnotes",
+    auth: true,
+    element: CreditNote,
+    noLayout: false,
+    },
+    
+    {
+      name: "NewCreditNote",
+    path: "/newcreditnote",
+    auth: true,
+    element: NewCreditNote,
+    noLayout: false,
+    },
+      
+  {
+    name: "DeliveryNote",
+    path: "/deliverynotes",
+    auth: true,
+    element: DeliveryNote,
+    noLayout: false,
+    },
+    
+    {
+      name: "NewDeliveryNote",
+    path: "/newdeliverynote",
+    auth: true,
+    element: NewDeliveryNote,
+    noLayout: false,
+    }
+
+
 ];
 
 const Master = (props) => {

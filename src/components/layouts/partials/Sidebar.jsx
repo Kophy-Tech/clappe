@@ -117,7 +117,7 @@ const Sidebar = () => {
               </MenuItem>
               <MenuItem className="text-cl" active={false} icon={<FiCreditCard />}>
                 Receipts
-                <Link to="/receipts" />
+                <Link to="/receipt" />
 
               </MenuItem>
               <MenuItem className="text-cl" active={false} icon={<FiPenTool />}>
