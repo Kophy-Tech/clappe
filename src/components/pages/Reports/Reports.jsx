@@ -50,7 +50,7 @@ export default function Reports() {
           //   }
           // }
           >
-                  <h3 className="my-4">Report</h3>
+                  <h3 className="my-4">Reports</h3>
 
 <div className="mx-4">
 
