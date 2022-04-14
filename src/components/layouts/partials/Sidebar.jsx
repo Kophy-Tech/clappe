@@ -138,6 +138,8 @@ const Sidebar = () => {
               </MenuItem>
               <MenuItem className="text-cl" active={false} icon={<FiActivity />}>
                 Reports
+                <Link to="/reports" />
+
               </MenuItem>
             </Menu>
           </SidebarContent>

@@ -53,6 +53,8 @@ const NewReceipt= React.lazy(() => import("./pages/Receipt/NewReceipt"));
 const CreditNote= React.lazy(() => import("./pages/CreditNote/CreditNote"));
 const NewCreditNote= React.lazy(() => import("./pages/CreditNote/NewCreditNote"));
 const DeliveryNote= React.lazy(() => import("./pages/DeliveryNote/Delivery"));
+const Reports= React.lazy(() => import("./pages/Reports/Reports"));
+
 const NewDeliveryNote= React.lazy(() => import("./pages/DeliveryNote/NewDelivery"));
 
 
@@ -293,6 +295,13 @@ export const allRoutes = [
     path: "/newdeliverynote",
     auth: true,
     element: NewDeliveryNote,
+    noLayout: false,
+    },
+    {
+      name: "Reports",
+    path: "/reports",
+    auth: true,
+    element: Reports,
     noLayout: false,
     }
 
