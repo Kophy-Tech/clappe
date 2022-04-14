@@ -24,7 +24,7 @@ export default function Customer() {
   React.useEffect(() => {
     setAllCustomers(store.customers);
     console.log("store.customers", store.customers);
-  }, [store]);
+  }, [store.customers]);
 
   const handleDelete = async (id) => {
     try {

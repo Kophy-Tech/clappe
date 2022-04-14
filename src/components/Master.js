@@ -164,6 +164,13 @@ export const allRoutes = [
     noLayout: false,
   },
   {
+    name: "EditInvoice",
+    path: "/invoice/:id",
+    auth: true,
+    element: NewInvoice,
+    noLayout: false,
+  },
+  {
     name: "Estimate",
     path: "/Estimate",
     auth: true,

@@ -29,9 +29,9 @@ import {
 } from "react-icons/fi";
 
 import {
-  addNewCustomer,
+  addNewItem,
   createInvoice,
-  editCustomer,
+  editInvoice,
   searchStoreHooks,
 } from "../../../redux/thunks";
 import { useSelector } from "react-redux";
@@ -46,13 +46,17 @@ export default function NewInvoice(props) {
   const [itemList, setItemList] = React.useState(true);
 
   const [effect, setEffect] = React.useState({});
-  const [customer, setCustomer] = React.useState({});
+  const [invoice, setinvoice] = React.useState({});
   const [items, setItems] = React.useState([]);
   const { id } = useParams();
   const store = useSelector((state) => state.store);
-  const [dueDate, setDueDate] = React.useState();
   const [selectedItems, setSelectedItems] = React.useState([]);
+  const [dueDate, setDueDate] = React.useState();
   const [itemTotal, setItemTotal] = React.useState(0);
+  const [state, setState] = React.useState({
+    discountType: "percentage",
+    discount_amount: 0,
+  });
 
   const handleDropDown = (e) => {
     const itemValue = e.target.value;
@@ -62,19 +66,26 @@ export default function NewInvoice(props) {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e, send_email) => {
     const data = handleForm(e);
     data.logo_path =
       "https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg";
-    data.item_total = items.reduce((acc, item) => {
-      return acc + item.sales_price;
-    }, 0);
+    data.item_total = itemTotal;
+    data.grand_total = state.grand_total;
+    data.sub_total = state.sub_total;
+    data.send_email = send_email;
+    data.item_list = selectedItems.map((item) => {
+      return {
+        id: item.id,
+        quantity: item.quantity,
+      };
+    });
     console.log("data", data);
     try {
       setEffect({ load: true });
       let res;
       if (id) {
-        res = await editCustomer(data, id);
+        res = await editInvoice(data, id);
       } else {
         res = await createInvoice(data);
         console.log(res);
@@ -88,16 +99,36 @@ export default function NewInvoice(props) {
   };
 
   React.useEffect(() => {
-    const foundCustomer = searchStoreHooks(store.customers, id, "id");
-    setCustomer(foundCustomer || {});
-    // console.log("foundCustomer", foundCustomer);
-  }, [store]);
+    const foundinvoice = searchStoreHooks(store.invoices, id, "id") || {};
+    setinvoice(foundinvoice);
 
-  const handleAddNewItem = (e) => {
-    const theItems = handleForm(e);
-    console.log("theItems", theItems);
-    setItems([...items, theItems]);
-    setModalShow(false);
+    console.log("foundinvoice", foundinvoice);
+    setDueDate(foundinvoice.due_date);
+    setSelectedItems((s) => {
+      if (foundinvoice.item_list) {
+        return foundinvoice.item_list.map((item) => {
+          const foundItem = searchStoreHooks(store.items, item, "id") || {};
+          
+          return {
+            ...foundItem,
+            quantity: item.quantity,
+          };
+        });
+      }
+      return s;
+    });
+  }, [store.invoices, store.items, id]);
+
+  const handleAddNewItem = async (e) => {
+    try {
+      const theItems = handleForm(e);
+      setEffect({ load: true });
+      const res = await addNewItem(theItems);
+      setEffect({ load: false, error: false, message: res.message });
+      e.target.reset();
+    } catch (error) {
+      setEffect({ load: false, error: true, message: error.message });
+    }
   };
 
   const handleRemoveItem = (id) => {
@@ -113,7 +144,8 @@ export default function NewInvoice(props) {
   const handleItemQuantityChange = (e, id) => {
     const { value } = e.target;
     const newItems = selectedItems.map((item) => {
-      //deep copy item 
+      //deep copy item
+      console.log(value, id);
       const newItem = { ...item };
       if (newItem.id === id) {
         newItem.quantity = value;
@@ -126,10 +158,57 @@ export default function NewInvoice(props) {
   React.useEffect(() => {
     setItemTotal(
       selectedItems.reduce((acc, item) => {
-        return acc + item.sales_price;
+        return acc + item.sales_price * (item.quantity || 1);
       }, 0)
     );
   }, [selectedItems]);
+
+  React.useEffect(() => {
+    //calculate sub total
+
+    if (itemTotal <= 0) {
+      setState({
+        ...state,
+        discount_amount: 0,
+        discountType: "percentage",
+        sub_total: 0,
+        grand_total: 0,
+      });
+      return;
+    }
+    const sub_total =
+      Number(itemTotal) +
+      Number(state.tax || 0) +
+      Number(state.add_charges || 0);
+    setState((s) => {
+      console.log(
+        "s",
+        s.discountType,
+        sub_total - (Number(s.discount_amount) / 100) * sub_total,
+        s.discount_amount
+      );
+      if (s.discountType === "percentage") {
+        return {
+          ...s,
+          grand_total:
+            sub_total - (Number(s.discount_amount) / 100) * sub_total,
+          sub_total,
+        };
+      } else {
+        return {
+          ...s,
+          grand_total: sub_total - Number(s.discount_amount),
+          sub_total,
+        };
+      }
+    });
+  }, [
+    state.discountType,
+    state.tax,
+    state.add_charges,
+    state.discount_amount,
+    itemTotal,
+  ]);
 
   const RenderItem = ({ item, key }) => {
     return (
@@ -142,11 +221,14 @@ export default function NewInvoice(props) {
             placeholder="QTY"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
+            defaultValue={1}
+            // name="quantity"
+            min="1"
             onChange={(e) => handleItemQuantityChange(e, item.id)}
           />
         </td>
         <td>${item.sales_price}</td>
-        <td>${(item.quantity * item.sales_price) || 0}</td>
+        <td>${item.quantity * item.sales_price || 0}</td>
         <td>{item.sales_tax}</td>
         <div className="d-flex ">
           {/* <div className="me-4">
@@ -203,7 +285,7 @@ export default function NewInvoice(props) {
               <input
                 type="number"
                 className="form-control"
-                name="amount"
+                name="cost_price"
                 aria-describedby="emailHelp"
               />
             </div>
@@ -211,9 +293,9 @@ export default function NewInvoice(props) {
               <label htmlFor="exampleInputEmail1">Tax </label>
               <input
                 type="number"
-                name="tax"
                 className="form-control"
                 aria-describedby="emailHelp"
+                name="sales_tax"
               />
             </div>
             <div className="form-group mb-2">
@@ -225,14 +307,15 @@ export default function NewInvoice(props) {
                 aria-describedby="emailHelp"
               />
             </div>
-            {/* <div className="form-group mb-2">
-              <label htmlFor="exampleInputEmail1">Actions </label>
+            <div className="form-group mb-2">
+              <label htmlFor="exampleInputEmail1">Description </label>
               <input
                 type="text"
                 className="form-control"
                 aria-describedby="emailHelp"
+                name="description"
               />
-            </div> */}
+            </div>
 
             <button type="submit" className="btn btn-primary">
               Submit
@@ -247,7 +330,7 @@ export default function NewInvoice(props) {
         <Affect effect={effect} />
 
         <div className="container bg-light pt-5">
-          {/* Add New Customer */}
+          {/* Add New invoice */}
           <div className="bg-light p-2 border-bottom mb-4">
             <h3 className=" fs-3">
               {" "}
@@ -260,7 +343,7 @@ export default function NewInvoice(props) {
             </h3>
           </div>
           <div className="row mb-3">
-            {/* Customer Information Box */}
+            {/* invoice Information Box */}
             <div className="col-md-4 gx-3 gx-sm-4">
               <div className="border h-100">
                 <h5 className="fs-5 text-center bg-color py-3 text-white fw-bold">
@@ -274,7 +357,7 @@ export default function NewInvoice(props) {
                     className="form-control"
                     name="first_name"
                     placeholder="First Name"
-                    defaultValue={customer.first_name}
+                    defaultValue={invoice.first_name}
                   />
                 </div>
                 {/* Last Name Input */}
@@ -284,7 +367,7 @@ export default function NewInvoice(props) {
                     className="form-control"
                     name="last_name"
                     placeholder="Last Name"
-                    defaultValue={customer.last_name}
+                    defaultValue={invoice.last_name}
                   />
                 </div>
                 {/* Business Name Input */}
@@ -294,7 +377,7 @@ export default function NewInvoice(props) {
                     placeholder="Business Name"
                     name="business_name"
                     className="form-control"
-                    defaultValue={customer.business_name}
+                    defaultValue={invoice.business_name}
                   />
                 </div>
                 {/* Address Input */}
@@ -304,7 +387,7 @@ export default function NewInvoice(props) {
                     className="form-control"
                     name="address"
                     placeholder="Address"
-                    defaultValue={customer.address}
+                    defaultValue={invoice.address}
                   />
                 </div>
                 {/* Email Input */}
@@ -314,7 +397,7 @@ export default function NewInvoice(props) {
                     className="form-control"
                     placeholder="Email"
                     name="email"
-                    defaultValue={customer.email}
+                    defaultValue={invoice.email}
                   />
                 </div>
                 {/* Phone Number  Input */}
@@ -325,7 +408,7 @@ export default function NewInvoice(props) {
                       className="form-control"
                       placeholder="Phone Number"
                       name="phone_number"
-                      defaultValue={customer.phone_number}
+                      defaultValue={invoice.phone_number}
                     />
                   </div>
                   <div className="mx-3">
@@ -340,7 +423,7 @@ export default function NewInvoice(props) {
                 <input
                   type="checkbox"
                   name="taxable"
-                  defaultChecked={customer.taxable}
+                  defaultChecked={invoice.taxable}
                 />{" "}
                 Taxable?
                 {/* Invoice Preferenc */}
@@ -349,7 +432,7 @@ export default function NewInvoice(props) {
                   <select
                     className="form-select"
                     name="invoice_pref"
-                    defaultValue={customer.invoice_pref}
+                    defaultValue={invoice.invoice_pref}
                   >
                     <option value="Email" selected>
                       Email PDF
@@ -388,7 +471,7 @@ export default function NewInvoice(props) {
                       placeholder="Invoice #"
                       className="form-control w-100"
                       name="invoice_number"
-                      defaultValue={customer.invoice_number}
+                      defaultValue={invoice.invoice_number}
                     />
                   </div>
                   <div className="form-group">
@@ -399,7 +482,7 @@ export default function NewInvoice(props) {
                       placeholder="Invoice #"
                       className="form-control w-100"
                       name="invoice_date"
-                      defaultValue={customer.invoice_date}
+                      defaultValue={invoice.due_date}
                       onChange={(v) => {
                         //let the due date be one month from the invoice date
                         let due_date = new Date(v.target.value);
@@ -416,7 +499,7 @@ export default function NewInvoice(props) {
                       placeholder="P.O #"
                       className="form-control w-100"
                       name="po_number"
-                      defaultValue={customer.po_number}
+                      defaultValue={invoice.po_number}
                     />
                   </div>
                   <div className="form-group">
@@ -429,7 +512,7 @@ export default function NewInvoice(props) {
                       className="form-control w-100"
                       name="due_date"
                       value={dueDate}
-                      defaultValue={customer.due_date}
+                      defaultValue={invoice.due_date}
                     />
                   </div>
                 </div>
@@ -449,7 +532,7 @@ export default function NewInvoice(props) {
                       className="form-control"
                       placeholder="Shipping to"
                       name="ship_to"
-                      defaultValue={customer.ship_to}
+                      defaultValue={invoice.ship_to}
                     />
                   </div>
                   <div className="form-group my-2">
@@ -458,7 +541,7 @@ export default function NewInvoice(props) {
                       className="form-control"
                       placeholder="Shipping address"
                       name="shipping_address"
-                      defaultValue={customer.shipping_address}
+                      defaultValue={invoice.shipping_address}
                     />
                   </div>
                   <div className="form-group my-2">
@@ -467,7 +550,7 @@ export default function NewInvoice(props) {
                       className="form-control"
                       placeholder="Bill to"
                       name="billing_address"
-                      defaultValue={customer.billing_address}
+                      defaultValue={invoice.billing_address}
                     />
                   </div>
                   <div className="form-group my-2">
@@ -476,14 +559,14 @@ export default function NewInvoice(props) {
                       className="form-control"
                       placeholder="Billing address"
                       name="bill_to"
-                      defaultValue={customer.billing_address}
+                      defaultValue={invoice.billing_address}
                     />
                   </div>
                   <textarea
                     className="form-control"
                     rows={3}
                     name="notes"
-                    defaultValue={customer.notes}
+                    defaultValue={invoice.notes}
                   />
                 </div>
               </div>
@@ -631,10 +714,19 @@ export default function NewInvoice(props) {
                     <p>Item Total</p>
                     <p>Tax</p>
                     <p>Additional taxes</p>
+
+                    <p>Sub Total</p>
+
                     <select
                       className="form-select"
                       name="discount_type"
-                      defaultValue={customer.invoice_pref}
+                      defaultValue={invoice.invoice_pref}
+                      onChange={(e) => {
+                        setState((s) => ({
+                          ...s,
+                          discountType: e.target.value,
+                        }));
+                      }}
                     >
                       <option value="percentage" selected>
                         DIscount Percentage
@@ -643,36 +735,61 @@ export default function NewInvoice(props) {
                     </select>
                     <p className="mt-2">
                       Grand Total{" "}
-                      <span>
+                      {/* <span>
                         <div className="me-4">
                           CAD <FiEdit onClick={() => setCModalShow(true)} />{" "}
                         </div>
-                      </span>{" "}
+                      </span>{" "} */}
                     </p>
                   </div>
                   <div className="col-md-6">
                     <p>${itemTotal}</p>
                     <input
-                      type="email"
+                      type="number"
                       className="form-control mb-2"
-                      placeholder=""
                       id="exampleInputEmail1"
                       aria-describedby="emailHelp"
-                    />
-                    <input
-                      type="email"
-                      className="form-control mb-2"
-                      placeholder=""
-                      id="exampleInputEmail1"
-                      aria-describedby="emailHelp"
+                      onChange={(e) =>
+                        setState((s) => ({ ...s, tax: e.target.value }))
+                      }
+                      name="tax"
+                      defaultValue={invoice.tax}
                     />
                     <input
                       type="number"
                       className="form-control mb-2"
-                      name="discount_amount"
-                      defaultValue={customer.discount_amount}
+                      placeholder=""
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      name="add_charges"
+                      defaultValue={invoice.add_charges}
+                      onChange={(e) =>
+                        setState((s) => ({
+                          ...s,
+                          add_charges: e.target.value,
+                        }))
+                      }
                     />
-                    <p className="fw-bold">$10000.00</p>
+                    {/* <input
+                      type="number"
+                      className="form-control mb-2"
+                      name="discount_amount"
+                      defaultValue={invoice.discount_amount}
+                    /> */}
+                    <p className="fw-bold">${state.sub_total}</p>
+                    <input
+                      type="number"
+                      className="form-control mb-2"
+                      name="discount_amount"
+                      defaultValue={invoice.discount_amount}
+                      onChange={(e) =>
+                        setState((s) => ({
+                          ...s,
+                          discount_amount: e.target.value,
+                        }))
+                      }
+                    />
+                    <p className="fw-bold">${state.grand_total}</p>
                   </div>
                 </div>
               </div>
@@ -726,6 +843,13 @@ export default function NewInvoice(props) {
                   >
                     Save
                   </button>
+
+                  <button
+                    className="btn btn-primary btn-sm"
+                    onSubmit={(e) => handleSubmit(e, true)}
+                  >
+                    Save & Email{" "}
+                  </button>
                   {/* <a href="" className="btn btn-primary btn-sm">
                     Save & Email
                   </a>
@@ -747,7 +871,7 @@ export default function NewInvoice(props) {
         {/* Save, Save & Continue, Cancel Buttons  */}
         {/* <div className="d-flex flex-row justify-content-center -2">
           <button className="mybtn">Save</button>
-          <Link to="/customer" className="mybtn">
+          <Link to="/invoice" className="mybtn">
             Cancel
           </Link>
         </div> */}
