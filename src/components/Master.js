@@ -196,6 +196,13 @@ export const allRoutes = [
     noLayout: false,
   },
   {
+    name: "NewProformalInvoice",
+    path: "/ProformalInvoice/:id",
+    auth: true,
+    element: NewProformalInvoice,
+    noLayout: false,
+  },
+  {
     name: "NewEstimateInvoice",
     path: "/NewEstimateInvoice",
     auth: true,

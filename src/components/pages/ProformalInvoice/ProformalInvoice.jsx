@@ -222,7 +222,7 @@ export default function Invoice() {
                               const value = e.target.value;
                               console.log("value", value);
                               if (value === "Edit Invoice") {
-                                navigate(`/invoice/${item.id}`);
+                                navigate(`/ProformalInvoice/${item.id}`);
                               } else if (value === "Delete Invoice") {
                                 setConfirmP((s) => ({
                                   ...s,

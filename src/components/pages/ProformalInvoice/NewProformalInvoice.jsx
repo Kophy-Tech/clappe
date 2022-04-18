@@ -75,7 +75,6 @@ export default function NewInvoice(props) {
     data.sub_total = state.sub_total;
     data.send_email = send_email;
     data.download = download;
-    data.attachment_path = "er";
     data.item_list = selectedItems.map((item) => {
       return {
         id: item.id,
@@ -102,7 +101,7 @@ export default function NewInvoice(props) {
 
   React.useEffect(() => {
     const foundinvoice =
-      searchStoreHooks(store.proformaInvoice, id, "id") || {};
+      searchStoreHooks(store.proformaInvoices, id, "id") || {};
     setinvoice(foundinvoice);
 
     console.log("foundinvoice", foundinvoice);
@@ -120,7 +119,7 @@ export default function NewInvoice(props) {
       }
       return s;
     });
-  }, [store.proformaInvoice, store.items, id]);
+  }, [store.proformaInvoices, store.items, id]);
 
   const handleAddNewItem = async (e) => {
     try {
@@ -340,7 +339,7 @@ export default function NewInvoice(props) {
               {" "}
               <FiArrowLeft
                 onClick={() => {
-                  navigate("/invoice");
+                  navigate("/ProformalInvoice");
                 }}
               />{" "}
               Add New Proformal Invoice
@@ -486,7 +485,7 @@ export default function NewInvoice(props) {
                       placeholder="Invoice #"
                       className="form-control w-100"
                       name="invoice_date"
-                      defaultValue={invoice.date}
+                      defaultValue={invoice.invoice_date}
                       onChange={(v) => {
                         //let the due date be one month from the invoice date
                         let due_date = new Date(v.target.value);
@@ -496,7 +495,10 @@ export default function NewInvoice(props) {
                         setDueDate(due_date);
                       }}
                     />
+
                   </div>
+
+                
                   <div className="form-group mt-2">
                     <input
                       type="text"
@@ -522,50 +524,15 @@ export default function NewInvoice(props) {
                 </div>
               </div>
             </div>
-            {/* Shipping & Billing */}
+            {/* Notes & Attachment */}
             <div className="col-md-4">
               <div className="border h-100">
                 <h4 className="h4 text-center bg-color py-3 text-white fw-bold fs-5">
-                  Shipping &amp; Billing
+                  Notes &amp; Attachments
                 </h4>
                 {/* Shipping & Billing Form  */}
                 <div className="p-2">
-                  <div className="form-group my-2">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Shipping to"
-                      name="ship_to"
-                      defaultValue={invoice.ship_to}
-                    />
-                  </div>
-                  <div className="form-group my-2">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Shipping address"
-                      name="shipping_address"
-                      defaultValue={invoice.shipping_address}
-                    />
-                  </div>
-                  <div className="form-group my-2">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Bill to"
-                      name="billing_address"
-                      defaultValue={invoice.billing_address}
-                    />
-                  </div>
-                  <div className="form-group my-2">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Billing address"
-                      name="bill_to"
-                      defaultValue={invoice.billing_address}
-                    />
-                  </div>
+                  
                   <textarea
                     className="form-control"
                     rows={3}
@@ -573,6 +540,19 @@ export default function NewInvoice(props) {
                     defaultValue={invoice.notes}
                   />
                 </div>
+                <div className="form-group">
+                    <label htmlFor="theme">Upload Attachment</label>
+
+                    <input
+                      type="file"
+                      placeholder="Invoice #"
+                      className="form-control w-100"
+                      name="attachment_path"
+                      defaultValue={invoice.attachment_path}
+                    
+                    />
+                    
+                  </div>
               </div>
             </div>
           </div>
