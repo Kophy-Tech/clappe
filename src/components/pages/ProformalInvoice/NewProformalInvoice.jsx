@@ -76,7 +76,6 @@ export default function NewInvoice(props) {
     data.send_email = send_email;
     data.download = download;
     data.attachment_path = "er";
-
     data.item_list = selectedItems.map((item) => {
       return {
         id: item.id,
