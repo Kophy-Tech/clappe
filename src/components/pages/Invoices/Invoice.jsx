@@ -44,8 +44,8 @@ export default function Invoice() {
     <>
       <div className="pt-5">
         <Container>
-          {/* <Affect effect={effect} /> */}
-          {/* <ConfirmComp {...confirmP} /> */}
+          <Affect effect={effect} />
+          <ConfirmComp {...confirmP} />
           <form
           // onSubmit={
           //   (e) => {
@@ -221,7 +221,7 @@ export default function Invoice() {
                             className="form-select"
                             onChange={(e) => {
                               const value = e.target.value;
-                              // console.log("value", value);
+                              console.log("value", value);
                               if (value === "Edit Invoice") {
                                 navigate(`/invoice/${item.id}`);
                               } else if (value === "Delete Invoice") {
@@ -234,7 +234,7 @@ export default function Invoice() {
                                   handleYes: () => handleDelete(item.id),
                                   func: setConfirmP,
                                 }));
-                                // console.log("Delete Invoice");
+                                console.log("Delete Invoice");
                               }
                             }}
                           >

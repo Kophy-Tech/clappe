@@ -66,7 +66,7 @@ export default function NewInvoice(props) {
     }
   };
 
-  const handleSubmit = async (e, send_email) => {
+  const handleSubmit = async (e, send_email, download) => {
     const data = handleForm(e);
     data.logo_path =
       "https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg";
@@ -74,6 +74,7 @@ export default function NewInvoice(props) {
     data.grand_total = state.grand_total;
     data.sub_total = state.sub_total;
     data.send_email = send_email;
+    data.download = download;
     data.item_list = selectedItems.map((item) => {
       return {
         id: item.id,
@@ -107,7 +108,7 @@ export default function NewInvoice(props) {
     setSelectedItems((s) => {
       if (foundinvoice.item_list) {
         return foundinvoice.item_list.map((item) => {
-          const foundItem = searchStoreHooks(store.items, item, "id") || {};
+          const foundItem = searchStoreHooks(store.items, item.id, "id") || {};
           
           return {
             ...foundItem,
@@ -211,6 +212,7 @@ export default function NewInvoice(props) {
   ]);
 
   const RenderItem = ({ item, key }) => {
+    console.log("item", item);
     return (
       <tr key={item.id}>
         <td> {item.name}</td>
@@ -221,7 +223,7 @@ export default function NewInvoice(props) {
             placeholder="QTY"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
-            defaultValue={1}
+            defaultValue={item.quantity}
             // name="quantity"
             min="1"
             onChange={(e) => handleItemQuantityChange(e, item.id)}
@@ -611,14 +613,17 @@ export default function NewInvoice(props) {
                                 // alert(item.id);
 
                                 setSelectedItems((s) => {
+                                  //deep copy item
+                                  let newItem = { ...item };
+                                  newItem.quantity = 1;
                                   if (s.length === 0) {
-                                    return [...s, item];
+                                    return [...s, newItem];
                                   }
                                   let toAdd = s.find((i) => i.id == item.id);
                                   if (toAdd) {
                                     return s;
                                   } else {
-                                    return [...s, item];
+                                    return [...s, newItem];
                                   }
                                 });
                                 // setSelectedItems([...selectedItems, item]);
@@ -810,7 +815,8 @@ export default function NewInvoice(props) {
                     placeholder="Leave a comment here"
                     id="floatingTextarea2"
                     style={{ height: 100 }}
-                    defaultValue={""}
+                    defaultValue={invoice.terms}
+                    name="terms"
                   />
                   <label htmlFor="floatingTextarea2">
                     Pay due within 15 days
@@ -850,13 +856,10 @@ export default function NewInvoice(props) {
                   >
                     Save & Email{" "}
                   </button>
-                  {/* <a href="" className="btn btn-primary btn-sm">
-                    Save & Email
-                  </a>
-                  <a href="" className="btn btn-primary btn-sm">
+                  <button onSubmit={(e) => handleSubmit(e, false, true)} className="btn btn-primary btn-sm">
                     Download
-                  </a>
-                  <a href="" className="btn btn-primary btn-sm">
+                  </button>
+                  {/* <a href="" className="btn btn-primary btn-sm">
                     Cancel
                   </a>
                   <a href="" className="btn btn-primary btn-sm">
