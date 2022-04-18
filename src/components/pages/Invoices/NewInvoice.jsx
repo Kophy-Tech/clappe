@@ -484,7 +484,7 @@ export default function NewInvoice(props) {
                       placeholder="Invoice #"
                       className="form-control w-100"
                       name="invoice_date"
-                      defaultValue={invoice.due_date}
+                      defaultValue={invoice.date}
                       onChange={(v) => {
                         //let the due date be one month from the invoice date
                         let due_date = new Date(v.target.value);
