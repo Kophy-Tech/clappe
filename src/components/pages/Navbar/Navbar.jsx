@@ -82,7 +82,7 @@ export default function Navbar() {
                 </ul>
               </li> */}
               <li className="nav-item ms-3">
-                <Link className="nav-link" to="/">
+                <Link className="nav-link" to="/contact">
                   Contact us
                 </Link>
               </li>

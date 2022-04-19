@@ -9,14 +9,14 @@ export default function Footer() {
                 <h1 className='fw-bold fs-2 text-center'>Clappe</h1>
                 <div className="row mt-5">
                     <div className="col-md-2">
-                        <h4>Community</h4>
                         <ul>
+                        <h4>Community</h4>
                             <li><Link to="/">Tutorials</Link></li>
                             <li><Link to="/">Documentations</Link></li>
                             <li><Link to="/">Forums</Link></li>
                         </ul>
-                        <h4>Open source</h4>
                         <ul>
+                        <h4>Open source</h4>
                             <li><Link to="/">Download</Link></li>
                             <li><Link to="/">Github</Link></li>
                             <li><Link to="/">Runbot</Link></li>
@@ -24,8 +24,8 @@ export default function Footer() {
                         </ul>
                     </div>
                     <div className="col-md-2">
-                        <h4>Services</h4>
                         <ul>
+                        <h4>Services</h4>
                             <li><Link to="/">Clappe Hosting</Link></li>
                             <li><Link to="/">Support</Link></li>
                             <li><Link to="/">Upgrade</Link></li>
@@ -33,9 +33,9 @@ export default function Footer() {
                         </ul>
                     </div>
                     <div className="col-md-2">
-                        <h4>About us</h4>
                         <ul>
-                            <li><Link to="/">Our Company</Link></li>
+                        <h4>About us</h4>
+                                <li><Link to="/">Our Company</Link></li>
                             <li><Link to="/">Contact Us</Link></li>
                             <li><Link to="/">Jobs</Link></li>
                             <br />
