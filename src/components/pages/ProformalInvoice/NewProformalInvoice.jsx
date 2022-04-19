@@ -1,13 +1,23 @@
 import React from "react";
-import Navbar from "../Navbar/Navbar";
 import "./ProformalInvoice.css";
-import { Link, useParams, useNavigate } from "react-router-dom";
-import { FaList, FaRegHeart, FaArrowLeft } from "react-icons/fa";
+import { useParams, useNavigate } from "react-router-dom";
+import Modal from "react-bootstrap/Modal";
+import { FiArrowLeft } from "react-icons/fi";
+import { Table } from "react-bootstrap";
+// import { Button } from 'bootstrap';
+import {
+  Affect,
+  FlatList,
+  handleForm,
+  searchData,
+} from "../../../redux/shared";
+import Button from "react-bootstrap/Button";
 import {
   FiHome,
+  FiEdit,
+  FiDelete,
   FiLogOut,
   FiArrowLeftCircle,
-  FiArrowLeft,
   FiArrowRightCircle,
   FiCreditCard,
   FiPenTool,
@@ -17,40 +27,69 @@ import {
   FiActivity,
   FiList,
 } from "react-icons/fi";
-import { Container, Row, Col, Card, Image, Table } from "react-bootstrap";
-import CenteredModal from "../Common/Modal";
-import Button from "react-bootstrap/Button";
 
-import { Affect, handleForm } from "../../../redux/shared";
 import {
-  addNewCustomer,
-  editCustomer,
-  searchStore,
+  addNewItem,
+  createProformaInvoice,
+  editProformaInvoice,
   searchStoreHooks,
 } from "../../../redux/thunks";
 import { useSelector } from "react-redux";
+import CenteredModal from "../Common/Modal";
+import CurrencyModal from "../Common/CurrencyModal";
 
-export default function NewProformalInvoice(props) {
+export default function NewInvoice(props) {
   const navigate = useNavigate();
+
   const [modalShow, setModalShow] = React.useState(false);
+  const [cmodalShow, setCModalShow] = React.useState(false);
+  const [itemList, setItemList] = React.useState(true);
 
   const [effect, setEffect] = React.useState({});
-  const [customer, setCustomer] = React.useState({});
+  const [invoice, setinvoice] = React.useState({});
+  const [items, setItems] = React.useState([]);
   const { id } = useParams();
   const store = useSelector((state) => state.store);
+  const [selectedItems, setSelectedItems] = React.useState([]);
+  const [dueDate, setDueDate] = React.useState();
+  const [itemTotal, setItemTotal] = React.useState(0);
+  const [state, setState] = React.useState({
+    discountType: "percentage",
+    discount_amount: 0,
+  });
 
-  const handleSubmit = async (e) => {
+  const handleDropDown = (e) => {
+    const itemValue = e.target.value;
+    setItemList(false);
+    if (itemValue.length === 0) {
+      setItemList(true);
+    }
+  };
+
+  const handleSubmit = async (e, send_email, download) => {
     const data = handleForm(e);
     data.logo_path =
       "https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg";
+    data.item_total = itemTotal;
+    data.grand_total = state.grand_total;
+    data.sub_total = state.sub_total;
+    data.send_email = send_email;
+    data.download = download;
+    data.item_list = selectedItems.map((item) => {
+      return {
+        id: item.id,
+        quantity: item.quantity,
+      };
+    });
     console.log("data", data);
     try {
       setEffect({ load: true });
       let res;
       if (id) {
-        res = await editCustomer(data, id);
+        res = await editProformaInvoice(data, id);
       } else {
-        res = await addNewCustomer(data);
+        res = await createProformaInvoice(data);
+        console.log(res);
         e.target.reset();
       }
 
@@ -61,32 +100,253 @@ export default function NewProformalInvoice(props) {
   };
 
   React.useEffect(() => {
-    const foundCustomer = searchStoreHooks(store.customers, id, "id");
-    setCustomer(foundCustomer || {});
-    // console.log("foundCustomer", foundCustomer);
-  }, [store]);
+    const foundinvoice =
+      searchStoreHooks(store.proformaInvoices, id, "id") || {};
+    setinvoice(foundinvoice);
+
+    console.log("foundinvoice", foundinvoice);
+    setDueDate(foundinvoice.due_date);
+    setSelectedItems((s) => {
+      if (foundinvoice.item_list) {
+        return foundinvoice.item_list.map((item) => {
+          const foundItem = searchStoreHooks(store.items, item.id, "id") || {};
+
+          return {
+            ...foundItem,
+            quantity: item.quantity,
+          };
+        });
+      }
+      return s;
+    });
+  }, [store.proformaInvoices, store.items, id]);
+
+  const handleAddNewItem = async (e) => {
+    try {
+      const theItems = handleForm(e);
+      setEffect({ load: true });
+      const res = await addNewItem(theItems);
+      setEffect({ load: false, error: false, message: res.message });
+      e.target.reset();
+    } catch (error) {
+      setEffect({ load: false, error: true, message: error.message });
+    }
+  };
+
+  const handleRemoveItem = (id) => {
+    const newItems = selectedItems.filter((item) => item.id !== id);
+    setSelectedItems(newItems);
+  };
+  const handleItemSearch = (e) => {
+    const itemValue = e.target.value;
+    const search = searchData(itemValue, "name", store.items) || [];
+    return search;
+  };
+
+  const handleItemQuantityChange = (e, id) => {
+    const { value } = e.target;
+    const newItems = selectedItems.map((item) => {
+      //deep copy item
+      console.log(value, id);
+      const newItem = { ...item };
+      if (newItem.id === id) {
+        newItem.quantity = value;
+      }
+      return newItem;
+    });
+    setSelectedItems(newItems);
+  };
+
+  React.useEffect(() => {
+    setItemTotal(
+      selectedItems.reduce((acc, item) => {
+        return acc + item.sales_price * (item.quantity || 1);
+      }, 0)
+    );
+  }, [selectedItems]);
+
+  React.useEffect(() => {
+    //calculate sub total
+
+    if (itemTotal <= 0) {
+      setState({
+        ...state,
+        discount_amount: 0,
+        discountType: "percentage",
+        sub_total: 0,
+        grand_total: 0,
+      });
+      return;
+    }
+    const sub_total =
+      Number(itemTotal) +
+      Number(state.tax || 0) +
+      Number(state.add_charges || 0);
+    setState((s) => {
+      console.log(
+        "s",
+        s.discountType,
+        sub_total - (Number(s.discount_amount) / 100) * sub_total,
+        s.discount_amount
+      );
+      if (s.discountType === "percentage") {
+        return {
+          ...s,
+          grand_total:
+            sub_total - (Number(s.discount_amount) / 100) * sub_total,
+          sub_total,
+        };
+      } else {
+        return {
+          ...s,
+          grand_total: sub_total - Number(s.discount_amount),
+          sub_total,
+        };
+      }
+    });
+  }, [
+    state.discountType,
+    state.tax,
+    state.add_charges,
+    state.discount_amount,
+    itemTotal,
+  ]);
+
+  const RenderItem = ({ item, key }) => {
+    console.log("item", item);
+    return (
+      <tr key={item.id}>
+        <td> {item.name}</td>
+        <td>
+          <input
+            type="number"
+            className="form-control"
+            placeholder="QTY"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            defaultValue={item.quantity}
+            // name="quantity"
+            min="1"
+            onChange={(e) => handleItemQuantityChange(e, item.id)}
+          />
+        </td>
+        <td>${item.sales_price}</td>
+        <td>${item.quantity * item.sales_price || 0}</td>
+        <td>{item.sales_tax}</td>
+        <div className="d-flex ">
+          {/* <div className="me-4">
+              {" "}
+              <FiEdit />{" "}
+            </div> */}
+          <div>
+            {" "}
+            <FiDelete onClick={(index) => handleRemoveItem(item.id)} />{" "}
+          </div>
+        </div>
+      </tr>
+    );
+  };
+
   return (
     <>
       <CenteredModal show={modalShow} onHide={() => setModalShow(false)} />
-      <form onSubmit={handleSubmit}></form>
+      <CurrencyModal show={cmodalShow} onHide={() => setCModalShow(false)} />
+      <Modal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        size="sm"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            New items
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form onSubmit={handleAddNewItem}>
+            <div className="form-group mb-2">
+              <label htmlFor="exampleInputEmail1">Item name</label>
+              <input
+                type="text"
+                className="form-control"
+                aria-describedby="emailHelp"
+                name="name"
+              />
+            </div>
+            <div className="form-group mb-2">
+              <label htmlFor="exampleInputEmail1">Qty</label>
+              <input
+                type="number"
+                className="form-control"
+                name="quantity"
+                aria-describedby="emailHelp"
+              />
+            </div>
+            <div className="form-group mb-2">
+              <label htmlFor="exampleInputEmail1">Amount </label>
+              <input
+                type="number"
+                className="form-control"
+                name="cost_price"
+                aria-describedby="emailHelp"
+              />
+            </div>
+            <div className="form-group mb-2">
+              <label htmlFor="exampleInputEmail1">Tax </label>
+              <input
+                type="number"
+                className="form-control"
+                aria-describedby="emailHelp"
+                name="sales_tax"
+              />
+            </div>
+            <div className="form-group mb-2">
+              <label htmlFor="exampleInputEmail1">Sales Price </label>
+              <input
+                type="text"
+                name="sales_price"
+                className="form-control"
+                aria-describedby="emailHelp"
+              />
+            </div>
+            <div className="form-group mb-2">
+              <label htmlFor="exampleInputEmail1">Description </label>
+              <input
+                type="text"
+                className="form-control"
+                aria-describedby="emailHelp"
+                name="description"
+              />
+            </div>
+
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
+          </form>
+        </Modal.Body>
+        {/* <Modal.Footer>
+                <Button onClick={props.onHide}>Close</Button>
+            </Modal.Footer> */}
+      </Modal>
       <form onSubmit={handleSubmit}>
         <Affect effect={effect} />
 
         <div className="container bg-light pt-5">
-          {/* Add New Customer */}
+          {/* Add New invoice */}
           <div className="bg-light p-2 border-bottom mb-4">
-            <h3 className=" fs-3 fw-bolc">
+            <h3 className=" fs-3">
               {" "}
               <FiArrowLeft
                 onClick={() => {
-                  navigate("/invoice");
+                  navigate("/ProformalInvoice");
                 }}
               />{" "}
               Add New Proformal Invoice
             </h3>
           </div>
           <div className="row mb-3">
-            {/* Customer Information Box */}
+            {/* invoice Information Box */}
             <div className="col-md-4 gx-3 gx-sm-4">
               <div className="border h-100">
                 <h5 className="fs-5 text-center bg-color py-3 text-white fw-bold">
@@ -100,7 +360,7 @@ export default function NewProformalInvoice(props) {
                     className="form-control"
                     name="first_name"
                     placeholder="First Name"
-                    defaultValue={customer.first_name}
+                    defaultValue={invoice.first_name}
                   />
                 </div>
                 {/* Last Name Input */}
@@ -110,7 +370,7 @@ export default function NewProformalInvoice(props) {
                     className="form-control"
                     name="last_name"
                     placeholder="Last Name"
-                    defaultValue={customer.last_name}
+                    defaultValue={invoice.last_name}
                   />
                 </div>
                 {/* Business Name Input */}
@@ -120,7 +380,7 @@ export default function NewProformalInvoice(props) {
                     placeholder="Business Name"
                     name="business_name"
                     className="form-control"
-                    defaultValue={customer.business_name}
+                    defaultValue={invoice.business_name}
                   />
                 </div>
                 {/* Address Input */}
@@ -130,7 +390,7 @@ export default function NewProformalInvoice(props) {
                     className="form-control"
                     name="address"
                     placeholder="Address"
-                    defaultValue={customer.address}
+                    defaultValue={invoice.address}
                   />
                 </div>
                 {/* Email Input */}
@@ -140,7 +400,7 @@ export default function NewProformalInvoice(props) {
                     className="form-control"
                     placeholder="Email"
                     name="email"
-                    defaultValue={customer.email}
+                    defaultValue={invoice.email}
                   />
                 </div>
                 {/* Phone Number  Input */}
@@ -151,7 +411,7 @@ export default function NewProformalInvoice(props) {
                       className="form-control"
                       placeholder="Phone Number"
                       name="phone_number"
-                      defaultValue={customer.phone_number}
+                      defaultValue={invoice.phone_number}
                     />
                   </div>
                   <div className="mx-3">
@@ -166,7 +426,7 @@ export default function NewProformalInvoice(props) {
                 <input
                   type="checkbox"
                   name="taxable"
-                  defaultChecked={customer.taxable}
+                  defaultChecked={invoice.taxable}
                 />{" "}
                 Taxable?
                 {/* Invoice Preferenc */}
@@ -175,7 +435,7 @@ export default function NewProformalInvoice(props) {
                   <select
                     className="form-select"
                     name="invoice_pref"
-                    defaultValue={customer.invoice_pref}
+                    defaultValue={invoice.invoice_pref}
                   >
                     <option value="Email" selected>
                       Email PDF
@@ -213,6 +473,8 @@ export default function NewProformalInvoice(props) {
                       type="text"
                       placeholder="Invoice #"
                       className="form-control w-100"
+                      name="invoice_number"
+                      defaultValue={invoice.invoice_number}
                     />
                   </div>
                   <div className="form-group">
@@ -222,13 +484,28 @@ export default function NewProformalInvoice(props) {
                       type="date"
                       placeholder="Invoice #"
                       className="form-control w-100"
+                      name="invoice_date"
+                      defaultValue={invoice.invoice_date}
+                      onChange={(v) => {
+                        //let the due date be one month from the invoice date
+                        let due_date = new Date(v.target.value);
+                        due_date.setMonth(due_date.getMonth() + 1);
+                        //convrt to string YYYY-MM-DD
+                        due_date = due_date.toISOString().split("T")[0];
+                        setDueDate(due_date);
+                      }}
                     />
+
                   </div>
+
+                
                   <div className="form-group mt-2">
                     <input
                       type="text"
                       placeholder="P.O #"
                       className="form-control w-100"
+                      name="po_number"
+                      defaultValue={invoice.po_number}
                     />
                   </div>
                   <div className="form-group">
@@ -236,85 +513,112 @@ export default function NewProformalInvoice(props) {
 
                     <input
                       type="date"
+                      disabled
                       placeholder="Invoice #"
                       className="form-control w-100"
+                      name="due_date"
+                      value={dueDate}
+                      defaultValue={invoice.due_date}
                     />
                   </div>
                 </div>
               </div>
             </div>
-            {/* Shipping & Billing */}
+            {/* Notes & Attachment */}
             <div className="col-md-4">
               <div className="border h-100">
                 <h4 className="h4 text-center bg-color py-3 text-white fw-bold fs-5">
-                  Shipping &amp; Billing
+                  Notes &amp; Attachments
                 </h4>
                 {/* Shipping & Billing Form  */}
                 <div className="p-2">
-                  <div className="form-group my-2">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Shipping to"
-                      name="ship_to"
-                      defaultValue={customer.ship_to}
-                    />
-                  </div>
-                  <div className="form-group my-2">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Shipping address"
-                      name="shipping_address"
-                      defaultValue={customer.shipping_address}
-                    />
-                  </div>
-                  <div className="form-group my-2">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Bill to"
-                      name="billing_address"
-                      defaultValue={customer.billing_address}
-                    />
-                  </div>
-                  <div className="form-group my-2">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Billing address"
-                      name="billing_address"
-                      defaultValue={customer.billing_address}
-                    />
-                  </div>
+                  
                   <textarea
                     className="form-control"
                     rows={3}
                     name="notes"
-                    defaultValue={customer.notes}
+                    defaultValue={invoice.notes}
                   />
                 </div>
+                <div className="form-group">
+                    <label htmlFor="theme">Upload Attachment</label>
+
+                    <input
+                      type="file"
+                      placeholder="Invoice #"
+                      className="form-control w-100"
+                      name="attachment_path"
+                      defaultValue={invoice.attachment_path}
+                    
+                    />
+                    
+                  </div>
               </div>
             </div>
           </div>
         </div>
         {/*  */}
-        <div className="container">
+        <section className="container">
           <div className="row gx-0 p-2 mb-3">
             <div className="col-12 col-md-9">
               <div className="border" style={{ height: "55vh" }}>
                 <h5 className="fs-5 text-center bg-color py-3 text-white fw-bold">
                   Item Information
                 </h5>
-                <div className="row">
+                <div id="info-box" className="row">
                   <div className="col-12 col-md-3">
-                    <div className="mb-3">
+                    <div className="mb-3 d-flex flex-column px-3 py-2">
                       <input
-                        type="email"
+                        // type="text"
                         className="form-control rounded"
                         id="exampleInputEmail1"
                         aria-describedby="emailHelp"
+                        onFocus={() => setItemList(true)}
+                        // onBlur={() => setItemList(false)}
+                        autoComplete="off"
+                        onInput={(e) => {
+                          const searched = handleItemSearch(e) || [];
+                          console.log(searched, e.target.value, itemList);
+                          setItems(searched);
+                        }}
                       />
+                      <div
+                        className={`${
+                          !itemList ? "d-none" : "d-flex"
+                        }  card search-box`}
+                      >
+                        <ul onBlur={() => setItemList(false)}>
+                          {items.map((item) => (
+                            <li
+                              key={item.id}
+                              onClick={() => {
+                                // alert(item.id);
+
+                                setSelectedItems((s) => {
+                                  //deep copy item
+                                  let newItem = { ...item };
+                                  newItem.quantity = 1;
+                                  if (s.length === 0) {
+                                    return [...s, newItem];
+                                  }
+                                  let toAdd = s.find((i) => i.id == item.id);
+                                  if (toAdd) {
+                                    return s;
+                                  } else {
+                                    return [...s, newItem];
+                                  }
+                                });
+                                // setSelectedItems([...selectedItems, item]);
+                                setItemList(false);
+
+                                // setItems([]);
+                              }}
+                            >
+                              {item.name}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                   <div className="col-12 col-md-2">
@@ -361,6 +665,7 @@ export default function NewProformalInvoice(props) {
                       [+]Add new item
                     </Button>
                   </div>
+
                   <div className="container">
                     <Table striped bordered hover size="sm" className="m-1">
                       <thead>
@@ -370,26 +675,16 @@ export default function NewProformalInvoice(props) {
                           <th>Amount</th>
                           <th>Total</th>
                           <th>Tax</th>
-                          <th></th>
+                          <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td> Fabrics shield</td>
-                          <td>4</td>
-                          <td>$100</td>
-                          <td>$500.00</td>
-                          <td>0.00</td>
-                          <td>No</td>
-                        </tr>
-                        <tr>
-                          <td> Tope shield</td>
-                          <td>4</td>
-                          <td>$100</td>
-                          <td>$500.00</td>
-                          <td>0.00</td>
-                          <td>No</td>
-                        </tr>
+                        {/* {selectedItems.map()} */}
+
+                        <FlatList
+                          items={selectedItems}
+                          RenderItem={RenderItem}
+                        />
                       </tbody>
                     </Table>
                   </div>
@@ -406,37 +701,88 @@ export default function NewProformalInvoice(props) {
                     <p>Item Total</p>
                     <p>Tax</p>
                     <p>Additional taxes</p>
+
+                    <p>Sub Total</p>
+
+                    <select
+                      className="form-select"
+                      name="discount_type"
+                      defaultValue={invoice.invoice_pref}
+                      onChange={(e) => {
+                        setState((s) => ({
+                          ...s,
+                          discountType: e.target.value,
+                        }));
+                      }}
+                    >
+                      <option value="percentage" selected>
+                        DIscount Percentage
+                      </option>
+                      <option value="amount">Discount Amount</option>
+                    </select>
                     <p className="mt-2">
                       Grand Total{" "}
-                      <span>
-                        {" "}
-                        <a href="#">CAD</a>{" "}
-                      </span>{" "}
+                      {/* <span>
+                        <div className="me-4">
+                          CAD <FiEdit onClick={() => setCModalShow(true)} />{" "}
+                        </div>
+                      </span>{" "} */}
                     </p>
                   </div>
                   <div className="col-md-6">
-                    <p>$10000.00</p>
+                    <p>${itemTotal}</p>
                     <input
-                      type="email"
+                      type="number"
+                      className="form-control mb-2"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      onChange={(e) =>
+                        setState((s) => ({ ...s, tax: e.target.value }))
+                      }
+                      name="tax"
+                      defaultValue={invoice.tax}
+                    />
+                    <input
+                      type="number"
                       className="form-control mb-2"
                       placeholder=""
                       id="exampleInputEmail1"
                       aria-describedby="emailHelp"
+                      name="add_charges"
+                      defaultValue={invoice.add_charges}
+                      onChange={(e) =>
+                        setState((s) => ({
+                          ...s,
+                          add_charges: e.target.value,
+                        }))
+                      }
                     />
-                    <input
-                      type="email"
+                    {/* <input
+                      type="number"
                       className="form-control mb-2"
-                      placeholder=""
-                      id="exampleInputEmail1"
-                      aria-describedby="emailHelp"
+                      name="discount_amount"
+                      defaultValue={invoice.discount_amount}
+                    /> */}
+                    <p className="fw-bold">${state.sub_total}</p>
+                    <input
+                      type="number"
+                      className="form-control mb-2"
+                      name="discount_amount"
+                      defaultValue={invoice.discount_amount}
+                      onChange={(e) =>
+                        setState((s) => ({
+                          ...s,
+                          discount_amount: e.target.value,
+                        }))
+                      }
                     />
-                    <p className="fw-bold">$10000.00</p>
+                    <p className="fw-bold">${state.grand_total}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
         <div className="container">
           <div className="row gx-0 p-2 mb-3">
@@ -451,7 +797,8 @@ export default function NewProformalInvoice(props) {
                     placeholder="Leave a comment here"
                     id="floatingTextarea2"
                     style={{ height: 100 }}
-                    defaultValue={""}
+                    defaultValue={invoice.terms}
+                    name="terms"
                   />
                   <label htmlFor="floatingTextarea2">
                     Pay due within 15 days
@@ -478,21 +825,31 @@ export default function NewProformalInvoice(props) {
             <div className="border" style={{ height: "30vh" }}>
               <div className="col-12 col-md-8">
                 <div className="d-flex justify-content-around mt-5">
-                  <a href="" className="btn btn-primary btn-sm">
+                  <button
+                    className="btn btn-primary btn-sm"
+                    onSubmit={handleSubmit}
+                  >
                     Save
-                  </a>
-                  <a href="" className="btn btn-primary btn-sm">
-                    Save & Email
-                  </a>
-                  <a href="" className="btn btn-primary btn-sm">
+                  </button>
+
+                  <button
+                    className="btn btn-primary btn-sm"
+                    onSubmit={(e) => handleSubmit(e, true)}
+                  >
+                    Save & Email{" "}
+                  </button>
+                  <button
+                    onSubmit={(e) => handleSubmit(e, false, true)}
+                    className="btn btn-primary btn-sm"
+                  >
                     Download
-                  </a>
-                  <a href="" className="btn btn-primary btn-sm">
+                  </button>
+                  {/* <a href="" className="btn btn-primary btn-sm">
                     Cancel
                   </a>
                   <a href="" className="btn btn-primary btn-sm">
                     Recurring
-                  </a>
+                  </a> */}
                 </div>
               </div>
               <div className="col-12 col-md-4"></div>
@@ -502,7 +859,7 @@ export default function NewProformalInvoice(props) {
         {/* Save, Save & Continue, Cancel Buttons  */}
         {/* <div className="d-flex flex-row justify-content-center -2">
           <button className="mybtn">Save</button>
-          <Link to="/customer" className="mybtn">
+          <Link to="/invoice" className="mybtn">
             Cancel
           </Link>
         </div> */}

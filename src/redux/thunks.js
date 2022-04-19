@@ -289,6 +289,8 @@ export const fetchAllCustomers = async () => {
 const requiredDatas = async () => {
   fetchAllCustomers();
   fetchAllItems();
+  fetchAllInvoices();
+  fetchAllProformaInvoices();
 };
 
 export const registerUSer = async (data) => {
@@ -419,9 +421,104 @@ export const deleteItem = async (id) => {
 //INVOICE
 export const createInvoice = async (data) => {
   try {
-    const r = await api("post", "invoice/create", data);
+    const r = await api("post", "invoice/create", data);  
+    fetchAllInvoices(); 
     return r;
   } catch (e) {
     throw e;
   }
 };
+
+export async function fetchAllInvoices () {
+  try {
+    const r = await api("get", "invoice/all");
+    store.dispatch(
+      overwriteStore({
+        name: "invoices",
+        value: r.message,
+      })
+    );
+    return r;
+  } catch (e) {
+    store.dispatch(
+      overwriteStore({
+        name: "invoices",
+        value: [],
+      })
+    );
+    console.warn("Error fetching invoices", e);
+  }
+}
+
+export const deleteInvoice = async (id) => {
+  try {
+    const r = await api("delete", `invoice/edit/${id}`);
+    fetchAllInvoices();
+    return r;
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const editInvoice = async (data, id) => {
+  try {
+    const r = await api("put", `invoice/edit/${id}`, data);
+    fetchAllInvoices();
+    return r;
+  } catch (e) {
+    throw e;
+  }
+}
+
+
+//Proforma Invoice
+export const createProformaInvoice = async (data) => {
+  try {
+    const r = await api("post", "proforma/create", data);
+    fetchAllProformaInvoices();
+    return r;
+  } catch (e) {
+    throw e;
+  }
+}
+
+export async function fetchAllProformaInvoices () {
+  try {
+    const r = await api("get", "proforma/all");
+    store.dispatch(
+      overwriteStore({
+        name: "proformaInvoices",
+        value: r.message,
+      })
+    );
+    return r;
+  } catch (e) {
+    store.dispatch(
+      overwriteStore({
+        name: "proformaInvoices",
+        value: [],
+      })
+    );
+    console.warn("Error fetching proforma invoices", e);
+  }
+}
+
+export const deleteProformaInvoice = async (id) => {
+  try {
+    const r = await api("delete", `proforma/edit/${id}`);
+    fetchAllProformaInvoices();
+    return r;
+  } catch (e) {
+    throw e;
+  }
+}
+
+export const editProformaInvoice = async (data, id) => {
+  try {
+    const r = await api("put", `proforma/edit/${id}`, data);
+    fetchAllProformaInvoices();
+    return r;
+  } catch (e) {
+    throw e;
+  }
+}
