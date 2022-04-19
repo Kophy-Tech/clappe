@@ -1,5 +1,5 @@
 body{
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 .landing{
     background: linear-gradient(to right, white, rgba(255,255,255,0)), url('../../../assets/img/landing2.jpg')no-repeat center center/cover;

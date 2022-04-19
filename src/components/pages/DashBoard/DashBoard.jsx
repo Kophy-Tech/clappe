@@ -29,7 +29,7 @@ export default function DashBoard() {
 
                     <div className="col-sm-6">
                       {/* Customer  */}
-                      <div className="alert alert-secondary alert-width">
+                      <div className="alert alert-secondary alert-width shadow">
                         <div className="d-flex flex-row justify-content-between align-items-center mb-2">
                           <h4 className="h5 fw-bold">{item.title}s</h4>
                           <Link to={item.url} className="mybtn">
@@ -44,19 +44,19 @@ export default function DashBoard() {
                           <h6 className="fw-bold">{item.actions.item4}</h6>
                           <h6 className="fw-bold">{item.actions.item5}</h6>
 
-                          <div className="text-decoration-underline" to="/">
+                          <div className="text-decoration-underline" >
                             10
                           </div>
-                          <div className="text-decoration-underline" to="/">
+                          <div className="text-decoration-underline" >
                             150
                           </div>
-                          <div className="text-decoration-underline" to="/">
+                          <div className="text-decoration-underline" >
                             140
                           </div>
-                          <div className="text-decoration-underline" to="/">
+                          <div className="text-decoration-underline" >
                             10
                           </div>
-                          <div className="text-decoration-underline" to="/">
+                          <div className="text-decoration-underline" >
                             2
                           </div>
 

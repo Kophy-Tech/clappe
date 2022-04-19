@@ -56,7 +56,9 @@ function LandingPage() {
             isVisible={true}
           >
             <h1 className="display-4">
-              Clappe <span className="fw-bold"> made invoicing</span>
+         <span className="fw-bold" style={{color:'#02a09d'}}>
+           Clappe
+           </span>     made invoicing
               <br /> easy and simple
             </h1>
           </Animated>
@@ -72,17 +74,29 @@ function LandingPage() {
             </p>
           </Animated>
 
-          <Link to="" className="btn btn-primary">
+          <Link to="" className="btn" style={{backgroundColor:'#02a09d', color:'white'}}>
             Generate Invoice
           </Link>
         </div>
       </div>
-      <div className="container-fluid bg-light p-5">
-        <img
-          src={require("../../../assets/img/Invoicing-Invoices.png")}
-          style={{ width: "90%" }}
-          alt=""
-        />
+      <div className="container-fluid bg-light my-5 p-5">
+        <div className="row d-flex justify-content-around">
+          <div className="col-12 col-md-6">
+            <img
+              src={require("../../../assets/img/Invoicing-1.png")}
+              style={{ border:'1.5px solid black', borderRadius:'15px' }}
+              className='shadow-lg'
+            />
+          </div>
+          <div className="col-12 col-md-6 p-md-5">
+          <h1 className="mt-4 fw-bold"
+          style={{color:'#02a09d'}}>What we do</h1>
+            <p style={{lineHeight:'1.5rem'}}>Clappe is a suite of open source business apps that cover all your company needs: CRM, eCommerce, accounting, inventory, point of sale, project management, etc.</p>
+            <p style={{lineHeight:'1.5rem'}}> 
+              Clappe's unique value proposition is to be at the same time very easy to use and fully integrated.</p>
+              <p style={{lineHeight:'1.5rem'}}>Unlock centralized purchasing management, custom approvals, budget controls, and real-time insights with our intuitive and user-friendly solution.</p>
+          </div>
+        </div>
       </div>
 
       <div className="invoice container my-5">
