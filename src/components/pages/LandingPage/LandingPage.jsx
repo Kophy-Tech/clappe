@@ -58,8 +58,11 @@ function LandingPage() {
             <h1 className="display-4">
          <span className="" style={{color:'#02a09d', fontWeight:'600'}}>
            Clappe
-           </span>     made invoicing
+           </span> 
+             <span className="fw-bold ps-2"> 
+           made invoicing
               <br /> easy and simple
+             </span>   
             </h1>
           </Animated>
           <Animated
@@ -163,7 +166,7 @@ function LandingPage() {
         <div className="row gx-0">
           <div className="col-md-6">
             <img
-              src={require("../../../assets/img/phone1.jpg")}
+              src={require("../../../assets/img/atlast.png")}
               style={{ width: "70%" }}
               className="img-fluid ps-5"
               alt=""
