@@ -25,7 +25,7 @@ function Register() {
         <Affect effect={effect} useModal={true} />
         <div className="colm-logo">
           {/* <img src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg" alt="Logo" /> */}
-          <h1 className="text-primary "> Create Accout with Clappe Invoice</h1>
+          <h1 className="" style={{color:'#02a09d'}}> Create Accout with Clappe Invoice</h1>
           <h1 className="">
             Clappe helps you Create and share with Customers.
           </h1>
@@ -38,9 +38,9 @@ function Register() {
             <input name="email" type="text" placeholder="Email" />
             <input name="phone_number" type="text" placeholder="Phone" />
             <input name="password" type="password" placeholder="Password" />
-            <button className="btn-login">SignUp</button>
+            <button className="btn-login" style={{backgroundColor:'#02a09d', color:'white'}}>SignUp</button>
             <div>Already Have an Account?</div>
-            <Link to="/login" className="btn-new">
+            <Link to="/login" className="btn-new" style={{backgroundColor:'#065e5c', color:'white', textDecoration:'none'}}>
               {" "}
               Sign In
             </Link>

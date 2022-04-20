@@ -68,6 +68,7 @@ const NewDeliveryNote = React.lazy(() =>
 const Settings = React.lazy(() => import("./pages/Settings/Settings"));
 
 const Modal = React.lazy(() => import("./pages/Common/Modal"));
+const Contact = React.lazy(() => import("./pages/Contact/Contact"));
 
 const Progress = ({ isAnimating }) => {
   const { animationDuration, isFinished, progress } = useNProgress({
@@ -151,6 +152,13 @@ export const allRoutes = [
     path: "/",
     auth: false,
     element: LandingPage,
+    noLayout: true,
+  },
+  {
+    name: "Contact",
+    path: "/contact",
+    auth: false,
+    element: Contact,
     noLayout: true,
   },
   {

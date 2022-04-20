@@ -55,7 +55,7 @@ function Login() {
       <div className="therow">
         <div className="colm-logo">
           {/* <img src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg" alt="Logo" /> */}
-          <h1 className="text-primary ">
+          <h1 className="" style={{color:'#02a09d'}}>
             {" "}
             Turn Quotes into Invoices with minimal effort
           </h1>
@@ -71,11 +71,11 @@ function Login() {
               placeholder="Email address"
             />
             <input type="password" name="password" placeholder="Password" />
-            <button className="btn-login">Login</button>
+            <button className="btn-login" style={{backgroundColor:'#02a09d', color:'white'}}>Login</button>
 
             <Link to="/">Forgotten password?</Link>
             <Link to="/register">
-              <button className="btn-new">Create new Account</button>
+              <button className="btn-new" style={{backgroundColor:'#065e5c', color:'white'}}>Create new Account</button>
             </Link>
           </form>
         </div>

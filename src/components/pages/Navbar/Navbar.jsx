@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { logoutUser } from "../../../redux/thunks";
+import './Navbar.css'
 export default function Navbar() {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -31,18 +32,18 @@ export default function Navbar() {
             <div className="ms-5"></div>
             <div className="ms-5"></div>
             <ul className="navbar-nav d-flex me-auto ms-5 mb-2 mb-lg-0">
-              <li className="nav-item">
+              <li className="nav-item ms-3">
                 <Link className="nav-link active" aria-current="page" to="/">
                   Home
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item ms-3">
                 <Link className="nav-link" to="/">
                   Features
                 </Link>
               </li>
 
-              <li className="nav-item">
+              <li className="nav-item ms-3">
                 <Link className="nav-link" to="/">
                   Tour
                 </Link>
@@ -80,16 +81,17 @@ export default function Navbar() {
                   </li>
                 </ul>
               </li> */}
-              <li className="nav-item">
-                <Link className="nav-link" to="/">
+              <li className="nav-item ms-3">
+                <Link className="nav-link" to="/contact">
                   Contact us
                 </Link>
               </li>
             </ul>
             <form className="d-flex">
               <button
+              style={{border:'1px solid #02a09d'}}
                 to="/login"
-                className="btn btn-outline-primary me-3"
+                className="btn colt me-3"
                 onClick={async () => {
                   if (user.loggedIn) {
                     await logoutUser();
@@ -107,8 +109,9 @@ export default function Navbar() {
               {!user.loggedIn ? (
                 <Link
                   to="/register"
-                  className="btn btn-primary me-3"
+                  className="btn me-3"
                   type="submit"
+                  style={{backgroundColor:'#02a09d', color:'white'}}
                 >
                   Register
                 </Link>
