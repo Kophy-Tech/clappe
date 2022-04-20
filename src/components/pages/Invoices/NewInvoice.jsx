@@ -37,6 +37,8 @@ import {
 import { useSelector } from "react-redux";
 import CenteredModal from "../Common/Modal";
 import CurrencyModal from "../Common/CurrencyModal";
+import SignatureModal from "../Common/SignatureModal";
+import BrowseGallery from "../Common/BrowseGallary";
 
 export default function NewInvoice(props) {
   const navigate = useNavigate();
@@ -44,6 +46,10 @@ export default function NewInvoice(props) {
   const [modalShow, setModalShow] = React.useState(false);
   const [cmodalShow, setCModalShow] = React.useState(false);
   const [itemList, setItemList] = React.useState(true);
+  const [sigModalShow, setSigModalShow] = React.useState(false);
+  const [galleryModalShow, setGalleryModalShow] = React.useState(false);
+
+
 
   const [effect, setEffect] = React.useState({});
   const [invoice, setinvoice] = React.useState({});
@@ -250,6 +256,9 @@ export default function NewInvoice(props) {
     <>
       <CenteredModal show={modalShow} onHide={() => setModalShow(false)} />
       <CurrencyModal show={cmodalShow} onHide={() => setCModalShow(false)} />
+      <SignatureModal show={sigModalShow} onHide={() => setSigModalShow(false)}/>
+      <BrowseGallery show={galleryModalShow} onHide={() => setGalleryModalShow(false)} />
+      
       <Modal
         show={modalShow}
         onHide={() => setModalShow(false)}
@@ -458,13 +467,13 @@ export default function NewInvoice(props) {
                 </div>
                 <div className="px-3">
                   <div className="d-flex align-items-center">
-                    <div className="form-group">
+                    <div className="form-group my-2">
                       <label htmlFor="theme">Select Theme</label>
 
                       <input type="text" className="form-control w-100" />
                     </div>
                     <div>
-                      <button className="mybtn mx-3">Browser Gallery</button>
+                      <div style={{cursor:'pointer'}}  onClick={() => setGalleryModalShow(true)} className=" rounded mx-2 bg-primary text-white">Browser Gallery</div>
                     </div>
                   </div>
                   <div className="form-group">
@@ -830,9 +839,9 @@ export default function NewInvoice(props) {
                   Sign Estimate
                 </h5>
                 <div className="d-flex justify-content-center">
-                  <a href="#" className="btn btn-lg btn-primary">
+                  <Button   onClick={() => setSigModalShow(true)} className="btn btn-lg btn-primary">
                     Add signature
-                  </a>
+                  </Button>
                 </div>
               </div>
             </div>

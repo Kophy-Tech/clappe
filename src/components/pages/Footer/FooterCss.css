@@ -1,4 +1,7 @@
 
+.foot{
+    background-color: #333  !important;
+}
 a{
     text-decoration: none;
     color: white;
@@ -10,9 +13,7 @@ ul li{
     list-style-type: none;
 }
 
-.foot{
-    background-color: #333;
-}
+
 h4{
     font-size: 18px;
     font-weight: bold;

@@ -4,10 +4,10 @@ import '../Footer/FooterCss.css'
 
 export default function Footer() {
     return (
-        <div>
-            <footer className='foot text-white p-5'>
+        <div className='foot'>
+            <footer className='foot text-white p-5' style={{backgroundColor: '#333'}}>
                 <h1 className='fw-bold fs-2 text-center'>Clappe</h1>
-                <div className="row mt-5">
+                <div className="row mt-5 foot">
                     <div className="col-md-2">
                         <ul>
                         <h4>Community</h4>

@@ -4,6 +4,7 @@ import { Container, Row, Col, Card, Image, Table } from "react-bootstrap";
 import "./Invoice.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+
 import {
   deleteCustomer,
   fetchAllInvoices,
@@ -57,6 +58,7 @@ export default function Invoice() {
               <Col sm={12} md={6}>
                 <div className="mx-5">
                   {/* Customer Name Input Field */}
+
                   <div className="form-group d-flex justify-content-between mb-3 ">
                     <label htmlFor="invoice">Customer Name:</label>
                     <input
